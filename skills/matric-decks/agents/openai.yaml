@@ -1,0 +1,4 @@
+interface:
+  display_name: "MATRIC Deck Authoring"
+  short_description: "Create importable MATRIC decks without the editor"
+  default_prompt: "Use $matric-decks to create a MATRIC deck from my requirements and package it for import."

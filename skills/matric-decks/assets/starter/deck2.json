@@ -1,0 +1,260 @@
+{
+  "Id": "b03765d5-ef17-40d8-82f0-17f0e3bdcff3",
+  "Title": "MATRIC skill starter",
+  "Description": "Example native deck: copy/paste use the focused application; text entry types into the focused application. Review actions before use.",
+  "Author": "MATRIC",
+  "DeckFileVersion": 3,
+  "DefaultPageId": "62779979-3e4b-48b5-b88b-1af74b4e2e93",
+  "ReferencedUserVariables": [],
+  "Pages": [
+    {
+      "Id": "62779979-3e4b-48b5-b88b-1af74b4e2e93",
+      "Title": "Main",
+      "Cols": 6,
+      "Rows": 4,
+      "BackgroundColor": "#111827",
+      "BackgroundImage": "panel.svg",
+      "BackgroundSize": "cover",
+      "Controls": [
+        {
+          "Id": "73d71d07-c12f-4624-aa7f-9222e6f218a0",
+          "Name": "",
+          "Description": null,
+          "ControlTypeName": "EXM.MatricPro.Controls.MCButton",
+          "ControlConfigTypeName": "EXM.MatricPro.Controls.Config.MCButtonConfig",
+          "Text": "Copy",
+          "Width": 2,
+          "Height": 2,
+          "X": 0,
+          "Y": 0,
+          "ControlEvents": [
+            {
+              "Name": "release",
+              "Actions": [
+                {
+                  "ActionTypeName": "EXM.MatricPro.Actions.ActionHotkey",
+                  "Keystroke": "C",
+                  "Modifiers": [
+                    "LCONTROL"
+                  ],
+                  "KeyCode": 67,
+                  "Toggle": false
+                }
+              ]
+            }
+          ],
+          "Config": {
+            "AutoRepeat": false,
+            "AutoRepeatDelay": 1000,
+            "AutoRepeatInterval": 100,
+            "Toggle": false,
+            "FontFace": "text",
+            "TextSize": 22,
+            "Padding": 4,
+            "Halign": "center",
+            "Valign": "mid",
+            "TextColor": "#ffffff",
+            "TextColorActive": "#ffffff",
+            "BackgroundColor": "#263449",
+            "BackgroundColorActive": "#4169e1",
+            "BackgroundImage": null,
+            "BackgroundImageActive": null,
+            "LabelCustomCSS": null,
+            "LabelCustomCSSActive": null,
+            "ControlBindings": []
+          }
+        },
+        {
+          "Id": "71aa8414-fc74-4889-8462-c63a0796efb0",
+          "Name": "",
+          "Description": null,
+          "ControlTypeName": "EXM.MatricPro.Controls.MCButton",
+          "ControlConfigTypeName": "EXM.MatricPro.Controls.Config.MCButtonConfig",
+          "Text": "Paste",
+          "Width": 2,
+          "Height": 2,
+          "X": 2,
+          "Y": 0,
+          "ControlEvents": [
+            {
+              "Name": "release",
+              "Actions": [
+                {
+                  "ActionTypeName": "EXM.MatricPro.Actions.ActionHotkey",
+                  "Keystroke": "V",
+                  "Modifiers": [
+                    "LCONTROL"
+                  ],
+                  "KeyCode": 86,
+                  "Toggle": false
+                }
+              ]
+            }
+          ],
+          "Config": {
+            "AutoRepeat": false,
+            "AutoRepeatDelay": 1000,
+            "AutoRepeatInterval": 100,
+            "Toggle": false,
+            "FontFace": "text",
+            "TextSize": 22,
+            "Padding": 4,
+            "Halign": "center",
+            "Valign": "mid",
+            "TextColor": "#ffffff",
+            "TextColorActive": "#ffffff",
+            "BackgroundColor": "#263449",
+            "BackgroundColorActive": "#4169e1",
+            "BackgroundImage": null,
+            "BackgroundImageActive": null,
+            "LabelCustomCSS": null,
+            "LabelCustomCSSActive": null,
+            "ControlBindings": []
+          }
+        },
+        {
+          "Id": "b91b0e56-b891-4488-a2d4-6eea997263cb",
+          "Name": "",
+          "Description": null,
+          "ControlTypeName": "EXM.MatricPro.Controls.MCButton",
+          "ControlConfigTypeName": "EXM.MatricPro.Controls.Config.MCButtonConfig",
+          "Text": "Text page",
+          "Width": 2,
+          "Height": 2,
+          "X": 4,
+          "Y": 0,
+          "ControlEvents": [
+            {
+              "Name": "release",
+              "Actions": [
+                {
+                  "ActionTypeName": "EXM.MatricPro.Actions.ActionGoToPage",
+                  "TargetPageId": "f1a99f25-b349-461e-8a7e-2fc263e3d49a"
+                }
+              ]
+            }
+          ],
+          "Config": {
+            "AutoRepeat": false,
+            "AutoRepeatDelay": 1000,
+            "AutoRepeatInterval": 100,
+            "Toggle": false,
+            "FontFace": "text",
+            "TextSize": 22,
+            "Padding": 4,
+            "Halign": "center",
+            "Valign": "mid",
+            "TextColor": "#ffffff",
+            "TextColorActive": "#ffffff",
+            "BackgroundColor": "#263449",
+            "BackgroundColorActive": "#4169e1",
+            "BackgroundImage": null,
+            "BackgroundImageActive": null,
+            "LabelCustomCSS": null,
+            "LabelCustomCSSActive": null,
+            "ControlBindings": []
+          }
+        }
+      ]
+    },
+    {
+      "Id": "f1a99f25-b349-461e-8a7e-2fc263e3d49a",
+      "Title": "Text",
+      "Cols": 6,
+      "Rows": 4,
+      "BackgroundColor": "#111827",
+      "BackgroundImage": "panel.svg",
+      "BackgroundSize": "cover",
+      "Controls": [
+        {
+          "Id": "68848e41-bda9-410d-b8a4-1c525ff163ed",
+          "Name": "",
+          "Description": null,
+          "ControlTypeName": "EXM.MatricPro.Controls.MCButton",
+          "ControlConfigTypeName": "EXM.MatricPro.Controls.Config.MCButtonConfig",
+          "Text": "Type hello",
+          "Width": 2,
+          "Height": 2,
+          "X": 0,
+          "Y": 0,
+          "ControlEvents": [
+            {
+              "Name": "release",
+              "Actions": [
+                {
+                  "ActionTypeName": "EXM.MatricPro.Actions.ActionText",
+                  "TextValue": "Hello from MATRIC",
+                  "SendToClipboard": false,
+                  "TypeAsText": true
+                }
+              ]
+            }
+          ],
+          "Config": {
+            "AutoRepeat": false,
+            "AutoRepeatDelay": 1000,
+            "AutoRepeatInterval": 100,
+            "Toggle": false,
+            "FontFace": "text",
+            "TextSize": 22,
+            "Padding": 4,
+            "Halign": "center",
+            "Valign": "mid",
+            "TextColor": "#ffffff",
+            "TextColorActive": "#ffffff",
+            "BackgroundColor": "#263449",
+            "BackgroundColorActive": "#4169e1",
+            "BackgroundImage": null,
+            "BackgroundImageActive": null,
+            "LabelCustomCSS": null,
+            "LabelCustomCSSActive": null,
+            "ControlBindings": []
+          }
+        },
+        {
+          "Id": "c7a1be97-8925-477e-a30c-1b0fd67d8fcb",
+          "Name": "",
+          "Description": null,
+          "ControlTypeName": "EXM.MatricPro.Controls.MCButton",
+          "ControlConfigTypeName": "EXM.MatricPro.Controls.Config.MCButtonConfig",
+          "Text": "Back",
+          "Width": 2,
+          "Height": 2,
+          "X": 4,
+          "Y": 0,
+          "ControlEvents": [
+            {
+              "Name": "release",
+              "Actions": [
+                {
+                  "ActionTypeName": "EXM.MatricPro.Actions.ActionGoToPage",
+                  "TargetPageId": "62779979-3e4b-48b5-b88b-1af74b4e2e93"
+                }
+              ]
+            }
+          ],
+          "Config": {
+            "AutoRepeat": false,
+            "AutoRepeatDelay": 1000,
+            "AutoRepeatInterval": 100,
+            "Toggle": false,
+            "FontFace": "text",
+            "TextSize": 22,
+            "Padding": 4,
+            "Halign": "center",
+            "Valign": "mid",
+            "TextColor": "#ffffff",
+            "TextColorActive": "#ffffff",
+            "BackgroundColor": "#263449",
+            "BackgroundColorActive": "#4169e1",
+            "BackgroundImage": null,
+            "BackgroundImageActive": null,
+            "LabelCustomCSS": null,
+            "LabelCustomCSSActive": null,
+            "ControlBindings": []
+          }
+        }
+      ]
+    }
+  ]
+}
