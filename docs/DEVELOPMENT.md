@@ -10,6 +10,10 @@ The public [v0.1.0 release](https://github.com/tgudelj/matric-deck-skill/release
 
 Saved OBS discovery is implemented. Direct read-only obs-websocket discovery is described in the guide; a live client is not implemented. A rendered MATRIC-client preview is also not implemented. Preserve this distinction in user-facing claims.
 
+## Installation documentation
+
+`docs/INSTALLATION.md` covers Codex, Claude Code, Cursor, GitHub Copilot and Gemini CLI, with vendor-source links, personal/project locations, invocation, Python verification, cloud/remote constraints and updates. Copilot's optional `gh skill` flow is marked as preview and version-dependent; Cursor uses manual folder installation because this repository has no plugin marketplace manifest. Installation guidance was checked against vendor documentation; other harnesses have not been tested end to end. The installed payload remains v0.1.0; these are repository documentation changes only.
+
 ## Resume on another machine
 
 Clone the standalone repository, read `AGENTS.md` and `skills/matric-decks/SKILL.md`, and run the tests and packager described in the README. No MATRIC checkout, Windows desktop compiler or external Python packages are required for that workflow. Work on the skill here; do not restore it into the MATRIC application repository.

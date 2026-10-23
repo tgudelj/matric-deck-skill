@@ -6,20 +6,26 @@ This project is developed, versioned and released independently of MATRIC. Using
 
 ## Install
 
-In Codex, ask the skill installer:
+The same skill folder works with assistants that support Agent Skills and can run its Python helpers. Start with the [installation guide](docs/INSTALLATION.md), which covers:
+
+- [Codex](docs/INSTALLATION.md#codex)
+- [Claude Code](docs/INSTALLATION.md#claude-code)
+- [Cursor](docs/INSTALLATION.md#cursor)
+- [GitHub Copilot](docs/INSTALLATION.md#github-copilot)
+- [Gemini CLI](docs/INSTALLATION.md#gemini-cli)
+
+For a quick Codex installation:
 
 ```text
-$skill-installer install https://github.com/tgudelj/matric-deck-skill/tree/main/skills/matric-decks
+$skill-installer install https://github.com/tgudelj/matric-deck-skill/tree/v0.1.0/skills/matric-decks
 ```
 
-Alternatively, download a versioned `matric-decks-<version>.zip` from this repository's releases. Extract its `matric-decks` folder into your Codex user skills directory (`$CODEX_HOME/skills`, normally `~/.codex/skills`). The result must contain `matric-decks/SKILL.md` directly. Keep the included scripts, references, assets and license together. For an update, replace the old skill folder after preserving any local changes; installing a skill does not update generated decks.
-
-Codex normally detects local skill changes automatically; restart it if the skill does not appear. See the [official skill documentation](https://learn.chatgpt.com/docs/build-skills). The instructions follow the Agent Skills directory format; compatibility with another assistant depends on its skill loader and ability to run Python helpers. This repository currently distributes a plain skill, rather than a hosted service or a plugin-directory entry.
+You can also download the versioned `matric-decks-<version>.zip` from [Releases](https://github.com/tgudelj/matric-deck-skill/releases), then extract the complete `matric-decks` folder into your assistant's skills directory. The guide lists personal and project locations, invocation examples, verification and update steps. This repository distributes a plain skill; it is not registered in a plugin directory.
 
 ## Use
 
 ```text
-Use $matric-decks to make a 6-by-4 landscape deck with copy, paste,
+Use the matric-decks skill to make a 6-by-4 landscape deck with copy, paste,
 media controls and a second page for text snippets. Package it for import.
 ```
 
