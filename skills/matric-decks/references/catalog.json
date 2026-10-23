@@ -51,7 +51,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -163,7 +163,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -871,7 +871,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -983,7 +983,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -1095,7 +1095,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -1227,7 +1227,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -1359,7 +1359,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -1491,7 +1491,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -1623,7 +1623,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -1755,7 +1755,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -1887,7 +1887,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -2019,7 +2019,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -2151,7 +2151,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -2283,7 +2283,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -2415,7 +2415,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -2547,7 +2547,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -2679,7 +2679,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -2811,7 +2811,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -3083,7 +3083,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -3195,7 +3195,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -3307,7 +3307,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -3439,7 +3439,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -3571,7 +3571,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -3703,7 +3703,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -3835,7 +3835,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -3967,7 +3967,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -4099,7 +4099,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -4231,7 +4231,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -4363,7 +4363,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -4495,7 +4495,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -4627,7 +4627,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -4759,7 +4759,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -4891,7 +4891,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -5023,7 +5023,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -5155,7 +5155,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -5287,7 +5287,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -5419,7 +5419,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -5551,7 +5551,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -5683,7 +5683,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -5815,7 +5815,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -6087,7 +6087,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -6199,7 +6199,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -6311,7 +6311,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -6443,7 +6443,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -6575,7 +6575,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -6707,7 +6707,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -6839,7 +6839,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -6971,7 +6971,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -7103,7 +7103,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -7235,7 +7235,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -7507,7 +7507,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -7619,7 +7619,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -7731,7 +7731,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -7863,7 +7863,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -7995,7 +7995,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -8127,7 +8127,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -8259,7 +8259,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -8391,7 +8391,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -8720,7 +8720,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -8832,7 +8832,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -8944,7 +8944,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -9076,7 +9076,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -9208,7 +9208,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -9340,7 +9340,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -9472,7 +9472,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -9604,7 +9604,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -9736,7 +9736,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -9868,7 +9868,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -10000,7 +10000,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -10132,7 +10132,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -10264,7 +10264,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -10396,7 +10396,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -10528,7 +10528,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -10660,7 +10660,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -10792,7 +10792,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -10924,7 +10924,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -11210,7 +11210,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -11322,7 +11322,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -11444,7 +11444,7 @@
           }
         },
         "valuechange": {
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -11668,7 +11668,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -11780,7 +11780,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -11912,7 +11912,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -12019,7 +12019,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -12272,7 +12272,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -12384,7 +12384,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -12496,7 +12496,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -12628,7 +12628,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -12760,7 +12760,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -12892,7 +12892,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -13024,7 +13024,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -13156,7 +13156,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -13288,7 +13288,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -13420,7 +13420,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -13552,7 +13552,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -13684,7 +13684,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -13816,7 +13816,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -13948,7 +13948,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -14220,7 +14220,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -14332,7 +14332,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -14444,7 +14444,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -14576,7 +14576,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -14708,7 +14708,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -14840,7 +14840,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -14972,7 +14972,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -15104,7 +15104,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -15236,7 +15236,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -15368,7 +15368,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -15500,7 +15500,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -15632,7 +15632,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -15910,7 +15910,7 @@
       },
       "events": {
         "valuechange": {
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -16137,7 +16137,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -16249,7 +16249,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -16361,7 +16361,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -16493,7 +16493,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -16625,7 +16625,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -16757,7 +16757,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -16889,7 +16889,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -17021,7 +17021,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -17153,7 +17153,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -17285,7 +17285,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -17417,7 +17417,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -17549,7 +17549,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -17681,7 +17681,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -17813,7 +17813,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -17945,7 +17945,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -18077,7 +18077,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -18209,7 +18209,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -18341,7 +18341,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -18473,7 +18473,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -18605,7 +18605,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -18877,7 +18877,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -18989,7 +18989,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -19101,7 +19101,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -19233,7 +19233,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -19365,7 +19365,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -19497,7 +19497,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -19911,7 +19911,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -20023,7 +20023,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -20135,7 +20135,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -20267,7 +20267,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -20399,7 +20399,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -20531,7 +20531,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -20663,7 +20663,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -20795,7 +20795,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -20927,7 +20927,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -21059,7 +21059,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -21191,7 +21191,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -21323,7 +21323,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -21455,7 +21455,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -21587,7 +21587,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -21719,7 +21719,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -21851,7 +21851,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -21983,7 +21983,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -22115,7 +22115,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -22247,7 +22247,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -22379,7 +22379,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -22511,7 +22511,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -22643,7 +22643,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -22775,7 +22775,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -22907,7 +22907,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -23179,7 +23179,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -23291,7 +23291,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -23403,7 +23403,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -23535,7 +23535,7 @@
             "exclusive": false,
             "implicit": false
           },
-          "EXM.MatricPro.Actions.ActionSetServerVariables": {
+          "EXM.MatricPro.Actions.ActionSetServerVariable": {
             "single": false,
             "exclusive": false,
             "implicit": false
@@ -23900,7 +23900,8 @@
     }
   },
   "actions": {
-    "EXM.MatricPro.Actions": {
+    "EXM.MatricPro.Actions.ActionModifyControl": {
+      "action_id": "EXM.MatricPro.Actions",
       "name": "Change control appearance",
       "description": "Changes control appearance",
       "requires_implicit_release": false,
@@ -23932,6 +23933,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionBarcode": {
+      "action_id": "EXM.MatricPro.Actions.ActionBarcode",
       "name": "Barcode scan",
       "description": "Scans the barcode and places the result in PC's clipboard and/or types it as text",
       "requires_implicit_release": false,
@@ -23952,6 +23954,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionColorPicker": {
+      "action_id": "EXM.MatricPro.Actions.ActionColorPicker",
       "name": "Color picker",
       "description": "Transfers selected color to PC by typing as text",
       "requires_implicit_release": false,
@@ -23972,6 +23975,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionCountdownTimer": {
+      "action_id": "EXM.MatricPro.Actions.ActionCountdownTimer",
       "name": "Countdown timer",
       "description": "Start/Stop/Reset countdown timer",
       "requires_implicit_release": false,
@@ -24005,6 +24009,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionDelay": {
+      "action_id": "EXM.MatricPro.Actions.ActionDelay",
       "name": "Delay",
       "description": "Stops action execution until specified timeout has elapsed",
       "requires_implicit_release": false,
@@ -24020,6 +24025,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionExecHttp": {
+      "action_id": "EXM.MatricPro.Actions.ActionExecHttp",
       "name": "Execute HTTP request",
       "description": "Executes an http(s) request",
       "requires_implicit_release": false,
@@ -24066,6 +24072,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionFocusApp": {
+      "action_id": "EXM.MatricPro.Actions.ActionFocusApp",
       "name": "Focus application",
       "description": "Brings the application specified by specified window title or executable path to foreground",
       "requires_implicit_release": false,
@@ -24081,6 +24088,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionGoToPage": {
+      "action_id": "EXM.MatricPro.Actions.ActionGoToPage",
       "name": "Navigate to deck page",
       "description": "Navigates to specified deck page",
       "requires_implicit_release": false,
@@ -24096,6 +24104,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionHotkey": {
+      "action_id": "EXM.MatricPro.Actions.ActionHotkey",
       "name": "Hotkey",
       "description": "Simulates hotkey",
       "requires_implicit_release": true,
@@ -24130,6 +24139,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionLoadDeck": {
+      "action_id": "EXM.MatricPro.Actions.ActionLoadDeck",
       "name": "Load MATRIC deck",
       "description": "Loads a MATRIC deck specified by Id",
       "requires_implicit_release": false,
@@ -24145,6 +24155,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionMacro": {
+      "action_id": "EXM.MatricPro.Actions.ActionMacro",
       "name": "Macro",
       "description": "Executes a timed set of keystrokes",
       "requires_implicit_release": false,
@@ -24190,6 +24201,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionMirrorTouch": {
+      "action_id": "EXM.MatricPro.Actions.ActionMirrorTouch",
       "name": "Mirror touch",
       "description": "Emulate mouse click on mirror touch",
       "requires_implicit_release": false,
@@ -24199,6 +24211,7 @@
       "properties": {}
     },
     "EXM.MatricPro.Actions.ActionMixerMute": {
+      "action_id": "EXM.MatricPro.Actions.ActionMixerMute",
       "name": "Mute",
       "description": "Sets mute status for specified application or device",
       "requires_implicit_release": false,
@@ -24247,6 +24260,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionMixerVolume": {
+      "action_id": "EXM.MatricPro.Actions.ActionMixerVolume",
       "name": "Set volume",
       "description": "Sets Windows mixer volume for specified application or device, used with sliders and rotaries",
       "requires_implicit_release": false,
@@ -24280,6 +24294,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionMixerVolumeSet": {
+      "action_id": "EXM.MatricPro.Actions.ActionMixerVolumeSet",
       "name": "Set volume",
       "description": "Sets Windows mixer volume to specified value",
       "requires_implicit_release": false,
@@ -24318,6 +24333,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionMixerVolumeStep": {
+      "action_id": "EXM.MatricPro.Actions.ActionMixerVolumeStep",
       "name": "Volume +/-",
       "description": "Increases or decreases volume by specified value",
       "requires_implicit_release": false,
@@ -24356,6 +24372,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionMouseAxis": {
+      "action_id": "EXM.MatricPro.Actions.ActionMouseAxis",
       "name": "Mouse axis",
       "description": "Move mouse position along specified axis",
       "requires_implicit_release": false,
@@ -24379,6 +24396,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionMouseMove": {
+      "action_id": "EXM.MatricPro.Actions.ActionMouseMove",
       "name": "Mouse move (relative)",
       "description": "Move mouse relative to current position or target window",
       "requires_implicit_release": false,
@@ -24417,6 +24435,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionMouseSetPosition": {
+      "action_id": "EXM.MatricPro.Actions.ActionMouseSetPosition",
       "name": "Mouse position (absolute)",
       "description": "Move mouse to specified position",
       "requires_implicit_release": false,
@@ -24437,6 +24456,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionOBS": {
+      "action_id": "EXM.MatricPro.Actions.ActionOBS",
       "name": "OBS Studio",
       "description": "Executes OBS Studio command",
       "requires_implicit_release": false,
@@ -24550,6 +24570,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionOBSVolume": {
+      "action_id": "EXM.MatricPro.Actions.ActionOBSVolume",
       "name": "OBS Studio volume",
       "description": "Sets source volume in OBS Studio",
       "requires_implicit_release": false,
@@ -24576,6 +24597,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionOpenUrl": {
+      "action_id": "EXM.MatricPro.Actions.ActionOpenUrl",
       "name": "Open in browser",
       "description": "Opens the default browser with specified address",
       "requires_implicit_release": false,
@@ -24591,6 +24613,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionPhoto": {
+      "action_id": "EXM.MatricPro.Actions.ActionPhoto",
       "name": "Take a photo",
       "description": "Takes a photo and places it on PC clipboard",
       "requires_implicit_release": false,
@@ -24600,6 +24623,7 @@
       "properties": {}
     },
     "EXM.MatricPro.Actions.ActionPlayAudio": {
+      "action_id": "EXM.MatricPro.Actions.ActionPlayAudio",
       "name": "Play audio on PC",
       "description": "Plays audio on PC",
       "requires_implicit_release": false,
@@ -24615,6 +24639,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionPlayAudioClient": {
+      "action_id": "EXM.MatricPro.Actions.ActionPlayAudioClient",
       "name": "Play audio on mobile device",
       "description": "Plays audio on mobile device, this is primarily intended to provide audio feedback for control events (e.g. click sound when button is pressed)",
       "requires_implicit_release": false,
@@ -24630,6 +24655,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionRunApp": {
+      "action_id": "EXM.MatricPro.Actions.ActionRunApp",
       "name": "Run application",
       "description": "Runs an application on PC",
       "requires_implicit_release": false,
@@ -24654,7 +24680,8 @@
         }
       }
     },
-    "EXM.MatricPro.Actions.ActionSetServerVariables": {
+    "EXM.MatricPro.Actions.ActionSetServerVariable": {
+      "action_id": "EXM.MatricPro.Actions.ActionSetServerVariables",
       "name": "Set variable",
       "description": "Sets server variable",
       "requires_implicit_release": false,
@@ -24697,13 +24724,14 @@
       }
     },
     "EXM.MatricPro.Actions.ActionStreamDeckContainer": {
+      "action_id": "EXM.MatricPro.Actions.ActionStreamDeckContainer",
       "name": "Stream Deck plugin container",
       "description": "Container for Stream Deck plugin actions",
       "requires_implicit_release": true,
       "template": {
         "ActionTypeName": "EXM.MatricPro.Actions.ActionStreamDeckContainer",
         "StreamDeckActionResources": {},
-        "StreamDeckInstanceId": "78205f5a776d433ca342103fc52a7944",
+        "StreamDeckInstanceId": "ac24858a931c47b69864af0f861cd77e",
         "StreamDeckPluginUUID": null,
         "StreamDeckActionUUID": null,
         "StreamDeckController": null,
@@ -24737,6 +24765,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionText": {
+      "action_id": "EXM.MatricPro.Actions.ActionText",
       "name": "Text",
       "description": "Transfers text to PC either by typing it or placing it in PC clipboard",
       "requires_implicit_release": false,
@@ -24762,6 +24791,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionTouchpad": {
+      "action_id": "EXM.MatricPro.Actions.ActionTouchpad",
       "name": "Touchpad",
       "description": "The surface of control will emulate multi touch touchpad with gesture support",
       "requires_implicit_release": false,
@@ -24771,6 +24801,7 @@
       "properties": {}
     },
     "EXM.MatricPro.Actions.ActionVJoy2Axis": {
+      "action_id": "EXM.MatricPro.Actions.ActionVJoy2Axis",
       "name": "VJoy 2 axis",
       "description": "Controls two Vjoy axes",
       "requires_implicit_release": false,
@@ -24854,6 +24885,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionVJoyAxis": {
+      "action_id": "EXM.MatricPro.Actions.ActionVJoyAxis",
       "name": "VJoy axis",
       "description": "Simulates joystick axis",
       "requires_implicit_release": false,
@@ -24903,6 +24935,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionVjoyButton": {
+      "action_id": "EXM.MatricPro.Actions.ActionVjoyButton",
       "name": "VJoy button",
       "description": "Simulates joystick button",
       "requires_implicit_release": true,
@@ -24923,6 +24956,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionVjoyPOV": {
+      "action_id": "EXM.MatricPro.Actions.ActionVjoyPOV",
       "name": "VJoy POV",
       "description": "Simulates joystick POV input",
       "requires_implicit_release": true,
@@ -24962,6 +24996,7 @@
       }
     },
     "EXM.MatricPro.Actions.ActionVJoySetAxisValue": {
+      "action_id": "EXM.MatricPro.Actions.ActionVJoySetAxisValue",
       "name": "VJoy set axis value",
       "description": "Sets joystick axis to specified value",
       "requires_implicit_release": false,

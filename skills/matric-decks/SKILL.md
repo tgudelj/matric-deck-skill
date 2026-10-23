@@ -1,7 +1,7 @@
 ---
 name: matric-decks
 license: MIT
-description: Create, inspect, or edit MATRIC control decks and produce importable .deck packages without using the editor. Use for MATRIC deck JSON, layouts, action bindings, resources, and OBS-backed control panels.
+description: Create, inspect, or edit MATRIC control decks and produce importable .deck packages without using the editor. Use for MATRIC deck JSON, layouts, action bindings, resources, and OBS or DCS-BIOS/DBMM control panels.
 ---
 
 # MATRIC deck authoring
@@ -48,6 +48,12 @@ python scripts/obs_inventory.py /path/to/basic/scenes --output /path/to/obs-inve
 ```
 
 Use the exact discovered names when configuring native OBS actions. The helper's result is saved configuration, not live state. The OBS reference also describes direct, read-only obs-websocket 5 discovery for assistants with a WebSocket client. Do not switch collections or start/stop outputs just to discover a setup. No MATRIC MCP server or MATRIC-as-WebSocket-client is required for discovery.
+
+## DCS cockpit panels
+
+For Digital Combat Simulator decks with two-way DCS-BIOS-MATRIC-Middleware (DBMM) integration, read [the DCS workflow](references/dcs-bios.md). Inspect the user's installed aircraft JSON and aliases with `scripts/dcs_bios.py inventory`; use `check` to audit commands and feedback dependencies. Do not guess aircraft identifiers, switch semantics, seat variants or live values. DBMM sends commands through `DCS_INPUT_COMMAND` and publishes telemetry as `dcs_<identifier>`. Initialize the command mailbox empty; keep simulator state separate from persistent user variables.
+
+The DCS reference covers setup, momentary commands, switch/slider mapping, feedback transforms, required exported variables and live acceptance. `scripts/dcs_bios.py example --output /path/to/dcs-training` produces a synthetic training deck, not a real aircraft panel. Existing DBMM decks are evidence to inspect; preserve their assets and do not copy stale commands or unknown mappings into new work. Keep aircraft definitions and real user decks outside the distributed skill.
 
 ## Validate and package
 

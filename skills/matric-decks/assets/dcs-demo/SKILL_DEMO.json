@@ -1,0 +1,117 @@
+{
+  "Synthetic training": {
+    "SYN_TEST_BUTTON": {
+      "identifier": "SYN_TEST_BUTTON",
+      "category": "Synthetic training",
+      "description": "Synthetic training fixture; no real aircraft mapping",
+      "control_type": "selector",
+      "inputs": [
+        {
+          "interface": "set_state",
+          "max_value": 1
+        }
+      ],
+      "outputs": []
+    },
+    "SYN_TEST_LAMP": {
+      "identifier": "SYN_TEST_LAMP",
+      "category": "Synthetic training",
+      "description": "Synthetic training fixture; no real aircraft mapping",
+      "control_type": "led",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "integer",
+          "address": 4096,
+          "mask": 1,
+          "shift_by": 0,
+          "max_value": 1,
+          "suffix": ""
+        }
+      ]
+    },
+    "SYN_POWER": {
+      "identifier": "SYN_POWER",
+      "category": "Synthetic training",
+      "description": "Synthetic training fixture; no real aircraft mapping",
+      "control_type": "selector",
+      "inputs": [
+        {
+          "interface": "set_state",
+          "max_value": 1
+        },
+        {
+          "interface": "fixed_step"
+        },
+        {
+          "interface": "action",
+          "argument": "TOGGLE"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "integer",
+          "address": 4098,
+          "mask": 1,
+          "shift_by": 0,
+          "max_value": 1,
+          "suffix": ""
+        }
+      ]
+    },
+    "SYN_DIMMER": {
+      "identifier": "SYN_DIMMER",
+      "category": "Synthetic training",
+      "description": "Synthetic training fixture; no real aircraft mapping",
+      "control_type": "limited_dial",
+      "inputs": [
+        {
+          "interface": "set_state",
+          "max_value": 65535
+        },
+        {
+          "interface": "variable_step",
+          "max_value": 65535,
+          "suggested_step": 3200
+        }
+      ],
+      "outputs": [
+        {
+          "type": "integer",
+          "address": 4100,
+          "mask": 65535,
+          "shift_by": 0,
+          "max_value": 65535,
+          "suffix": ""
+        }
+      ]
+    },
+    "SYN_READOUT": {
+      "identifier": "SYN_READOUT",
+      "category": "Synthetic training",
+      "description": "Synthetic training fixture; no real aircraft mapping",
+      "control_type": "display",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "string",
+          "address": 4102,
+          "max_length": 16,
+          "suffix": ""
+        }
+      ]
+    },
+    "SYN_TEXT": {
+      "identifier": "SYN_TEXT",
+      "category": "Synthetic training",
+      "description": "Synthetic training fixture; no real aircraft mapping",
+      "control_type": "display",
+      "inputs": [
+        {
+          "interface": "set_string"
+        }
+      ],
+      "outputs": []
+    }
+  }
+}

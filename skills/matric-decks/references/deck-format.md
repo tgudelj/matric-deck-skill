@@ -56,7 +56,7 @@ For a native touchpad, use `new_control("MCTouchpad", ...)`: its event is `touch
 
 ## Actions and events
 
-An action's discriminant is `ActionTypeName`, the implementation class's full name. It is not the configuration class name. The converter resolves the corresponding configuration type. Assembly-qualified `ActionType` strings and computed `FileResources` arrays are not needed in newly authored JSON.
+An action's discriminant is `ActionTypeName`, the implementation class's full name. It is not the configuration class name. The converter resolves the corresponding configuration type. Internal action IDs can differ from serialized type names: Set variable serializes as `EXM.MatricPro.Actions.ActionSetServerVariable` (singular), while its internal ID ends in `ActionSetServerVariables`. The catalog keys and event maps use serialized implementation names; `action_metadata` also accepts the old internal ID as a lookup alias. Assembly-qualified `ActionType` strings and computed `FileResources` arrays are not needed in newly authored JSON.
 
 Names and serialization matter: buttons expose `press` and `release`; sliders expose `valuechange`, not `change`. Some actions are exclusive or single-instance for an event. Native sliders can bind native volume actions; they cannot host the excluded continuous Stream Deck slider mapping. Inspect the catalog's event map before attaching actions.
 

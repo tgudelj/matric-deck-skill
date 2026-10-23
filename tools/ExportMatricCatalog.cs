@@ -71,7 +71,7 @@ internal static class ExportMatricCatalog {
             Clean(template);
             var events = new JObject();
             foreach (var e in definition.EventsDefinition) {
-                events[e.Name] = new JObject(e.AllowedActions.Select(binding => new JProperty(binding.Action.ActionId, new JObject {
+                events[e.Name] = new JObject(e.AllowedActions.Select(binding => new JProperty(binding.Action.GetType().FullName, new JObject {
                     ["single"] = binding.Single, ["exclusive"] = binding.Exclusive, ["implicit"] = binding.Implicit
                 })));
             }
@@ -84,7 +84,8 @@ internal static class ExportMatricCatalog {
         foreach (var action in ActionHelpers.AllActions.Values.OrderBy(a => a.ActionId)) {
             var template = JObject.FromObject(Activator.CreateInstance(action.ActionConfigType));
             Clean(template);
-            actions[action.ActionId] = new JObject {
+            actions[action.GetType().FullName] = new JObject {
+                ["action_id"] = action.ActionId,
                 ["name"] = action.DisplayName, ["description"] = action.Description,
                 ["requires_implicit_release"] = action.RequiresImplicitRelease,
                 ["template"] = template, ["properties"] = Properties(action.ActionConfigType, template)

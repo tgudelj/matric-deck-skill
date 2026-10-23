@@ -1,6 +1,6 @@
 # MATRIC Deck Skill
 
-Create editable MATRIC control decks and importable `.deck` packages with an AI assistant, without operating the MATRIC editor. Includes format and action references, native control templates, a validator/packager, and offline OBS scene-collection discovery.
+Create editable MATRIC control decks and importable `.deck` packages with an AI assistant, without operating the MATRIC editor. Includes format and action references, native control templates, a validator/packager, offline OBS scene-collection discovery, and DCS-BIOS/DBMM command and feedback authoring.
 
 This project is developed, versioned and released independently of MATRIC. Using the skill requires Python 3.11 or newer; its helpers use only the standard library. A MATRIC installation is needed to import and use the finished deck. MATRIC source code and binaries are not distributed here.
 
@@ -17,7 +17,7 @@ The same skill folder works with assistants that support Agent Skills and can ru
 For a quick Codex installation:
 
 ```text
-$skill-installer install https://github.com/tgudelj/matric-deck-skill/tree/v0.1.0/skills/matric-decks
+$skill-installer install https://github.com/tgudelj/matric-deck-skill/tree/v0.2.0/skills/matric-decks
 ```
 
 You can also download the versioned `matric-decks-<version>.zip` from [Releases](https://github.com/tgudelj/matric-deck-skill/releases), then extract the complete `matric-decks` folder into your assistant's skills directory. The guide lists personal and project locations, invocation examples, verification and update steps. This repository distributes a plain skill; it is not registered in a plugin directory.
@@ -32,6 +32,15 @@ media controls and a second page for text snippets. Package it for import.
 For OBS, supply an exported scene collection JSON or the path to your saved collection directory. The bundled reader discovers collections, scenes, groups, sources, filters and saved shortcuts without connecting MATRIC to OBS. Saved configuration is not live state. Direct read-only obs-websocket discovery is documented separately; no live WebSocket client is bundled. Execution of native MATRIC OBS actions still requires MATRIC's OBS integration.
 
 The assistant produces editable JSON/assets and a `.deck` archive. Review the configured actions and external dependencies, then import the `.deck` using MATRIC's normal import workflow. The skill does not execute controls or install a deck into a live library.
+
+## DCS cockpit decks
+
+The same skill supports Digital Combat Simulator panels through DCS-BIOS and DCS-BIOS-MATRIC-Middleware (DBMM). It reads installed aircraft definitions, builds native command-variable actions and simulator feedback bindings, audits required outputs, and provides an original synthetic example. Start with the [DCS setup and authoring guide](skills/matric-decks/references/dcs-bios.md). Live operation needs DCS, DCS-BIOS, DBMM and MATRIC configured; static checks do not prove cockpit behavior.
+
+```text
+Use the matric-decks skill to build an F-16C ICP panel using my installed
+DCS-BIOS definitions, with simulator feedback and a DBMM output checklist.
+```
 
 ## Package and test
 

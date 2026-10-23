@@ -1,0 +1,19 @@
+{
+  "Synthetic metadata": {
+    "_ACFT_NAME": {
+      "identifier": "_ACFT_NAME",
+      "category": "Synthetic training",
+      "description": "Synthetic aircraft marker for metadata reference tests",
+      "control_type": "display",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "string",
+          "address": 0,
+          "max_length": 24,
+          "suffix": ""
+        }
+      ]
+    }
+  }
+}

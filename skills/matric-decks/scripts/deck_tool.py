@@ -277,9 +277,20 @@ def new_control(kind, text, x, y, width=1, height=1):
     return control
 
 
+def action_metadata(name):
+    """Resolve serialized implementation names, retaining compatibility with older catalog action IDs."""
+    name = name if name.startswith(ACTION_PREFIX) else ACTION_PREFIX + name
+    if name in CATALOG["actions"]:
+        return CATALOG["actions"][name]
+    found = [v for v in CATALOG["actions"].values() if v.get("action_id") == name]
+    if len(found) != 1:
+        raise KeyError(name)
+    return found[0]
+
+
 def action(name, **values):
     """Create an action from the bundled template without guessing its serialized field names."""
-    result = copy.deepcopy(CATALOG["actions"][ACTION_PREFIX + name]["template"])
+    result = copy.deepcopy(action_metadata(name)["template"])
     if "StreamDeckInstanceId" in result:
         result["StreamDeckInstanceId"] = uuid.uuid4().hex
     result.update(values)
@@ -306,7 +317,7 @@ def main():
         if args.control:
             result = CATALOG["controls"][args.control]
         elif args.action:
-            result = CATALOG["actions"][args.action if args.action.startswith(ACTION_PREFIX) else ACTION_PREFIX + args.action]
+            result = action_metadata(args.action)
         else:
             result = {"deck_file_version": CATALOG["deck_file_version"], "controls": {k: v["description"] for k, v in CATALOG["controls"].items()},
                       "actions": {k: v["description"] for k, v in CATALOG["actions"].items()}}

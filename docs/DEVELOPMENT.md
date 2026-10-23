@@ -14,6 +14,20 @@ Saved OBS discovery is implemented. Direct read-only obs-websocket discovery is 
 
 `docs/INSTALLATION.md` covers Codex, Claude Code, Cursor, GitHub Copilot and Gemini CLI, with vendor-source links, personal/project locations, invocation, Python verification, cloud/remote constraints and updates. Copilot's optional `gh skill` flow is marked as preview and version-dependent; Cursor uses manual folder installation because this repository has no plugin marketplace manifest. Installation guidance was checked against vendor documentation; other harnesses have not been tested end to end. The installed payload remains v0.1.0; these are repository documentation changes only.
 
+## DCS extension in version 0.2.0
+
+The existing skill now routes DCS cockpit tasks to `references/dcs-bios.md` and `scripts/dcs_bios.py`. The helper reads installed DCS-BIOS JSON/aircraft aliases, validates literal command arguments, generates command-variable actions and feedback bindings, audits mailbox/dependencies, and creates an original synthetic training deck. No aircraft definition dataset, real user deck or third-party artwork is bundled. All work remains separate from the MATRIC application repository.
+
+Evidence includes the public DBMM translator at source commit `970a393c384a268021af8cffb3780b520c7f48d4` (normalized public/local file comparison matched), the local middleware manual and implementation, seven local DBMM decks, and installed definitions for F-16C, F-5E, M-2000C and JF-17. The middleware working tree has unrelated local changes; it was read only and those changes were preserved. User-supplied video links are included as walkthroughs; video content could not be fetched and was not used as API evidence.
+
+A necessary catalog correction distinguishes serialized `ActionSetServerVariable` from its plural internal `ActionId`. Event maps and catalog keys now use implementation names; helper lookup preserves the older ID as an alias. This is a skill/catalog fix, not a MATRIC code change. The catalog was refreshed against the same identified MATRIC assembly; its version remains deck format 3.
+
+Offline acceptance covers 15 tests, including all five DCS-BIOS input interface forms, alias/definition selection, unsupported commands/newline rejection, feedback dependencies, empty mailbox initialization and packaging. The synthetic DCS deck passed native MATRIC import/export/reimport with its five command actions, four feedback bindings and empty mailbox preserved. The generic starter also passed its native regression check. Generated JavaScript was checked separately with an installed F-16 `ICP_HUD_BRT_KNB` definition for endpoints, midpoint, clamping, invalid input and inverse feedback scaling; no commands were sent.
+
+Existing DBMM examples are not treated as golden fixtures: several contain legacy switch/applet events and saved mailbox values that fail current checks. The guide explains those limits. The inspected MATRIC importer preserves `ReferencedUserVariables` metadata but does not install calculated user variables; users must configure those explicitly or use direct binding transforms. DBMM owns runtime telemetry and creates its mailbox at startup.
+
+Remaining live acceptance: verify aircraft/seat identifiers, command direction, momentary release, cockpit-originated feedback, display formatting, DBMM variable selection/aliases, slider behavior and repeat-command timing. Neither DCS nor a live middleware session was operated. Helper audits do not evaluate arbitrary JavaScript, prove dynamically constructed dependencies, or guarantee mailbox delivery. Run DCS native acceptance with `tests/test-native-import.ps1 -Scenario dcs` and an explicitly supplied build when needed.
+
 ## Resume on another machine
 
 Clone the standalone repository, read `AGENTS.md` and `skills/matric-decks/SKILL.md`, and run the tests and packager described in the README. No MATRIC checkout, Windows desktop compiler or external Python packages are required for that workflow. Work on the skill here; do not restore it into the MATRIC application repository.

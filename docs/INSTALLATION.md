@@ -8,7 +8,7 @@ The paths and host commands below follow the linked vendor documentation. The he
 
 ## Choose an installation scope
 
-Download `matric-decks-0.1.0.zip` and its checksum from the [v0.1.0 release](https://github.com/tgudelj/matric-deck-skill/releases/tag/v0.1.0). Extract it, then place the `matric-decks` directory in one of these locations:
+Download `matric-decks-0.2.0.zip` and its checksum from the [v0.2.0 release](https://github.com/tgudelj/matric-deck-skill/releases/tag/v0.2.0). Extract it, then place the `matric-decks` directory in one of these locations:
 
 | Assistant | Personal installation | Project installation |
 | --- | --- | --- |
@@ -29,7 +29,7 @@ For cloud or remote agents, put the skill and Python in the environment where th
 Ask Codex's skill installer to install the tagged skill directory:
 
 ```text
-$skill-installer install https://github.com/tgudelj/matric-deck-skill/tree/v0.1.0/skills/matric-decks
+$skill-installer install https://github.com/tgudelj/matric-deck-skill/tree/v0.2.0/skills/matric-decks
 ```
 
 Alternatively, use the folder location above. If `CODEX_HOME` is customized, its `skills` directory replaces `~/.codex/skills`. Invoke with `$matric-decks`, or describe a MATRIC deck task. Codex detects skill changes automatically; restart if it does not appear. [Official skill documentation](https://learn.chatgpt.com/docs/build-skills).
@@ -64,7 +64,7 @@ As an alternative to copying files, GitHub CLI 2.90.0+ provides the preview `gh 
 
 ```sh
 gh skill preview tgudelj/matric-deck-skill matric-decks
-gh skill install tgudelj/matric-deck-skill matric-decks@v0.1.0 --scope user
+gh skill install tgudelj/matric-deck-skill matric-decks@v0.2.0 --scope user
 ```
 
 These commands default to Copilot; `--scope user` chooses a personal installation. For older CLI versions, use the folder instructions. [Official GitHub CLI skill installation guidance](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills).
@@ -77,7 +77,7 @@ Install the skill subdirectory from GitHub:
 gemini skills install https://github.com/tgudelj/matric-deck-skill.git --path skills/matric-decks --scope user
 ```
 
-This follows the repository's default branch. For the fixed v0.1.0 payload, use the release ZIP and folder location above instead. To install only for the current project, use `--scope workspace` or the project folder.
+This follows the repository's default branch. For the fixed v0.2.0 payload, use the release ZIP and folder location above instead. To install only for the current project, use `--scope workspace` or the project folder.
 
 Inside Gemini CLI, run `/skills reload` and `/skills list`, then request a deck using the `matric-decks` skill by name. Complete Gemini's installation/activation prompts when shown. [Official Gemini skill locations and install options](https://geminicli.com/docs/cli/skills/), [skill management](https://geminicli.com/docs/cli/using-agent-skills/).
 

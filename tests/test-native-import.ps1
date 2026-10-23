@@ -1,4 +1,4 @@
-param([Parameter(Mandatory=$true)][string]$Package, [Parameter(Mandatory=$true)][string]$DesktopBin)
+param([Parameter(Mandatory=$true)][string]$Package, [Parameter(Mandatory=$true)][string]$DesktopBin, [ValidateSet("starter", "dcs")][string]$Scenario = "starter")
 $ErrorActionPreference = 'Stop'
 $DesktopBin = [IO.Path]::GetFullPath($DesktopBin)
 $Package = [IO.Path]::GetFullPath($Package)
@@ -14,7 +14,7 @@ try {
     if ($LASTEXITCODE) { throw 'Native import checker compilation failed.' }
     Get-ChildItem -LiteralPath $DesktopBin -Filter '*.dll' | Copy-Item -Destination $testDirectory
     Copy-Item -LiteralPath (Join-Path $DesktopBin 'MatricServer.exe.config') -Destination ($runner + '.config')
-    & $runner $Package (Join-Path $testDirectory 'collections')
+    & $runner $Package (Join-Path $testDirectory 'collections') $Scenario
     if ($LASTEXITCODE) { throw 'Native import check failed.' }
 } finally {
     $resolved = [IO.Path]::GetFullPath($testDirectory)
