@@ -2,7 +2,7 @@
 
 ## Current state
 
-Initial version: 0.1.0, extracted into a separate project on 2026-10-23. The installed skill includes instructions, deck/action/OBS references, a catalog of actual MATRIC definitions, standard-library Python helpers, and a two-page starter deck with an SVG background. Runtime authoring and ordinary testing are independent of the MATRIC source tree.
+Current release: 0.2.0. Initial version 0.1.0 was extracted into a separate project on 2026-10-23. The installed skill includes instructions, deck/action/OBS references, a catalog of actual MATRIC definitions, standard-library Python helpers, and a two-page starter deck with an SVG background. Runtime authoring and ordinary testing are independent of the MATRIC source tree.
 
 The original acceptance run passed eight offline tests and MATRIC's native import â†’ export â†’ reimport check, preserving two pages, five controls, hotkey configuration and the bundled SVG. OBS discovery was also exercised against a local saved collection; that user configuration is not part of this repository. Repository extraction adds a packaging acceptance test and cross-platform CI configuration. Local standalone validation passed all nine tests, release packaging/checksum verification, native import/export/reimport, and catalog refresh against the identified MATRIC build. GitHub CI passed on Windows and Linux for the initial push and release tag: [main run](https://github.com/tgudelj/matric-deck-skill/actions/runs/40028705824), [v0.1.0 run](https://github.com/tgudelj/matric-deck-skill/actions/runs/40028707247).
 
@@ -27,6 +27,8 @@ Offline acceptance covers 15 tests, including all five DCS-BIOS input interface 
 Existing DBMM examples are not treated as golden fixtures: several contain legacy switch/applet events and saved mailbox values that fail current checks. The guide explains those limits. The inspected MATRIC importer preserves `ReferencedUserVariables` metadata but does not install calculated user variables; users must configure those explicitly or use direct binding transforms. DBMM owns runtime telemetry and creates its mailbox at startup.
 
 Remaining live acceptance: verify aircraft/seat identifiers, command direction, momentary release, cockpit-originated feedback, display formatting, DBMM variable selection/aliases, slider behavior and repeat-command timing. Neither DCS nor a live middleware session was operated. Helper audits do not evaluate arbitrary JavaScript, prove dynamically constructed dependencies, or guarantee mailbox delivery. Run DCS native acceptance with `tests/test-native-import.ps1 -Scenario dcs` and an explicitly supplied build when needed.
+
+Version 0.2.0 is [published](https://github.com/tgudelj/matric-deck-skill/releases/tag/v0.2.0) from implementation commit `fe6e77c`. Windows/Linux CI passed for the [main push](https://github.com/tgudelj/matric-deck-skill/actions/runs/40037251358) and [release tag](https://github.com/tgudelj/matric-deck-skill/actions/runs/40037253624). Public release bytes/checksum and installation from the tagged GitHub directory were verified. The active local Codex skill was updated after verifying that its v0.1.0 files had no local customizations. MATRIC's working tree remains clean. The one-time scheduling automation was removed when this implementation began.
 
 ## Resume on another machine
 
