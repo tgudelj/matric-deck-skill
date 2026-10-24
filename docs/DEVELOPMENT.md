@@ -72,6 +72,12 @@ The example passed structure/archive validation, DCS dependency auditing, transf
 
 All 15 independent tests and skill packaging passed. PyYAML remains unavailable for the optional skill-creator validator; frontmatter, local links, packaged bytes/checksum and identical license copies were checked separately. The local installed skill copy is unchanged. `VERSION` remains 0.2.0; no release was created.
 
+## Decorative texture follow-up (2026-10-24)
+
+Local revision 9 in ignored `.qa/f18-ufc-v9` adds a darker, lower-contrast worn anthracite texture, generated with the maintainer's supplied F-16 deck material as a style reference. The page uses `BackgroundSize: "100% 100%"`: stretching is acceptable because the image contains material wear only, with no labels, frames or controls requiring alignment. All 46 controls, identities, positions, existing control resources, events, 70 actions and 16 feedback requirements are preserved from revision 8. The original reference image and live deck library were not modified; neither reference nor generated artifacts are committed.
+
+The existing skill already permits non-alignment-dependent texture, so no installable guidance or helpers changed. Offline browser checks at four aspect ratios passed, including a background-hidden comparison of native graphics, labels and bounds. Archive validation, feedback checks, independent tests and packaging also passed. Previews are not actual MATRIC-client captures and live operation remains untested. This is an example-only appearance update, not a release.
+
 ## Resume on another machine
 
 Clone the standalone repository, read `AGENTS.md` and `skills/matric-decks/SKILL.md`, and run the tests and packager described in the README. No MATRIC checkout, Windows desktop compiler or external Python packages are required for that workflow. Work on the skill here; do not restore it into the MATRIC application repository.
