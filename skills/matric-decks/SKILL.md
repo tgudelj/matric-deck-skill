@@ -38,6 +38,8 @@ Edit its `deck2.json`. In a Python authoring script, import `new_control` and `a
 
 Place file resources in the staged folder, and reference them relative to that folder. Prefer native colors/text/icons for simple panels; create images when they improve the requested design. Grid dimensions and positions are cell counts, not pixels. TextSize is a percentage of one grid cell, not a font size in points.
 
+Design for client scaling, not pixel-perfect composition. MATRIC adapts the page to the client's screen proportions; page backgrounds and controls do not share a guaranteed pixel coordinate system. Avoid painting labels, bezels, display cutouts or knob faces into a page background and positioning separate controls over them. Keep those visuals on the controls themselves (for example, button backgrounds or rotary dial images); use page backgrounds for plain color or non-alignment-dependent decoration. Matching Cols/Rows to a target screen does not guarantee exact registration. See [client scaling and backgrounds](references/deck-format.md#client-scaling-and-backgrounds).
+
 ## OBS panels
 
 When the task involves OBS collections, scenes, sources, groups, filters, transitions, or shortcuts, read [OBS discovery](references/obs-discovery.md). The skill can inspect saved OBS scene-collection files independently of MATRIC:
@@ -71,7 +73,7 @@ The packager refuses to overwrite an existing archive. Use a new filename for a 
 python scripts/deck_tool.py unpack /path/to/Input.deck --output /path/to/working-copy
 ```
 
-If a static preview would help, create one and identify it as an approximation. A rendered MATRIC-client preview is stronger evidence when the actual client renderer is available. Do not make editor operation or a preview tool unavailable on another machine a prerequisite for producing the package.
+If a static preview would help, create one and identify it as an approximation, not proof of background/control alignment on a client. Review usability at differing screen proportions; a rendered MATRIC-client preview is stronger evidence when the actual client renderer is available. Do not make editor operation or a preview tool unavailable on another machine a prerequisite for producing the package.
 
 Deliver the `.deck` package and editable source/assets, with brief import and setup instructions. Identify unresolved bindings and external dependencies. Import through MATRIC's existing deck-import workflow; installing a skill does not install the generated deck. Do not place files directly in a live library or activate controls merely to test generation.
 

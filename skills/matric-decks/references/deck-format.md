@@ -38,6 +38,17 @@ The local staging folder has `deck2.json` directly inside it. The packager adds 
 
 Use real UUIDs for newly authored deck/page/control identities; the strings above explain the relationships. Page titles are not page IDs. Navigation points to the page ID. Each control has integer `X`, `Y`, `Width`, `Height` measured in grid cells, with a zero-based origin at the upper left. Keep controls inside `Cols` and `Rows`. Overlaps may be intentional for layered designs; the validator reports them as warnings.
 
+## Client scaling and backgrounds
+
+MATRIC is a screen-adaptive control deck, not a UI framework for pixel-perfect layouts. `Cols`/`Rows` express logical grid proportions, not a fixed-resolution canvas. The client adapts rendering to its available screen dimensions, so a deck authored for one tablet can look different on another display or orientation.
+
+The inspected Vue client uses a viewport-sized page container and derives grid-cell size from `min(clientWidth / Cols, clientHeight / Rows)`. Control rendering also rounds cell size down. The page background separately uses CSS `background-size` from `BackgroundSize`: for example, `cover` can scale and crop an image independently of the grid. Centering, unused space and rounding can therefore break alignment between background artwork and controls. Matching the background's pixel dimensions or aspect ratio to the authored grid does not guarantee registration on client screens.
+
+- Avoid complete panel backgrounds whose labels, frames, windows or knob artwork must line up exactly with separate controls. Do not depend on transparent hit targets over a painted page to reproduce a fixed screenshot.
+- Put appearance that needs local alignment into the control's own resources and configuration: button `BackgroundImage`, rotary `DialImage`/`ButtonImage`, and native text or feedback bindings. A display bezel and its text should belong to the same control rather than different page layers.
+- Use page backgrounds for a plain color, subtle texture or decoration that tolerates cropping and movement relative to controls. Leave spacing around controls and choose readable text and usable touch targets as the page scales.
+- Check the intended client and differing screen proportions when available. Treat static authoring previews as approximations; structural validation cannot establish visual alignment or usability on a device.
+
 ## Controls
 
 Use the exact `ControlTypeName` and corresponding `ControlConfigTypeName`. For example, a button uses `EXM.MatricPro.Controls.MCButton` and `EXM.MatricPro.Controls.Config.MCButtonConfig`. Its appearance/behavior is in `Config`; events are in `ControlEvents`:
