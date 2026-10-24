@@ -83,6 +83,24 @@ Page backgrounds and native control image fields refer to resource files inside 
 
 For an existing deck, preserve all original resource files and unknown root metadata. Stream Deck action resources have separate ownership and remapping rules. The validator warns about those actions but does not certify their resource snapshots or settings. Use MATRIC's own Save As/copy/export workflow for cloning plugin-owned identities/resources.
 
+## Fonts and optional fidelity
+
+MATRIC intentionally does not package fonts with decks: users must obtain fonts separately, avoiding MATRIC facilitating unauthorized redistribution of copyrighted font files. Do not include font binaries in the `.deck`, editable source bundle or embedded resources. A saved font-family name does not install a font, and a font available on the author's Windows system is not evidence that another user's MATRIC installation or client can use it.
+
+Prefer `FontFace: "text"` (MATRIC's default text font) for portable output. Do not make labels, state information or layout depend on a particular unverified font. A custom font can be an optional fidelity enhancement, such as emulating a seven-segment numeric display. When appropriate:
+
+- Specify the exact recommended font family/variant and why it suits the display; check the required digits, punctuation and letters rather than assuming a numeric font covers alphanumeric cockpit text.
+- Provide a verified publisher/author download link and ask the user to observe its license. Do not download/install it for them or redistribute it as part of deck generation.
+- Explain that the font is a separate user-installed dependency and that missing it means a fallback appearance, not a faithful segmented display. Keep essential information readable with the default font and recheck fit after a font change.
+
+Give these MATRIC installation steps with a recommendation:
+
+1. Download the recommended font from its legitimate source and extract the `.ttf` or `.otf` files.
+2. Copy those files into the user's Windows Documents folder under `MATRIC\fonts` (normally `C:\Users\<user>\Documents\MATRIC\fonts`; Documents may be redirected, for example to OneDrive). This is MATRIC's fonts directory, not the deck's resource directory; installing only into Windows is not the MATRIC installation step.
+3. Reopen the font list and choose the installed family under the control's **Font type**. If it has not appeared, restart MATRIC and reconnect/reload the client, then check the actual editor/client display.
+
+Use `Config.FontFace` for the selected family rather than locking a different `font-family` into `LabelCustomCSS` or `LabelCustomCSSActive`. In the inspected renderer, custom CSS follows the selected-font styling and can override it; the properties CSS preview applies them in the opposite order. Remove conflicting font-family declarations from both states before diagnosing a font-selector failure. Structural validation does not establish font availability, licensing or rendering fidelity.
+
 ## Scope of the helpers
 
 The Python validator is an authoring check against a versioned runtime catalog. It catches wrong field types, enum values, event/action mismatches, IDs, geometry, missing native resources and broken navigation. It does not replace native deserialization/import testing. Applet-defined events are dynamic and need the actual manifest; the generic catalog cannot validate them. Future types/fields need a refreshed catalog. Overlap warnings and external dependency warnings need human interpretation, not automatic deletion of controls.
