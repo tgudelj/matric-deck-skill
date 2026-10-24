@@ -15,6 +15,18 @@ Ask for the exact DCS aircraft/variant, desired panels, device layout and instal
 
 The skill never installs or starts those applications, edits exporter configuration, or operates the cockpit just to inspect definitions. The [DBMM repository and bundled manual](https://github.com/tgudelj/DCS-BIOS-MATRIC-Middleware) describe the setup UI. User-supplied [tutorial 1](https://www.youtube.com/watch?v=c3Zrvx_MjR4) and [tutorial 2](https://www.youtube.com/watch?v=eXult3xushI) are additional visual walkthroughs; code and installed definitions establish the exact formats below.
 
+## Required deck description
+
+Every deck that uses DCS-BIOS through DBMM must include the following user-facing installation notice in its `Description`:
+
+```text
+DBMM installation with DCS-BIOS is required
+DBMM: https://github.com/tgudelj/DCS-BIOS-MATRIC-Middleware/releases
+DCS-BIOS: https://github.com/DCS-Skunkworks/dcs-bios/releases/
+```
+
+Keep this notice with the deck's plain-language purpose and intended device information. It tells the importer which two components to obtain; detailed aircraft configuration belongs in the linked setup material.
+
 ## Inspect the installed definitions
 
 Run these commands relative to the installed skill directory, replacing the example path with the user's actual location:

@@ -46,6 +46,18 @@ Do not fill the description with grid dimensions, control-class names, action/bi
 
 When the description mentions a companion setup guide, include its stable, user-accessible URL in the description. Never use a generic "see the companion guide" instruction, fabricate a link, or imply that a local source file is an online guide. If a suitable URL has not been supplied or published, omit that reference from the description and provide the setup material separately.
 
+There are two required exceptions to the usual concise description:
+
+- A deck using DCS-BIOS through DCS-BIOS-MATRIC-Middleware (DBMM) must include these lines, exactly including both URLs:
+
+  ```text
+  DBMM installation with DCS-BIOS is required
+  DBMM: https://github.com/tgudelj/DCS-BIOS-MATRIC-Middleware/releases
+  DCS-BIOS: https://github.com/DCS-Skunkworks/dcs-bios/releases/
+  ```
+
+- A deck using a non-standard font must name the font and provide its permitted download URL. For example: `For best visual results, install Transponder AOE font from: https://www.dafont.com/transponder-aoe.font`. Font URLs may point only to `https://www.dafont.com/` or `https://fonts.google.com/`; do not link to any other font site.
+
 ## Client scaling and backgrounds
 
 MATRIC is a screen-adaptive control deck, not a UI framework for pixel-perfect layouts. `Cols`/`Rows` express logical grid proportions, not a fixed-resolution canvas. The client adapts rendering to its available screen dimensions, so a deck authored for one tablet can look different on another display or orientation.
@@ -105,10 +117,10 @@ For an existing deck, preserve all original resource files and unknown root meta
 
 MATRIC intentionally does not package fonts with decks: users must obtain fonts separately, avoiding MATRIC facilitating unauthorized redistribution of copyrighted font files. Do not include font binaries in the `.deck`, editable source bundle or embedded resources. A saved font-family name does not install a font, and a font available on the author's Windows system is not evidence that another user's MATRIC installation or client can use it.
 
-Prefer `FontFace: "text"` (MATRIC's default text font) for portable output. Do not make labels, state information or layout depend on a particular unverified font. A custom font can be an optional fidelity enhancement, such as emulating a seven-segment numeric display. When appropriate:
+Prefer `FontFace: "text"` (MATRIC's default text font) for portable output. Do not make labels, state information or layout depend on a particular unverified font. Use a non-standard font only when it is genuinely important to the requested look and feel, such as emulating a seven-segment numeric display. Do not use one merely as decoration. If it is not clear that the visual benefit justifies the extra installation, explain that it is optional, say in plain language that it is not included with the deck and must be installed in MATRIC's fonts folder, then ask the user whether they want it before selecting it. When appropriate:
 
 - Specify the exact recommended font family/variant and why it suits the display; check the required digits, punctuation and letters rather than assuming a numeric font covers alphanumeric cockpit text.
-- Provide a verified publisher/author download link and ask the user to observe its license. Do not download/install it for them or redistribute it as part of deck generation.
+- Use or recommend only a font available from [DaFont](https://www.dafont.com/) or [Google Fonts](https://fonts.google.com/). The deck description must state the exact font name and link directly to its page on one of those two sites; do not include font links to any other site. Ask the user to observe the font's license. Do not download/install it for them or redistribute it as part of deck generation.
 - Explain that the font is a separate user-installed dependency and that missing it means a fallback appearance, not a faithful segmented display. Keep essential information readable with the default font and recheck fit after a font change.
 
 Give these MATRIC installation steps with a recommendation:
