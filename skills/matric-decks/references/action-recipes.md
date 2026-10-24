@@ -10,6 +10,16 @@ Use Windows virtual-key `KeyCode` values, not ASCII for arbitrary characters. AS
 
 ActionMacro uses `Items` with `EventType` values `"keydown"` and `"keyup"`, a `KeyCode`, optional display `Key`, and `Delay` in milliseconds. Balance keys/modifiers and verify timings against the implementation when a precise sequence matters. A sequence of actions can also include ActionDelay (`Delay` in milliseconds). Do not guess application-specific shortcuts from a label such as "Arm weapon".
 
+## Native selectors and rotary controls
+
+Use native multi-position switches for finite selectors rather than separate buttons when the target's states fit. For example, `MCThreePositionSwitch` uses `MCMultiPositionSwitchConfig`, with `DefaultValue`, `SwitchOrientation` (`horizontal`, `vertical` or `automatic`) and one `SwitchStateImages` entry per zero-based position. Put the state artwork and position labels in those control-owned images. Choose a default as an initial display only; use verified `state.position` feedback to reflect actual application/simulator state.
+
+The inspected client increments on the right half of a horizontal switch or the top half of a vertical switch; the other half decrements, stopping at the endpoints. Visual order and target state values may therefore need an explicit mapping, with the inverse applied to feedback. Do not assume a cockpit label such as `1` is native index 1.
+
+For three positions, specific events are `positionchange-0-1`, `positionchange-1-0`, `positionchange-1-2` and `positionchange-2-1`. Absolute commands on those events can set the verified target state. The client also emits `position-increment`/`position-decrement` for the same changes: bind either generic events or specific transitions, not both to duplicate a command. Check the selected control's catalog for its exact event set.
+
+For relative turning, `MCRotaryEncoder` exposes `clockwise` and `counterclockwise`; a native action on each event can send one verified increment/decrement. Set a positive `Ticks` value, provide `DialImage`/`DialImageActive` with a visible `DialSize`, and set `ButtonSize: 0` if no center-button interaction is wanted. A painted knob on the page background is not interactive. Encoder angle follows local interaction and is not automatically an absolute target-state indicator. Use `MCRotary` or `MCSlider` when the task instead needs a verified absolute value mapping.
+
 ## Navigation and text
 
 ActionGoToPage uses `TargetPageId` and is suitable for a button's `release`. ActionLoadDeck targets another deck and adds an external dependency; inspect its template rather than reusing page navigation fields.

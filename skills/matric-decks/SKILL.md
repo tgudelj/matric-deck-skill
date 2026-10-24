@@ -28,6 +28,8 @@ python scripts/deck_tool.py catalog --action ActionHotkey
 
 The catalog was exported from MATRIC's C# definitions, not inferred from screenshots. Inspect the entries needed for this task instead of loading the entire catalog. They provide exact type names, defaults, event names, allowed actions, enum encodings, and key codes. Use [action recipes](references/action-recipes.md) for semantic details the catalog cannot infer.
 
+Prefer a native control that matches the interaction: a multi-position switch for a discrete selector, a rotary encoder for relative turning, and a rotary/slider for absolute input. Avoid replacing these with banks of buttons when the matching native control fits the task. Skin the native control with its own resources and verify its events and simulator/app feedback mapping; see [native selectors and rotary controls](references/action-recipes.md#native-selectors-and-rotary-controls).
+
 Create a blank staged deck with:
 
 ```text
