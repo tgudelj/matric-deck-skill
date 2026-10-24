@@ -38,6 +38,14 @@ The local staging folder has `deck2.json` directly inside it. The packager adds 
 
 Use real UUIDs for newly authored deck/page/control identities; the strings above explain the relationships. Page titles are not page IDs. Navigation points to the page ID. Each control has integer `X`, `Y`, `Width`, `Height` measured in grid cells, with a zero-based origin at the upper left. Keep controls inside `Cols` and `Rows`. Overlaps may be intentional for layered designs; the validator reports them as warnings.
 
+## Deck descriptions and companion guides
+
+`Description` is import-facing metadata. Make it concise and understandable without knowledge of MATRIC internals: state the deck's purpose and the intended client device size, aspect ratio, and orientation. Use only device facts that are known; when authoring against an assumption, identify it as such. For example: "F/A-18C Up Front Controller for a 9-inch, 16:10 landscape tablet."
+
+Do not fill the description with grid dimensions, control-class names, action/binding identifiers, variable names, archive details, or other authoring mechanics. Put required integrations, installation steps and troubleshooting in delivery notes or a companion guide instead.
+
+When the description mentions a companion setup guide, include its stable, user-accessible URL in the description. Never use a generic "see the companion guide" instruction, fabricate a link, or imply that a local source file is an online guide. If a suitable URL has not been supplied or published, omit that reference from the description and provide the setup material separately.
+
 ## Client scaling and backgrounds
 
 MATRIC is a screen-adaptive control deck, not a UI framework for pixel-perfect layouts. `Cols`/`Rows` express logical grid proportions, not a fixed-resolution canvas. The client adapts rendering to its available screen dimensions, so a deck authored for one tablet can look different on another display or orientation.

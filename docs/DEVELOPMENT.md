@@ -38,6 +38,10 @@ This follows maintainer feedback and a read-only inspection of `desktop/matric-v
 
 All 15 independent tests and test packaging passed. The skill-creator validator could not start because PyYAML was unavailable; separate checks passed for the existing frontmatter fields, local reference links/section anchor, packaged guidance bytes, checksum and matching license copies. No dependency was added to the portable helpers.
 
+## User-facing deck-description guidance (unreleased)
+
+The installable skill now treats `Description` as import-facing copy rather than an implementation note. It directs authors to state the deck's purpose and intended device size, aspect ratio, and orientation, while moving grid, binding, control and archive detail into setup material. A reference section requires an actual stable, user-accessible URL whenever the description mentions a companion setup guide; authors must omit the reference rather than invent a URL when no such guide exists. This is an unreleased instruction/reference change; `VERSION` remains 0.2.0 and no new native/live compatibility is claimed.
+
 ## Native control-selection guidance (unreleased)
 
 The skill now prefers native selectors, encoders and absolute-value controls when they match the requested interaction, instead of emulating them with banks of buttons. The native action recipes describe multi-position switch state images/defaults/orientation, zero-based state mapping, `state.position` feedback, and the need to use either generic or specific transition events without double-sending commands. The rotary recipe records verified clockwise/counterclockwise events and the image/size/center-hit-area settings needed for a usable native encoder. Evidence is the bundled catalog and read-only inspection of the corresponding MATRIC Vue controls; no MATRIC application code was changed or distributed. This remains an unreleased instruction update with `VERSION` at 0.2.0.
