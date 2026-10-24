@@ -46,8 +46,12 @@ The inspected Vue client uses a viewport-sized page container and derives grid-c
 
 - Avoid complete panel backgrounds whose labels, frames, windows or knob artwork must line up exactly with separate controls. Do not depend on transparent hit targets over a painted page to reproduce a fixed screenshot.
 - Put appearance that needs local alignment into the control's own resources and configuration: button `BackgroundImage`, rotary `DialImage`/`ButtonImage`, and native text or feedback bindings. A display bezel and its text should belong to the same control rather than different page layers.
+- For a shared display with multiple telemetry fields, prefer one display control with its own bezel and a binding transform that composes the fields. Use literal `variables['name']` references and audit every dependency; separate transparent text controls over page-painted windows recreate the alignment problem.
 - Use page backgrounds for a plain color, subtle texture or decoration that tolerates cropping and movement relative to controls. Leave spacing around controls and choose readable text and usable touch targets as the page scales.
-- Check the intended client and differing screen proportions when available. Treat static authoring previews as approximations; structural validation cannot establish visual alignment or usability on a device.
+- On both new decks and revisions, temporarily hide/remove the page background: all operational labels, bezels and state displays must remain attached to their controls. Remove shared fascia, keypad plates and frames if they depend on exact registration with other controls. Nonessential decoration that tolerates movement can remain.
+- Check the intended client and differing screen proportions when available, including clipping and readable labels. Treat static authoring previews and offline models of client CSS as approximations, not native app captures; structural validation cannot establish visual alignment or usability on a device.
+
+Current authoring must not rely on a future proportion-preserving rendering mode. A different mode needs explicit support in the target client before it can justify fixed-canvas composition; an editor preview or matching tablet aspect ratio is not that evidence.
 
 ## Controls
 
