@@ -8,7 +8,19 @@ The original acceptance run passed eight offline tests and MATRIC's native impor
 
 The public [v0.1.0 release](https://github.com/tgudelj/matric-deck-skill/releases/tag/v0.1.0) is published under MIT. Its downloaded ZIP and SHA-256 were verified, and installation from the tagged GitHub skill directory was checked against the release source. The active local skill installation was updated from that version. The previous skill additions and manual edits were removed from the MATRIC working tree, leaving it clean.
 
-Saved OBS discovery is implemented. Direct read-only obs-websocket discovery is described in the guide; a live client is not implemented. A rendered MATRIC-client preview is also not implemented. Preserve this distinction in user-facing claims.
+Saved OBS discovery is implemented, and the development skill now includes a direct read-only obs-websocket client (see the unreleased section below). A rendered MATRIC-client preview is not implemented. Preserve these distinctions in user-facing claims.
+
+## Live OBS WebSocket discovery (unreleased)
+
+`skills/matric-decks/scripts/obs_live.py` implements OBS WebSocket 5 JSON/RPC 1 discovery using only the Python standard library. It supports authenticated/unauthenticated `ws://` and certificate-verified `wss://` connections, environment-variable or private interactive password entry, validated upgrade/framing, client masking, fragmented text, ping/pong, bounded messages, request correlation and operation/snapshot timeouts. An explicit allowlist restricts RPC calls to discovery, with no arbitrary request CLI, settings reads or state-changing calls.
+
+The report preserves active collection scene/group graphs, repeated source instances and local item IDs; it includes names/UUIDs/kinds, filter metadata, audio settings, transitions, Studio Mode, program/preview scene names, hotkey identifiers and output activity. It lists inactive collections without switching into them. Capabilities and optional request failures are explicit, and a collection change aborts the snapshot. It excludes credentials, source/filter settings and output paths. The authoring workflow prefers live discovery when available and retains saved files for offline/inactive collection discovery and actual keyboard bindings.
+
+Protocol fields and authentication were checked against the [official protocol](https://github.com/obsproject/obs-websocket/blob/master/docs/generated/protocol.md). The [input request implementation](https://github.com/obsproject/obs-websocket/blob/master/src/requesthandler/RequestHandler_Inputs.cpp) confirms that non-audio inputs return `InvalidResourceState` (604) for `GetInputMute`. No OBS source code is copied into the skill.
+
+Remaining limits: the snapshot is sequential, covers the active collection/default canvas and does not discover assigned shortcuts, plugin-specific settings or additional canvases. A same-name collection switch or mid-snapshot edit may escape the start/end name check. Read-only snapshots do not establish MATRIC action execution. Actual OBS and TLS endpoint acceptance remain separate from the synthetic server tests. `VERSION` stays 0.2.0 pending a release; the existing v0.2.0 release does not contain the new helper.
+
+All 28 independent tests passed, including synthetic loopback-server coverage for authentication, nested/cyclic membership and repeated instances, exact names, partial capabilities, request failures, collection changes, read-only request enforcement, fragmented/extended frames, ping/pong, invalid frames/JSON/upgrade/response IDs, disconnects, timeouts, TLS context validation and CLI credential/output handling. Packaging remains reproducible with matching checksums and license copies. PyYAML is still unavailable for the optional skill-creator validator; frontmatter, local reference links and packaged content are checked separately. No running OBS instance was accessed.
 
 ## Installation documentation
 

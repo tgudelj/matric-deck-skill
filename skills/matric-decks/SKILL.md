@@ -52,14 +52,15 @@ Before delivering a new or revised illustrated deck, hide its page background an
 
 ## OBS panels
 
-When the task involves OBS collections, scenes, sources, groups, filters, transitions, or shortcuts, read [OBS discovery](references/obs-discovery.md). The skill can inspect saved OBS scene-collection files independently of MATRIC:
+When the task involves OBS collections, scenes, sources, groups, filters, transitions, or shortcuts, read [OBS discovery](references/obs-discovery.md). Prefer a live, read-only snapshot when OBS is running and its WebSocket endpoint is available. The bundled standard-library client authenticates through an environment variable or a private interactive prompt; keep credentials outside chat prompts, reports and deck files. Use saved collection files for offline discovery, inactive collections or saved keyboard bindings:
 
 ```text
+python scripts/obs_live.py --url ws://127.0.0.1:4455 --output /path/to/obs-live.json
 python scripts/obs_inventory.py /path/to/collection.json
 python scripts/obs_inventory.py /path/to/basic/scenes --output /path/to/obs-inventory.json
 ```
 
-Use the exact discovered names when configuring native OBS actions. The helper's result is saved configuration, not live state. The OBS reference also describes direct, read-only obs-websocket 5 discovery for assistants with a WebSocket client. Do not switch collections or start/stop outputs just to discover a setup. No MATRIC MCP server or MATRIC-as-WebSocket-client is required for discovery.
+Use the exact discovered names when configuring native OBS actions. Review snapshot warnings and scope before using the results: live discovery describes the active collection and default canvas at discovery time; hotkey identifiers are not keyboard bindings. Saved files describe saved configuration. Do not switch collections or start/stop outputs just to discover a setup. No MATRIC connection is required for discovery; native MATRIC OBS actions still need MATRIC's OBS integration to execute.
 
 ## DCS cockpit panels
 

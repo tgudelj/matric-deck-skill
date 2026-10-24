@@ -1,6 +1,6 @@
 # MATRIC Deck Skill
 
-Create editable MATRIC control decks and importable `.deck` packages with an AI assistant, without operating the MATRIC editor. Includes format and action references, native control templates, a validator/packager, offline OBS scene-collection discovery, and DCS-BIOS/DBMM command and feedback authoring.
+Create editable MATRIC control decks and importable `.deck` packages with an AI assistant, without operating the MATRIC editor. Includes format and action references, native control templates, a validator/packager, live and offline OBS discovery, and DCS-BIOS/DBMM command and feedback authoring.
 
 This project is developed, versioned and released independently of MATRIC. Using the skill requires Python 3.11 or newer; its helpers use only the standard library. A MATRIC installation is needed to import and use the finished deck. MATRIC source code and binaries are not distributed here.
 
@@ -29,7 +29,7 @@ Use the matric-decks skill to make a 6-by-4 landscape deck with copy, paste,
 media controls and a second page for text snippets. Package it for import.
 ```
 
-For OBS, supply an exported scene collection JSON or the path to your saved collection directory. The bundled reader discovers collections, scenes, groups, sources, filters and saved shortcuts without connecting MATRIC to OBS. Saved configuration is not live state. Direct read-only obs-websocket discovery is documented separately; no live WebSocket client is bundled. Execution of native MATRIC OBS actions still requires MATRIC's OBS integration.
+For OBS, the development skill includes a standard-library WebSocket 5 client that reads the active collection, scenes, groups, sources, filters, transitions, audio state and output activity. Supply the enabled OBS WebSocket endpoint; authenticated connections use a password environment variable or a private interactive prompt. The helper sends only read-only discovery requests. Exported/saved collection JSON remains available for offline discovery, inactive collections and saved keyboard bindings. See [OBS discovery](skills/matric-decks/references/obs-discovery.md) for commands and snapshot limits. This capability is not in the published v0.2.0 package. Execution of native MATRIC OBS actions still requires MATRIC's OBS integration.
 
 The assistant produces editable JSON/assets and a `.deck` archive. Review the configured actions and external dependencies, then import the `.deck` using MATRIC's normal import workflow. The skill does not execute controls or install a deck into a live library.
 

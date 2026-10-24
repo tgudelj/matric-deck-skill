@@ -23,6 +23,7 @@ class PackagingTests(unittest.TestCase):
                 names = zipped.namelist()
                 self.assertIn("matric-decks/SKILL.md", names)
                 self.assertIn("matric-decks/scripts/obs_inventory.py", names)
+                self.assertIn("matric-decks/scripts/obs_live.py", names)
                 self.assertIn("matric-decks/scripts/dcs_bios.py", names)
                 self.assertIn("matric-decks/assets/dcs-demo/SKILL_DEMO.json", names)
                 self.assertEqual(zipped.read("matric-decks/LICENSE.txt"), (ROOT / "LICENSE").read_bytes())
