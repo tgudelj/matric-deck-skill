@@ -86,6 +86,14 @@ Read-only inspection confirmed `Documents\MATRIC\fonts` through `Const.FONTS_SUB
 
 All 15 independent tests and skill packaging passed. The optional skill-creator validator could not run because PyYAML is unavailable; frontmatter, local links/anchor, packaged content/checksum and matching license copies were checked separately. Font installation and rendering were not exercised live.
 
+## Target-screen touch usability (unreleased, 2026-10-24)
+
+The skill now treats the intended client device as input to layout density, not merely background/grid proportions. It asks for the device model or approximate physical screen size, resolution/aspect ratio and orientation when missing information materially affects usability. The reference distinguishes physical touch-target size from pixel resolution, calls out rotary gesture areas and multi-position-switch regions, and favors simplified or task-focused multipage layouts over shrinking tablet panels onto phones. Unknown-target assumptions must be explicit; desktop previews and structural bounds checks are not physical usability evidence.
+
+This is a focused instruction/reference update based on maintainer feedback. No helper behavior, MATRIC application code, installed skill files or UFC deck artifacts changed; `VERSION` remains 0.2.0. Device usability has not been tested live.
+
+All 15 independent tests and skill packaging passed. The optional skill-creator validator remains unavailable without PyYAML; separate frontmatter, local-link/anchor, packaged-content/checksum and license-equality checks passed.
+
 ## Resume on another machine
 
 Clone the standalone repository, read `AGENTS.md` and `skills/matric-decks/SKILL.md`, and run the tests and packager described in the README. No MATRIC checkout, Windows desktop compiler or external Python packages are required for that workflow. Work on the skill here; do not restore it into the MATRIC application repository.

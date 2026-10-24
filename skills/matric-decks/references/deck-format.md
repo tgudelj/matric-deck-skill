@@ -53,6 +53,16 @@ The inspected Vue client uses a viewport-sized page container and derives grid-c
 
 Current authoring must not rely on a future proportion-preserving rendering mode. A different mode needs explicit support in the target client before it can justify fixed-canvas composition; an editor preview or matching tablet aspect ratio is not that evidence.
 
+## Target screens and touch usability
+
+Fitting the logical grid on screen is not the same as making it usable by touch. The same deck can be comfortable on a 9-inch tablet yet have tiny keys, unreadable labels and cramped rotary gestures on a smartphone, even when that phone has a high pixel resolution.
+
+- Use the intended device model or approximate physical screen dimensions/diagonal, resolution/aspect ratio, and portrait/landscape orientation as layout inputs. Allow for the actual client area after system/navigation bars. Diagonal alone does not give aspect ratio; pixel dimensions alone do not give physical size.
+- Ask for missing screen information when it would materially change layout choices. If proceeding without it, state the assumed target and keep the layout provisional rather than claiming usability across devices.
+- Choose grid density, control spans and spacing so touch targets and text remain usable on the intended screen. Consider the interactive region, not just the artwork: rotary gestures and the halves of a multi-position switch need enough room for fingers.
+- For a smaller device, simplify the panel or split controls into task-focused pages with clear navigation instead of uniformly shrinking a dense tablet design. If both phones and tablets must be supported, design around the smallest intended device or offer separate layouts with the user's agreement.
+- Review at the intended physical scale when possible and seek actual-device feedback on readability, accurate taps and gestures. A desktop screenshot, matching aspect ratio or passing bounds check does not establish touch usability. Do not claim precise physical target sizes without screen/viewport measurements.
+
 ## Controls
 
 Use the exact `ControlTypeName` and corresponding `ControlConfigTypeName`. For example, a button uses `EXM.MatricPro.Controls.MCButton` and `EXM.MatricPro.Controls.Config.MCButtonConfig`. Its appearance/behavior is in `Config`; events are in `ControlEvents`:
