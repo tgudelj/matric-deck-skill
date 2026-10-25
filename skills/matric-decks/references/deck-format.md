@@ -113,6 +113,8 @@ Page backgrounds and native control image fields refer to resource files inside 
 
 For an existing deck, preserve all original resource files and unknown root metadata. Stream Deck action resources have separate ownership and remapping rules. The validator warns about those actions but does not certify their resource snapshots or settings. Use MATRIC's own Save As/copy/export workflow for cloning plugin-owned identities/resources.
 
+Custom applet files have separate ownership too: an `MCCustom` container references a separately installed AppletId. Use the [custom applet workflow](custom-applets.md) to create/validate the manifest, package a `.mapl`, and check deck events/parameters with `deck_tool.py validate ... --applet /path/to/applet`. A `.deck` archive alone does not install applet files.
+
 ## Fonts and optional fidelity
 
 MATRIC intentionally does not package fonts with decks: users must obtain fonts separately, avoiding MATRIC facilitating unauthorized redistribution of copyrighted font files. Do not include font binaries in the `.deck`, editable source bundle or embedded resources. A saved font-family name does not install a font, and a font available on the author's Windows system is not evidence that another user's MATRIC installation or client can use it.
@@ -133,4 +135,4 @@ Use `Config.FontFace` for the selected family rather than locking a different `f
 
 ## Scope of the helpers
 
-The Python validator is an authoring check against a versioned runtime catalog. It catches wrong field types, enum values, event/action mismatches, IDs, geometry, missing native resources and broken navigation. It does not replace native deserialization/import testing. Applet-defined events are dynamic and need the actual manifest; the generic catalog cannot validate them. Future types/fields need a refreshed catalog. Overlap warnings and external dependency warnings need human interpretation, not automatic deletion of controls.
+The Python validator is an authoring check against a versioned runtime catalog. It catches wrong field types, enum values, event/action mismatches, IDs, geometry, missing native resources and broken navigation. It does not replace native deserialization/import testing. Applet-defined events are dynamic: supply their manifests through `--applet` for event/action and parameter checks; the generic catalog alone cannot validate them. Future types/fields need a refreshed catalog. Overlap warnings and external dependency warnings need human interpretation, not automatic deletion of controls.

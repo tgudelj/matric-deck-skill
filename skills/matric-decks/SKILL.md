@@ -1,7 +1,7 @@
 ---
 name: matric-decks
 license: MIT
-description: Create, inspect, or edit MATRIC control decks and produce importable .deck packages without using the editor. Use for MATRIC deck JSON, layouts, action bindings, resources, and OBS or DCS-BIOS/DBMM control panels.
+description: Create, inspect, or edit MATRIC control decks and produce importable .deck packages without using the editor. Use for MATRIC layouts, action bindings, resources, advanced custom applets, and OBS or DCS-BIOS/DBMM panels.
 ---
 
 # MATRIC deck authoring
@@ -33,6 +33,8 @@ python scripts/deck_tool.py catalog --action ActionHotkey
 The catalog was exported from MATRIC's C# definitions, not inferred from screenshots. Inspect the entries needed for this task instead of loading the entire catalog. They provide exact type names, defaults, event names, allowed actions, enum encodings, and key codes. Use [action recipes](references/action-recipes.md) for semantic details the catalog cannot infer.
 
 Prefer a native control that matches the interaction: a multi-position switch for a discrete selector, a rotary encoder for relative turning, and a rotary/slider for absolute input. Avoid replacing these with banks of buttons when the matching native control fits the task. Skin the native control with its own resources and verify its events and simulator/app feedback mapping; see [native selectors and rotary controls](references/action-recipes.md#native-selectors-and-rotary-controls).
+
+When native controls cannot satisfactorily express a requested interaction or visualization, use the advanced [custom applet workflow](references/custom-applets.md). It covers original HTML/CSS/JavaScript applets, manifests, variables/events, responsive input handling, manifest-aware deck checks and separate `.mapl` packaging. Prefer native controls for ordinary buttons/sliders/rotaries, including when only their appearance needs changing. Do not install an applet into the live library to test generation.
 
 Create a blank staged deck with:
 

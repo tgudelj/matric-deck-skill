@@ -1,0 +1,22 @@
+{
+  "AppletId": "skill-history-inspector",
+  "DisplayName": "History inspector",
+  "Description": "Inspect recent values and select a sample on a touch-friendly trace.",
+  "Author": "MATRIC Deck Skill",
+  "VersionMajor": 1,
+  "VersionMinor": 0,
+  "AppletParams": [
+    {"Name": "SignalVariable", "DisplayName": "Signal variable", "ParamType": "variable", "Default": "skill_demo_signal"},
+    {"Name": "Caption", "DisplayName": "Caption", "ParamType": "string", "Default": "Signal history"},
+    {"Name": "SampleLimit", "DisplayName": "History length (3–120)", "ParamType": "number", "Default": 60},
+    {"Name": "TraceColor", "DisplayName": "Trace color", "ParamType": "color", "Default": "#64ddd0"},
+    {"Name": "ShowValues", "DisplayName": "Show values", "ParamType": "bool", "Default": true},
+    {"Name": "Scale", "DisplayName": "Scale", "ParamType": "list", "Default": "auto", "ListItems": [
+      {"Text": "Fit history", "Value": "auto"}, {"Text": "0–100", "Value": "percent"}
+    ]}
+  ],
+  "EventsDefinition": [
+    {"Name": "select-sample", "DisplayName": "Select sample", "Description": "Payload: value (number), index (zero-based).",
+      "AllowedActions": ["ActionSetServerVariables"]}
+  ]
+}

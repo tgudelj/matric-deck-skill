@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Signal history inspector</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="bridge.js" defer></script>
+  <script src="history.js" defer></script>
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <main>
+    <header><h1 id="caption">Signal history</h1><output id="latest">Waiting for a value</output></header>
+    <svg id="chart" viewBox="0 0 600 240" preserveAspectRatio="none" tabindex="0" role="button" aria-label="Select a sample: tap the trace, or use arrow keys and Enter">
+      <path class="grid" d="M24 24H576M24 120H576M24 216H576"></path>
+      <polyline id="trace" points=""></polyline>
+      <circle id="endpoint" r="3" hidden></circle>
+      <circle id="marker" r="6" hidden></circle>
+    </svg>
+    <footer><output id="selection">Tap a sample to inspect it</output><span id="count">0 samples</span></footer>
+  </main>
+</body>
+</html>

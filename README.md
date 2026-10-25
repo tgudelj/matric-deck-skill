@@ -55,6 +55,17 @@ Packaging produces `dist/matric-decks-<version>.zip` and a `.sha256` checksum fi
 
 See [development and compatibility](docs/DEVELOPMENT.md) for optional catalog refresh and native MATRIC import checks. Ordinary tests and packaging require neither MATRIC source nor a MATRIC build. CI is configured for Windows and Linux.
 
+## Custom applets (development skill)
+
+When native controls do not fit the requested interaction, the development skill can author HTML/CSS/JavaScript applets, validate manifests and deck bindings, and produce a separate importable `.mapl` alongside the `.deck`. It includes an original history-inspector starter and a synthetic integrated example. Read the [custom applet workflow](skills/matric-decks/references/custom-applets.md) for the message API, installation, responsive design and target-version limits. These additions are not included in the published v0.2.0 release.
+
+```text
+python skills/matric-decks/scripts/applet_tool.py example --output /path/to/history-demo
+node --test tests/applet-runtime.test.cjs
+```
+
+Applet helpers use standard-library Python. The starter runs directly in a browser without npm packages; Node is only needed for the independent JavaScript tests. Native controls remain the preferred starting point.
+
 ## Compatibility
 
 The bundled catalog covers deck format 3, with 21 native control definitions and 35 action definitions. The catalog records its MATRIC source commit and assembly hash; those are compatibility provenance, not this skill's version. Structural validation does not prove application shortcuts, target devices, external integrations or appearance on every screen.

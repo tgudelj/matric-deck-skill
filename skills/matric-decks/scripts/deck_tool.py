@@ -120,7 +120,7 @@ def check_fields(value, properties, where, errors):
             errors.append(f"{where}.{key}: field absent from the bundled catalog")
 
 
-def validate(deck, files):
+def validate(deck, files, applets=None):
     """Check deck structure, event/action compatibility, navigation, geometry and bundled native resources."""
     errors, warnings = [], []
     if not isinstance(deck, dict):
@@ -200,6 +200,7 @@ def validate(deck, files):
                         warnings.append(f"{loc}: overlaps {other}; confirm this is intentional")
                 boxes.append((x, y, width, height, loc))
             config = control.get("Config")
+            event_definitions = definition["events"]
             if not isinstance(config, dict):
                 errors.append(f"{loc}.Config: expected object")
             else:
@@ -207,6 +208,44 @@ def validate(deck, files):
                 resources(config, loc + ".Config", definition["properties"])
                 if config.get("FontFace") not in (None, "text", "icon"):
                     warnings.append(f"{loc}: custom font must be installed separately")
+                if control.get("ControlTypeName", "").endswith(".MCCustom"):
+                    applet_identity = config.get("AppletId")
+                    manifest = applets.get(applet_identity) if applets is not None and isinstance(applet_identity, str) else None
+                    if manifest is None:
+                        message = f"{loc}: applet {applet_identity!r} needs a separately installed applet and its manifest for event/parameter validation"
+                        (errors if applets is not None else warnings).append(message)
+                    else:
+                        event_definitions = {}
+                        for event in manifest["EventsDefinition"]:
+                            allowed = {}
+                            for name in event["AllowedActions"]:
+                                full = name if name.startswith(ACTION_PREFIX) else ACTION_PREFIX + name
+                                matches = [key for key, meta in CATALOG["actions"].items() if meta["action_id"] == full]
+                                if len(matches) != 1:
+                                    errors.append(f"{loc}: unknown applet runtime ActionId {name}")
+                                    continue
+                                # The custom-event editor exposes manifest actions without native-event cardinality flags.
+                                allowed[matches[0]] = {"exclusive": False, "single": False, "implicit": False}
+                            event_definitions[event["Name"]] = allowed
+                        parameters = config.get("AppletParams")
+                        if parameters is None:
+                            parameters = {}
+                        if not isinstance(parameters, dict):
+                            errors.append(f"{loc}.Config.AppletParams: expected object")
+                        else:
+                            schemas = {}
+                            for parameter in manifest["AppletParams"]:
+                                kind = parameter["ParamType"]
+                                schema = {"type": {"bool": "boolean", "number": "number"}.get(kind, "string"), "nullable": True}
+                                if kind == "list":
+                                    schema["enum"] = [option["Value"] for option in parameter["ListItems"]]
+                                schemas[parameter["Name"]] = schema
+                            for name, parameter_value in parameters.items():
+                                parameter_location = loc + ".Config.AppletParams." + name
+                                if name not in schemas:
+                                    errors.append(f"{parameter_location}: field absent from the applet manifest")
+                                else:
+                                    check_value(parameter_value, schemas[name], parameter_location, errors)
             events = control.get("ControlEvents")
             if not isinstance(events, list):
                 errors.append(f"{loc}.ControlEvents: expected array"); continue
@@ -220,7 +259,7 @@ def validate(deck, files):
                 if name in seen_events:
                     errors.append(f"{loc}: duplicate event {name}")
                 seen_events.add(name)
-                allowed = definition["events"].get(name)
+                allowed = event_definitions.get(name)
                 if allowed is None:
                     errors.append(f"{loc}: event {name!r} absent from the catalog; applet events need an applet manifest")
                     continue
@@ -310,6 +349,8 @@ def main():
     for verb in ("validate", "pack", "unpack"):
         command = commands.add_parser(verb)
         command.add_argument("source", type=Path)
+        command.add_argument("--applet", action="append", type=Path, default=[],
+                             help="Explicit applet folder/.mapl for manifest-aware checks; repeat for several applets")
         if verb != "validate":
             command.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
@@ -334,7 +375,11 @@ def main():
         (args.output / "deck2.json").write_text(json.dumps(deck, ensure_ascii=False, indent=2), encoding="utf-8")
         print(args.output / "deck2.json"); return
     deck, files = load_deck(args.source)
-    report = validate(deck, files)
+    applets = None
+    if args.applet:
+        from applet_tool import load_manifests
+        applets = load_manifests(args.applet)
+    report = validate(deck, files, applets)
     print(json.dumps(report, ensure_ascii=False, indent=2))
     if report["errors"]:
         raise SystemExit(1)

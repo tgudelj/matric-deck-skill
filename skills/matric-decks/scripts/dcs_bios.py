@@ -150,15 +150,26 @@ def ensure_mailbox(value):
         variables.append(config)
 
 
-def audit(value, files, catalog):
+def audit(value, files, catalog, applets=None):
     """Check native structure, known commands and literal telemetry references without evaluating JavaScript."""
-    report = deck.validate(value, files)
+    report = deck.validate(value, files, applets)
     if not isinstance(value, dict):
         return report
     references, commands, script_count = set(), [], 0
     def walk(item):
         nonlocal script_count
         if isinstance(item, dict):
+            # Variable parameters expose dependencies absent from generic VariableName scanning.
+            config = item.get("Config")
+            if isinstance(config, dict) and isinstance(config.get("AppletId"), str):
+                applet = (applets or {}).get(config["AppletId"])
+                params = config.get("AppletParams") or {}
+                if applet and isinstance(params, dict):
+                    for parameter in applet["AppletParams"]:
+                        if parameter["ParamType"] == "variable":
+                            dependency = params.get(parameter["Name"], parameter.get("Default"))
+                            if isinstance(dependency, str) and dependency.startswith("dcs_"):
+                                references.add(dependency)
             variable = item.get("VariableName")
             if isinstance(variable, str) and variable.startswith("dcs_"):
                 references.add(variable)
@@ -281,6 +292,7 @@ def main():
     check.add_argument("source", type=Path)
     check.add_argument("--definitions", type=Path, required=True)
     check.add_argument("--aircraft")
+    check.add_argument("--applet", action="append", type=Path, default=[])
     demo = commands.add_parser("example")
     demo.add_argument("--output", type=Path, required=True)
     for command in (inventory, check):
@@ -297,7 +309,11 @@ def main():
         catalog = load_definitions(args.definitions if args.command == "check" else args.source, args.aircraft)
         if args.command == "check":
             value, files = deck.load_deck(args.source)
-            result = audit(value, files, catalog)
+            applets = None
+            if args.applet:
+                from applet_tool import load_manifests
+                applets = load_manifests(args.applet)
+            result = audit(value, files, catalog, applets)
         elif args.control:
             result = find_control(catalog, args.control, args.module)
         else:

@@ -1,0 +1,18 @@
+:root { color-scheme: dark; --trace: #64ddd0; font-family: system-ui, sans-serif; }
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #101827; color: #e8f2f8; }
+main { display: flex; flex-direction: column; width: 100%; height: 100%; min-height: 0; padding: clamp(8px, 3vw, 20px); gap: 8px; }
+header, footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px; }
+h1 { font-size: clamp(14px, 5vw, 22px); margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+output, span { font-size: clamp(12px, 3.8vw, 17px); overflow-wrap: anywhere; }
+#latest { color: var(--trace); }
+#chart { flex: 1 1 auto; width: 100%; min-height: 44px; touch-action: none; background: #182637; border-radius: 12px; cursor: crosshair; }
+#chart:focus-visible { outline: 2px solid var(--trace); outline-offset: -3px; }
+.grid { fill: none; stroke: #324354; stroke-width: 1; vector-effect: non-scaling-stroke; }
+#trace { fill: none; stroke: var(--trace); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+#marker { fill: #ffffff; stroke: #101827; stroke-width: 2; vector-effect: non-scaling-stroke; }
+#marker[hidden] { display: none; }
+#endpoint { fill: var(--trace); }
+#endpoint[hidden] { display: none; }
+footer { color: #afbed0; }
+@media (max-height: 160px) { main { gap: 3px; padding: 5px; } h1, output, span { font-size: 12px; } }
