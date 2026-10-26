@@ -1,7 +1,7 @@
 ---
 name: matric-decks
 license: MIT
-description: Create, inspect, or edit MATRIC control decks and produce importable .deck packages without using the editor. Use for MATRIC layouts, action bindings, resources, advanced custom applets, and OBS or DCS-BIOS/DBMM panels.
+description: Create, inspect, or edit MATRIC control decks and produce importable .deck packages without using the editor. Use for MATRIC layouts, action bindings, resources, custom applets, OBS, DCS-BIOS/DBMM, and MSFS, Star Citizen or Elite Dangerous input panels.
 ---
 
 # MATRIC deck authoring
@@ -75,6 +75,12 @@ Use the exact discovered names when configuring native OBS actions. Review snaps
 For Digital Combat Simulator decks with two-way DCS-BIOS-MATRIC-Middleware (DBMM) integration, read [the DCS workflow](references/dcs-bios.md). Inspect the user's installed aircraft JSON and aliases with `scripts/dcs_bios.py inventory`; use `check` to audit commands and feedback dependencies. Do not guess aircraft identifiers, switch semantics, seat variants or live values. DBMM sends commands through `DCS_INPUT_COMMAND` and publishes telemetry as `dcs_<identifier>`. Initialize the command mailbox empty; keep simulator state separate from persistent user variables. The deck description must state that DBMM with DCS-BIOS is required and include the prescribed DBMM and DCS-BIOS release URLs.
 
 The DCS reference covers setup, momentary commands, switch/slider mapping, feedback transforms, required exported variables and live acceptance. `scripts/dcs_bios.py example --output /path/to/dcs-training` produces a synthetic training deck, not a real aircraft panel. Existing DBMM decks are evidence to inspect; preserve their assets and do not copy stale commands or unknown mappings into new work. Keep aircraft definitions and real user decks outside the distributed skill.
+
+## Flight and space simulator inputs
+
+For Microsoft Flight Simulator 2020/2024, Star Citizen or Elite Dangerous, read [game input discovery and authoring](references/game-inputs.md). Use `scripts/game_bindings.py discover` within the relevant game/settings folder, then `inventory` on explicitly selected active profile files. Preserve action/context identifiers, alternatives, modifiers, activation timing and axis settings. Star Citizen explicit exports may omit defaults; MSFS profile layers require confirmation. Unknown mappings must stay unresolved rather than inheriting remembered defaults.
+
+Use native keyboard and vJoy actions as appropriate. Confirm the actual game-to-vJoy device correspondence and configured capabilities before translating joystick buttons/axes/POVs; physical-device mappings do not establish that correspondence. Focus suggested layouts on auxiliary controls such as throttle, flaps, mixture, radiators, lights and ship systems; omit primary flight-stick controls unless requested. These integrations provide input only, with local control positions distinct from actual game state. Deliver setup/rebinding requirements and distinguish offline validation from acceptance in the user's game.
 
 ## Validate and package
 
