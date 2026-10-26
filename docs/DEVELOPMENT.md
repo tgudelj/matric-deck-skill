@@ -10,6 +10,14 @@ The public [v0.1.0 release](https://github.com/tgudelj/matric-deck-skill/release
 
 Saved OBS discovery is implemented, and the development skill now includes a direct read-only obs-websocket client (see the unreleased section below). A rendered MATRIC-client preview is not implemented. Preserve these distinctions in user-facing claims.
 
+## Lessons from user cockpit examples (unreleased, 2026-10-26)
+
+Read-only review of the maintainer's landscape-tablet F-16, Mirage 2000C, revised F/A-18C UFC and JF-17 examples informed focused authoring guidance. The requested F-16 export was unavailable, so its similarly titled installed deck was inspected as a disclosed substitute, not assumed to be the identical revision. No real decks, assets, profile data or captured simulator values were added to the repository. The F/A-18C comparison used the existing ignored v9 baseline: the revision changes layout/appearance, removes two headings and retains the reviewed command/event mappings. These file-level observations do not establish physical touch usability or live simulator behavior.
+
+The skill now explicitly allows named direct-selection buttons with actual-state highlighting where they suit touch use, alongside the existing preference for matching native controls. The DCS reference covers cockpit grouping versus task-focused pages, display/line-select alignment, useful control proportions, inspection of functional labels and mixed keyboard/DBMM input paths, and behavior comparisons for layout-only revisions. It distinguishes empty surplus legacy switch events from action-bearing incompatibilities without changing the validator or prescribing automatic migration. `VERSION` remains 0.2.0; the update adds guidance rather than new native/live compatibility claims.
+
+All 50 independent Python tests, skill packaging and whitespace checks passed. The optional skill-creator validator could not run because PyYAML remains unavailable. No new dependency, application change or live simulator test was introduced.
+
 ## Simulator input discovery (unreleased, 2026-10-26)
 
 The installable skill supports input-panel authoring for MSFS 2020/2024, Star Citizen and Elite Dangerous. The original standard-library `game_bindings.py` lists profile candidates within explicit folders, inventories selected readable XML/.binds files, records source hashes/timestamps and profile/device/context metadata, preserves alternatives/modifiers/timing/axis options, and reports missing requested action identifiers and possible shared inputs. Known keyboard bindings and explicitly confirmed vJoy input correspondences produce catalog-based action candidates. No helper operates a game, driver or keyboard, edits active mappings, or automatically chooses the newest profile.
