@@ -18,6 +18,8 @@ The skill now explicitly allows named direct-selection buttons with actual-state
 
 All 50 independent Python tests, skill packaging and whitespace checks passed. The optional skill-creator validator could not run because PyYAML remains unavailable. No new dependency, application change or live simulator test was introduced.
 
+Maintainer clarification strengthens the design priority: cockpit fidelity is optional, while task flow and touch usability drive layout decisions. The guidance now explicitly accounts for missing tactile cues and the tablet's smaller physical size, permits grouping functions from different cockpit panels on one useful page, and highlights vintage aircraft with limited HOTAS as a particularly valuable use case. Recognizable relationships remain useful without requiring original cockpit positions; an explicitly requested replica style is still respected.
+
 ## Simulator input discovery (unreleased, 2026-10-26)
 
 The installable skill supports input-panel authoring for MSFS 2020/2024, Star Citizen and Elite Dangerous. The original standard-library `game_bindings.py` lists profile candidates within explicit folders, inventories selected readable XML/.binds files, records source hashes/timestamps and profile/device/context metadata, preserves alternatives/modifiers/timing/axis options, and reports missing requested action identifiers and possible shared inputs. Known keyboard bindings and explicitly confirmed vJoy input correspondences produce catalog-based action candidates. No helper operates a game, driver or keyboard, edits active mappings, or automatically chooses the newest profile.
