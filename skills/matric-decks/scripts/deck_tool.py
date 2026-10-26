@@ -13,6 +13,7 @@ from pathlib import Path, PurePosixPath
 SKILL = Path(__file__).resolve().parents[1]
 CATALOG = json.loads((SKILL / "references/catalog.json").read_text(encoding="utf-8-sig"))
 ACTION_PREFIX = "EXM.MatricPro.Actions."
+MAX_PAGE_DIMENSION = 50
 
 
 def read_json(data):
@@ -174,6 +175,8 @@ def validate(deck, files, applets=None):
         grid = all(type(page.get(key)) is int and page[key] > 0 for key in ("Cols", "Rows"))
         if not grid:
             errors.append(f"{where}: Cols and Rows must be positive integers")
+        elif page["Cols"] > MAX_PAGE_DIMENSION or page["Rows"] > MAX_PAGE_DIMENSION:
+            errors.append(f"{where}: Cols and Rows must not exceed {MAX_PAGE_DIMENSION} (supported page limit)")
         controls = page.get("Controls")
         if not isinstance(controls, list):
             errors.append(f"{where}.Controls: expected array"); continue
@@ -364,8 +367,8 @@ def main():
                       "actions": {k: v["description"] for k, v in CATALOG["actions"].items()}}
         print(json.dumps(result, ensure_ascii=False, indent=2)); return
     if args.command == "new":
-        if args.cols < 1 or args.rows < 1:
-            parser.error("Grid dimensions must be positive")
+        if not (1 <= args.cols <= MAX_PAGE_DIMENSION and 1 <= args.rows <= MAX_PAGE_DIMENSION):
+            parser.error(f"Grid dimensions must be integers from 1 to {MAX_PAGE_DIMENSION}")
         page_id = str(uuid.uuid4())
         deck = {"Id": str(uuid.uuid4()), "Title": args.title, "Author": args.author, "Description": "",
                 "DeckFileVersion": CATALOG["deck_file_version"], "DefaultPageId": page_id, "ReferencedUserVariables": [],

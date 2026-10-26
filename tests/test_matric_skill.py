@@ -53,6 +53,45 @@ class AuthoringTests(unittest.TestCase):
             self.assertEqual(deck["Pages"][0]["Cols"], 5)
             self.assertFalse(deck_tool.validate(deck, files)["errors"])
 
+    def test_page_grid_supported_boundaries(self):
+        draft = copy.deepcopy(self.deck)
+        draft["Pages"] = draft["Pages"][:1]
+        page = draft["Pages"][0]
+        page["Controls"] = []
+        for cols, rows in ((1, 1), (50, 50), (1, 50), (50, 1)):
+            with self.subTest(cols=cols, rows=rows):
+                page.update(Cols=cols, Rows=rows)
+                self.assertEqual(deck_tool.validate(draft, self.files)["errors"], [])
+        for cols, rows in ((51, 50), (50, 51), (51, 51), (0, 10), (10, -1), (True, 10), (50.0, 10)):
+            with self.subTest(cols=cols, rows=rows):
+                page.update(Cols=cols, Rows=rows)
+                self.assertTrue(any("Cols and Rows" in error for error in deck_tool.validate(draft, self.files)["errors"]))
+
+    def test_new_cli_rejects_unsupported_grid_before_writing(self):
+        with tempfile.TemporaryDirectory(prefix="matric-grid-test-") as temp:
+            for cols, rows in ((51, 50), (50, 51), (0, 5), (5, -1)):
+                draft = Path(temp) / f"bad-{cols}-{rows}"
+                result = self.cli("new", "--title", "Grid bounds", "--cols", cols, "--rows", rows, "--output", draft, success=False)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertFalse(draft.exists())
+            draft = Path(temp) / "supported"
+            self.cli("new", "--title", "Largest supported grid", "--cols", 50, "--rows", 50, "--output", draft)
+            deck, files = deck_tool.load_deck(draft)
+            self.assertEqual(deck_tool.validate(deck, files)["errors"], [])
+
+    def test_pack_rejects_oversized_saved_page(self):
+        with tempfile.TemporaryDirectory(prefix="matric-oversized-test-") as temp:
+            draft, package = Path(temp) / "draft", Path(temp) / "oversized.deck"
+            self.cli("new", "--title", "Synthetic oversized page", "--cols", 50, "--rows", 50, "--output", draft)
+            source = draft / "deck2.json"
+            deck = json.loads(source.read_text(encoding="utf-8"))
+            deck["Pages"][0]["Rows"] = 51
+            source.write_text(json.dumps(deck), encoding="utf-8")
+            self.assertNotEqual(self.cli("validate", draft, success=False).returncode, 0)
+            self.assertNotEqual(self.cli("pack", draft, "--output", package, success=False).returncode, 0)
+            self.assertFalse(package.exists())
+            self.assertEqual(json.loads(source.read_text(encoding="utf-8"))["Pages"][0]["Rows"], 51)
+
     def test_new_controls_follow_their_definitions(self):
         for kind in deck_tool.CATALOG["controls"]:
             with self.subTest(control=kind):

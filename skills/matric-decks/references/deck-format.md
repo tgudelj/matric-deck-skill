@@ -38,6 +38,8 @@ The local staging folder has `deck2.json` directly inside it. The packager adds 
 
 Use real UUIDs for newly authored deck/page/control identities; the strings above explain the relationships. Page titles are not page IDs. Navigation points to the page ID. Each control has integer `X`, `Y`, `Width`, `Height` measured in grid cells, with a zero-based origin at the upper left. Keep controls inside `Cols` and `Rows`. Overlaps may be intentional for layered designs; the validator reports them as warnings.
 
+MATRIC officially supports at most **50 columns and 50 rows per page**, with both values positive integers. This maintainer-confirmed application limit applies to operational decks, inventories and templates. A larger page rendering successfully is not evidence of supported behavior: it can affect stability and especially performance. The helper rejects out-of-range pages during validation/packaging and rejects them before creating a new draft. Do not change imported page dimensions automatically merely to pass validation; plan a compact re-layout or resolve any grouping constraint with the user.
+
 ## Deck descriptions and companion guides
 
 `Description` is import-facing metadata. Make it concise and understandable without knowledge of MATRIC internals: state the deck's purpose and the intended client device size, aspect ratio, and orientation. Use only device facts that are known; when authoring against an assumption, identify it as such. For example: "F/A-18C Up Front Controller for a 9-inch, 16:10 landscape tablet."
@@ -84,6 +86,8 @@ Fitting the logical grid on screen is not the same as making it usable by touch.
 - Review at the intended physical scale when possible and seek actual-device feedback on readability, accurate taps and gestures. A desktop screenshot, matching aspect ratio or passing bounds check does not establish touch usability. Do not claim precise physical target sizes without screen/viewport measurements.
 
 ## Controls
+
+Minimize each control's logical footprint independently of the page size. Choose the smallest practical width/height that carries its label, state and interaction, and remove unnecessary blank/decorative padding. This is particularly important for source/template decks: users drag individual controls into grids that may be much smaller than the inventory page. A 15×15 source control cannot be dropped onto a 10×10 deck; users can scale compact controls up after copying them. Simple indicator lamps should not inherit large card dimensions just because rotaries or complex displays need more space. Keep labels/artwork/actions/feedback self-contained while compacting, and recheck text sizing and artwork proportions. Operational touch usability still depends on the target device and interaction; no single fixed control span fits every control type.
 
 Use the exact `ControlTypeName` and corresponding `ControlConfigTypeName`. For example, a button uses `EXM.MatricPro.Controls.MCButton` and `EXM.MatricPro.Controls.Config.MCButtonConfig`. Its appearance/behavior is in `Config`; events are in `ControlEvents`:
 
