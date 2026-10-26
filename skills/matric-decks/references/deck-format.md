@@ -111,6 +111,17 @@ Action JSON can contain numeric enums or string enums depending on the original 
 
 Page backgrounds and native control image fields refer to resource files inside the deck directory. Mobile audio uses `AudioFileName`, also bundled. PC audio uses `AudioPath`, which is a machine-specific external path. Custom fonts, custom applet installations, native drivers and plugin installations need separate setup. Do not quietly embed a local executable, credentials or an entire OBS configuration into a deck.
 
+## Reusing installed control templates
+
+When the user's MATRIC deck library is available, use its pre-installed template decks as a visual source before designing new artwork. Find them by their visible deck titles, not a hard-coded library folder or deck ID:
+
+- For ordinary decks, inspect **Default control templates**.
+- For a DCS deck, inspect **Aviation button templates** first for aviation-style skeuomorphic controls, then **Default control templates**.
+
+These decks are a convenience, not an input requirement: users may have deleted them, and the portable skill must not ship their artwork. If neither deck is available or no design fits, use native visual configuration and the user's brief; create original artwork only when it materially improves a requested look.
+
+To reuse a design, start with a newly generated control of the appropriate catalog type and fresh ID. Transfer only the visual fields that fit the target (for example, colors, text styling, `BackgroundImage`, `DialImage`, `ButtonImage`, and state visuals) and copy each referenced normal, pressed, active, or state resource into the staged deck. Then create the target's layout, bindings and actions from its actual requirements. Never carry over the template control's `ControlEvents`, bindings, variables, control ID, navigation, or plugin-specific settings merely because its appearance is useful. Validate that every transferred resource is packaged and that the target remains complete when the page background is hidden.
+
 For an existing deck, preserve all original resource files and unknown root metadata. Stream Deck action resources have separate ownership and remapping rules. The validator warns about those actions but does not certify their resource snapshots or settings. Use MATRIC's own Save As/copy/export workflow for cloning plugin-owned identities/resources.
 
 Custom applet files have separate ownership too: an `MCCustom` container references a separately installed AppletId. Use the [custom applet workflow](custom-applets.md) to create/validate the manifest, package a `.mapl`, and check deck events/parameters with `deck_tool.py validate ... --applet /path/to/applet`. A `.deck` archive alone does not install applet files.

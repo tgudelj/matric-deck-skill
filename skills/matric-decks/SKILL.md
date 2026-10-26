@@ -36,6 +36,12 @@ Prefer a native control that matches the interaction: a multi-position switch fo
 
 When native controls cannot satisfactorily express a requested interaction or visualization, use the advanced [custom applet workflow](references/custom-applets.md). It covers original HTML/CSS/JavaScript applets, manifests, variables/events, responsive input handling, manifest-aware deck checks and separate `.mapl` packaging. Prefer native controls for ordinary buttons/sliders/rotaries, including when only their appearance needs changing. Do not install an applet into the live library to test generation.
 
+## Reuse installed visual templates first
+
+Before creating new button or control artwork, inspect the user's installed MATRIC template decks when their deck library is available. For ordinary decks, begin with **Default control templates**. For DCS decks, inspect **Aviation button templates** first for its aviation-inspired skeuomorphic controls, then Default control templates. Identify them by deck title rather than a fixed folder ID. They are normally pre-installed, but a user may have removed them; their absence must never block authoring, validation, or packaging.
+
+When a suitable template exists, create a fresh target control from the catalog and transfer only its visual configuration and every resource required by its normal and active states. Do not inherit the template's actions, bindings, control ID, variables, or unrelated behavior; author the target interaction separately. Do not bundle or redistribute template-deck assets in this skill. For the detailed resource workflow and fallback rules, read [reusing installed control templates](references/deck-format.md#reusing-installed-control-templates).
+
 Create a blank staged deck with:
 
 ```text
@@ -44,7 +50,7 @@ python scripts/deck_tool.py new --title "My panel" --cols 6 --rows 4 --output /p
 
 Edit its `deck2.json`. In a Python authoring script, import `new_control` and `action` from `scripts/deck_tool.py` to clone runtime defaults with fresh control IDs and a readable appearance. The helpers build data; they do not execute actions. See `assets/starter/deck2.json` for a complete native example with navigation, hotkeys, text, and a bundled SVG background. Generate fresh IDs when adapting it into a new deck.
 
-Place file resources in the staged folder, and reference them relative to that folder. Prefer native colors/text/icons for simple panels; create images when they improve the requested design. Grid dimensions and positions are cell counts, not pixels. TextSize is a percentage of one grid cell, not a font size in points.
+Place file resources in the staged folder, and reference them relative to that folder. Prefer native colors/text/icons for simple panels; create original images when no suitable installed template exists or the user has requested a specific visual design. Grid dimensions and positions are cell counts, not pixels. TextSize is a percentage of one grid cell, not a font size in points.
 
 Fonts are intentionally not packaged with decks, to avoid unlicensed redistribution of copyrighted fonts. Do not bundle font files or assume a specific system/custom font is available. Use MATRIC's default text font unless a font is important to reproducing a requested visual style, such as a seven-segment display. Recommend or use a non-standard font only from DaFont or Google Fonts, name it and give its permitted download link in the deck description, and explain that it must be installed separately in MATRIC's fonts folder. If its value is unclear, explain this plainly and ask whether the user agrees before using it. See [fonts and optional fidelity](references/deck-format.md#fonts-and-optional-fidelity).
 

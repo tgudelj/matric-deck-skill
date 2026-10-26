@@ -10,6 +10,12 @@ The public [v0.1.0 release](https://github.com/tgudelj/matric-deck-skill/release
 
 Saved OBS discovery is implemented, and the development skill now includes a direct read-only obs-websocket client (see the unreleased section below). A rendered MATRIC-client preview is not implemented. Preserve these distinctions in user-facing claims.
 
+## Installed visual-template guidance (unreleased, 2026-10-26)
+
+The installed skill now prefers reusable visuals from the user's **Default control templates** deck before creating button/control artwork. For DCS work it checks **Aviation button templates** first, then the default set, so the common aviation-style skeuomorphic controls can be reused where they fit. The instructions identify both decks by title rather than installation-specific folder IDs, since users can delete pre-installed decks.
+
+Reuse is deliberately limited to visual configuration and every referenced state resource copied into the staged output. New controls retain fresh identities and receive task-specific layout, actions, bindings and variables; source template behavior is never inherited. The template decks and their assets are neither bundled into nor required by the portable skill. When a template is unavailable or unsuitable, authors fall back to native configuration and the user's requested design. This is an unreleased guidance/reference update; `VERSION` remains 0.2.0 and no client behavior is claimed.
+
 ## Custom applet authoring (unreleased, 2026-10-25)
 
 The advanced applet workflow prefers native controls unless an interaction or visualization needs a custom interface. `applet_tool.py` creates an original dependency-free history-inspector starter, validates manifest identities/types/defaults/events/runtime ActionIds and local HTML/CSS resource references, packages reproducible `.mapl` archives, and generates a synthetic applet plus integrated deck and installation notes. It never installs into the user's library. The starter uses the actual iframe message contract, responsive CSS, bounded history, explicit selection events and input cleanup, with no bundled fonts, external SDK or network dependency.
