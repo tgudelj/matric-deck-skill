@@ -206,3 +206,7 @@ Update `VERSION`, run independent tests and relevant optional compatibility chec
 The README focuses on installation across supported assistants and example prompts for first use. Feature details, compatibility limits and independent packaging commands moved to [the features guide](FEATURES.md); task-specific AI instructions remain in the installable skill and its references. The published v0.2.0 release and unreleased development features remain distinguished. No helper behavior or compatibility claims changed.
 
 The README now highlights discovery of a user's own OBS Studio setup and includes an OBS prompt. Its hero artwork is an AI-generated illustration inspired by MATRIC's visual identity and supplied icons; it is a repository presentation asset, not part of the installable skill.
+
+## Version 0.3.0 release preparation
+
+Version 0.3.0 packages the OBS discovery, game input and custom applet workflows and the authoring guidance added since v0.2.0. Live integrations, device-specific behavior and experimental Stream Deck support retain the limits documented in the skill and feature guide.

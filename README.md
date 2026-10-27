@@ -4,7 +4,7 @@
 
 Create a custom MATRIC control deck with your AI assistant. Describe the controls you want and the skill produces editable files and a `.deck` package to import into MATRIC.
 
-The development skill can discover your own OBS Studio scenes, sources and other settings, so your assistant can build a deck around your setup. It can read a live OBS connection or an exported collection; the finished deck uses MATRIC's OBS integration.
+The skill can discover your own OBS Studio scenes, sources and other settings, so your assistant can build a deck around your setup. It can read a live OBS connection or an exported collection; the finished deck uses MATRIC's OBS integration.
 
 ## Install
 
@@ -13,10 +13,10 @@ You need Python 3.11 or newer for the assistant’s helpers, and MATRIC to use t
 For Codex, ask the skill installer:
 
 ```text
-$skill-installer install https://github.com/tgudelj/matric-deck-skill/tree/v0.2.0/skills/matric-decks
+$skill-installer install https://github.com/tgudelj/matric-deck-skill/tree/v0.3.0/skills/matric-decks
 ```
 
-For any supported assistant, download and extract the [v0.2.0 release ZIP](https://github.com/tgudelj/matric-deck-skill/releases/tag/v0.2.0), then copy the complete `matric-decks` folder to one of these locations. Personal installations are available across projects; project installations are available in that project.
+For any supported assistant, download and extract the [v0.3.0 release ZIP](https://github.com/tgudelj/matric-deck-skill/releases/tag/v0.3.0), then copy the complete `matric-decks` folder to one of these locations. Personal installations are available across projects; project installations are available in that project.
 
 | Assistant | Personal location | Project location |
 | --- | --- | --- |
@@ -56,7 +56,7 @@ for import into MATRIC.
 
 Review the actions and any required integrations, then import the `.deck` in MATRIC. The skill does not install the deck or run its controls for you.
 
-The published release also supports DCS-BIOS and DBMM cockpit panels. OBS discovery, flight and space sim input profiles, and custom applets are in the development version, not the published v0.2.0 release. See [features and compatibility](docs/FEATURES.md) for details and limitations.
+The published release also supports DCS-BIOS and DBMM cockpit panels. The skill also supports OBS discovery, flight and space sim input profiles, and custom applets. See [features and compatibility](docs/FEATURES.md) for details and limitations.
 
 ## More information
 

@@ -1,10 +1,10 @@
 # Features and compatibility
 
-This guide describes the published release and features in the development skill. AI authoring instructions and detailed workflows live in [the installable skill](../skills/matric-decks/SKILL.md).
+This guide describes the published skill. AI authoring instructions and detailed workflows live in [the installable skill](../skills/matric-decks/SKILL.md).
 
-## OBS discovery (development skill)
+## OBS discovery
 
-For OBS, the development skill includes a standard-library WebSocket 5 client that reads the active collection, scenes, groups, sources, filters, transitions, audio state and output activity. Supply the enabled OBS WebSocket endpoint; authenticated connections use a password environment variable or a private interactive prompt. The helper sends only read-only discovery requests. Exported/saved collection JSON remains available for offline discovery, inactive collections and saved keyboard bindings. See [OBS discovery](../skills/matric-decks/references/obs-discovery.md) for commands and snapshot limits. This capability is not in the published v0.2.0 package. Execution of native MATRIC OBS actions still requires MATRIC's OBS integration.
+For OBS, the skill includes a standard-library WebSocket 5 client that reads the active collection, scenes, groups, sources, filters, transitions, audio state and output activity. Supply the enabled OBS WebSocket endpoint; authenticated connections use a password environment variable or a private interactive prompt. The helper sends only read-only discovery requests. Exported/saved collection JSON remains available for offline discovery, inactive collections and saved keyboard bindings. See [OBS discovery](../skills/matric-decks/references/obs-discovery.md) for commands and snapshot limits. Execution of native MATRIC OBS actions still requires MATRIC's OBS integration.
 
 ## DCS cockpit decks
 
@@ -15,9 +15,9 @@ Use the matric-decks skill to build an F-16C ICP panel using my installed
 DCS-BIOS definitions, with simulator feedback and a DBMM output checklist.
 ```
 
-## Flight and space sim inputs (development skill)
+## Flight and space sim inputs
 
-The development skill reads user input profiles for Microsoft Flight Simulator 2020/2024, Star Citizen and Elite Dangerous, with native keyboard/vJoy action candidates and profile/context checks. It focuses on auxiliary controls such as throttle, flaps, mixture, radiators and ship systems. Read [the game input guide](../skills/matric-decks/references/game-inputs.md) for discovery commands, virtual-device correspondence and supported file formats. This input-only workflow does not provide game-state feedback. Star Citizen overrides can omit defaults, and MSFS active profile layers need confirmation. These additions are not in the published v0.2.0 release.
+The skill reads user input profiles for Microsoft Flight Simulator 2020/2024, Star Citizen and Elite Dangerous, with native keyboard/vJoy action candidates and profile/context checks. It focuses on auxiliary controls such as throttle, flaps, mixture, radiators and ship systems. Read [the game input guide](../skills/matric-decks/references/game-inputs.md) for discovery commands, virtual-device correspondence and supported file formats. This input-only workflow does not provide game-state feedback. Star Citizen overrides can omit defaults, and MSFS active profile layers need confirmation.
 
 ```text
 Use the matric-decks skill to make an Elite Dangerous ship-systems deck
@@ -37,9 +37,9 @@ Packaging produces `dist/matric-decks-<version>.zip` and a `.sha256` checksum fi
 
 See [development and compatibility](DEVELOPMENT.md) for optional catalog refresh and native MATRIC import checks. Ordinary tests and packaging require neither MATRIC source nor a MATRIC build. CI is configured for Windows and Linux.
 
-## Custom applets (development skill)
+## Custom applets
 
-When native controls do not fit the requested interaction, the development skill can author HTML/CSS/JavaScript applets, validate manifests and deck bindings, and produce a separate importable `.mapl` alongside the `.deck`. It includes an original history-inspector starter and a synthetic integrated example. Read the [custom applet workflow](../skills/matric-decks/references/custom-applets.md) for the message API, installation, responsive design and target-version limits. These additions are not included in the published v0.2.0 release.
+When native controls do not fit the requested interaction, the skill can author HTML/CSS/JavaScript applets, validate manifests and deck bindings, and produce a separate importable `.mapl` alongside the `.deck`. It includes an original history-inspector starter and a synthetic integrated example. Read the [custom applet workflow](../skills/matric-decks/references/custom-applets.md) for the message API, installation, responsive design and target-version limits.
 
 ```text
 python skills/matric-decks/scripts/applet_tool.py example --output /path/to/history-demo
