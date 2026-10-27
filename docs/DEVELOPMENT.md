@@ -172,7 +172,7 @@ All 15 independent tests and skill packaging passed. The optional skill-creator 
 
 ## Resume on another machine
 
-Clone the standalone repository, read `AGENTS.md` and `skills/matric-decks/SKILL.md`, and run the tests and packager described in the README. No MATRIC checkout, Windows desktop compiler or external Python packages are required for that workflow. Work on the skill here; do not restore it into the MATRIC application repository.
+Clone the standalone repository, read `AGENTS.md` and `skills/matric-decks/SKILL.md`, and run the tests and packager described in the [features guide](FEATURES.md#package-and-test). No MATRIC checkout, Windows desktop compiler or external Python packages are required for that workflow. Work on the skill here; do not restore it into the MATRIC application repository.
 
 The local installed copy in Codex's user skills directory is an installation, not the development source. Update that copy after validating a change or install a tagged release from GitHub. Never silently overwrite local customizations.
 
@@ -200,3 +200,9 @@ This compiles the small checker against the supplied build, copies dependencies 
 ## Release
 
 Update `VERSION`, run independent tests and relevant optional compatibility checks, then run `python tools/package_skill.py`. Review the resulting ZIP and checksum. Publish a matching `v<version>` Git tag and GitHub release with those two files. GitHub's source archive is a developer checkout; the versioned skill ZIP is the installable payload. A public repository does not automatically list a skill in a plugin directory.
+
+## README and documentation organization (unreleased)
+
+The README focuses on installation across supported assistants and example prompts for first use. Feature details, compatibility limits and independent packaging commands moved to [the features guide](FEATURES.md); task-specific AI instructions remain in the installable skill and its references. The published v0.2.0 release and unreleased development features remain distinguished. No helper behavior or compatibility claims changed.
+
+The README now highlights discovery of a user's own OBS Studio setup and includes an OBS prompt. Its hero artwork is an AI-generated illustration inspired by MATRIC's visual identity and supplied icons; it is a repository presentation asset, not part of the installable skill.

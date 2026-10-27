@@ -1,86 +1,68 @@
 # MATRIC Deck Skill
 
-Create editable MATRIC control decks and importable `.deck` packages with an AI assistant, without operating the MATRIC editor. Includes format and action references, native control templates, a validator/packager, live and offline OBS discovery, and DCS-BIOS/DBMM command and feedback authoring.
+![A MATRIC-inspired control deck connected to an abstract AI network](docs/images/matric-ai-hero.png)
 
-This project is developed, versioned and released independently of MATRIC. Using the skill requires Python 3.11 or newer; its helpers use only the standard library. A MATRIC installation is needed to import and use the finished deck. MATRIC source code and binaries are not distributed here.
+Create a custom MATRIC control deck with your AI assistant. Describe the controls you want and the skill produces editable files and a `.deck` package to import into MATRIC.
+
+The development skill can discover your own OBS Studio scenes, sources and other settings, so your assistant can build a deck around your setup. It can read a live OBS connection or an exported collection; the finished deck uses MATRIC's OBS integration.
 
 ## Install
 
-The same skill folder works with assistants that support Agent Skills and can run its Python helpers. Start with the [installation guide](docs/INSTALLATION.md), which covers:
+You need Python 3.11 or newer for the assistant’s helpers, and MATRIC to use the finished deck. No MATRIC source code or build is needed.
 
-- [Codex](docs/INSTALLATION.md#codex)
-- [Claude Code](docs/INSTALLATION.md#claude-code)
-- [Cursor](docs/INSTALLATION.md#cursor)
-- [GitHub Copilot](docs/INSTALLATION.md#github-copilot)
-- [Gemini CLI](docs/INSTALLATION.md#gemini-cli)
-
-For a quick Codex installation:
+For Codex, ask the skill installer:
 
 ```text
 $skill-installer install https://github.com/tgudelj/matric-deck-skill/tree/v0.2.0/skills/matric-decks
 ```
 
-You can also download the versioned `matric-decks-<version>.zip` from [Releases](https://github.com/tgudelj/matric-deck-skill/releases), then extract the complete `matric-decks` folder into your assistant's skills directory. The guide lists personal and project locations, invocation examples, verification and update steps. This repository distributes a plain skill; it is not registered in a plugin directory.
+For any supported assistant, download and extract the [v0.2.0 release ZIP](https://github.com/tgudelj/matric-deck-skill/releases/tag/v0.2.0), then copy the complete `matric-decks` folder to one of these locations. Personal installations are available across projects; project installations are available in that project.
 
-## Use
+| Assistant | Personal location | Project location |
+| --- | --- | --- |
+| Codex | `~/.codex/skills/matric-decks/` | `.agents/skills/matric-decks/` |
+| Claude Code | `~/.claude/skills/matric-decks/` | `.claude/skills/matric-decks/` |
+| Cursor | `~/.cursor/skills/matric-decks/` | `.cursor/skills/matric-decks/` |
+| GitHub Copilot | `~/.copilot/skills/matric-decks/` | `.github/skills/matric-decks/` |
+| Gemini CLI | `~/.gemini/skills/matric-decks/` | `.gemini/skills/matric-decks/` |
+
+`~` is your home directory. Keep the contents together so that `SKILL.md` is directly inside the `matric-decks` folder. Reload skills or start a new session if the assistant does not find it.
+
+For harness-specific commands, verification, cloud environments and updates, see the [installation guide](docs/INSTALLATION.md). The helper scripts and native MATRIC import have been tested; end-to-end use in Claude Code, Cursor, Copilot and Gemini CLI has not been tested by this project.
+
+## Make a deck
+
+Ask your assistant, for example:
 
 ```text
 Use the matric-decks skill to make a 6-by-4 landscape deck with copy, paste,
 media controls and a second page for text snippets. Package it for import.
 ```
 
-For OBS, the development skill includes a standard-library WebSocket 5 client that reads the active collection, scenes, groups, sources, filters, transitions, audio state and output activity. Supply the enabled OBS WebSocket endpoint; authenticated connections use a password environment variable or a private interactive prompt. The helper sends only read-only discovery requests. Exported/saved collection JSON remains available for offline discovery, inactive collections and saved keyboard bindings. See [OBS discovery](skills/matric-decks/references/obs-discovery.md) for commands and snapshot limits. This capability is not in the published v0.2.0 package. Execution of native MATRIC OBS actions still requires MATRIC's OBS integration.
-
-The assistant produces editable JSON/assets and a `.deck` archive. Review the configured actions and external dependencies, then import the `.deck` using MATRIC's normal import workflow. The skill does not execute controls or install a deck into a live library.
-
-## DCS cockpit decks
-
-The same skill supports Digital Combat Simulator panels through DCS-BIOS and DCS-BIOS-MATRIC-Middleware (DBMM). It reads installed aircraft definitions, builds native command-variable actions and simulator feedback bindings, audits required outputs, and provides an original synthetic example. Start with the [DCS setup and authoring guide](skills/matric-decks/references/dcs-bios.md). Live operation needs DCS, DCS-BIOS, DBMM and MATRIC configured; static checks do not prove cockpit behavior.
+For a DCS cockpit panel:
 
 ```text
 Use the matric-decks skill to build an F-16C ICP panel using my installed
 DCS-BIOS definitions, with simulator feedback and a DBMM output checklist.
 ```
 
-## Flight and space sim inputs (development skill)
-
-The development skill reads user input profiles for Microsoft Flight Simulator 2020/2024, Star Citizen and Elite Dangerous, with native keyboard/vJoy action candidates and profile/context checks. It focuses on auxiliary controls such as throttle, flaps, mixture, radiators and ship systems. Read [the game input guide](skills/matric-decks/references/game-inputs.md) for discovery commands, virtual-device correspondence and supported file formats. This input-only workflow does not provide game-state feedback. Star Citizen overrides can omit defaults, and MSFS active profile layers need confirmation. These additions are not in the published v0.2.0 release.
+For your own OBS Studio:
 
 ```text
-Use the matric-decks skill to make an Elite Dangerous ship-systems deck
-for my portrait phone using my selected bindings and MATRIC vJoy device.
+Use the matric-decks skill to inspect my OBS Studio setup and create a deck
+for switching my scenes, controlling sources and muting my audio. Package it
+for import into MATRIC.
 ```
 
-## Package and test
+Review the actions and any required integrations, then import the `.deck` in MATRIC. The skill does not install the deck or run its controls for you.
 
-From the repository root:
+The published release also supports DCS-BIOS and DBMM cockpit panels. OBS discovery, flight and space sim input profiles, and custom applets are in the development version, not the published v0.2.0 release. See [features and compatibility](docs/FEATURES.md) for details and limitations.
 
-```text
-python -B -m unittest discover -s tests -p "test_*.py" -v
-python -B tools/package_skill.py
-```
+## More information
 
-Packaging produces `dist/matric-decks-<version>.zip` and a `.sha256` checksum file. It includes only the installable skill folder, not developer tools, test artifacts or MATRIC binaries. Existing release files are not overwritten. Change `VERSION` before producing a new release.
+- [Installation and updates](docs/INSTALLATION.md)
+- [Features and compatibility](docs/FEATURES.md)
+- [Skill instructions and authoring references](skills/matric-decks/SKILL.md)
+- [Development, testing and releases](docs/DEVELOPMENT.md)
 
-See [development and compatibility](docs/DEVELOPMENT.md) for optional catalog refresh and native MATRIC import checks. Ordinary tests and packaging require neither MATRIC source nor a MATRIC build. CI is configured for Windows and Linux.
-
-## Custom applets (development skill)
-
-When native controls do not fit the requested interaction, the development skill can author HTML/CSS/JavaScript applets, validate manifests and deck bindings, and produce a separate importable `.mapl` alongside the `.deck`. It includes an original history-inspector starter and a synthetic integrated example. Read the [custom applet workflow](skills/matric-decks/references/custom-applets.md) for the message API, installation, responsive design and target-version limits. These additions are not included in the published v0.2.0 release.
-
-```text
-python skills/matric-decks/scripts/applet_tool.py example --output /path/to/history-demo
-node --test tests/applet-runtime.test.cjs
-```
-
-Applet helpers use standard-library Python. The starter runs directly in a browser without npm packages; Node is only needed for the independent JavaScript tests. Native controls remain the preferred starting point.
-
-## Compatibility
-
-The bundled catalog covers deck format 3, with 21 native control definitions and 35 action definitions. The catalog records its MATRIC source commit and assembly hash; those are compatibility provenance, not this skill's version. Structural validation does not prove application shortcuts, target devices, external integrations or appearance on every screen.
-
-Stream Deck plugin support remains experimental. Opaque plugin configurations and resources need MATRIC-specific verification; plugin installations and global settings are not bundled. Existing MATRIC compatibility exclusions remain in effect. See [the skill instructions](skills/matric-decks/SKILL.md).
-
-## License
-
-This repository's code, instructions, generated catalog and starter assets are licensed under [MIT](LICENSE). This license does not change the licenses of MATRIC, OBS Studio, Elgato software, third-party plugins or external material linked from the documentation.
+This independent project is licensed under [MIT](LICENSE).
