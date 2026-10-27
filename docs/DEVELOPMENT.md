@@ -2,7 +2,7 @@
 
 ## Current state
 
-Current release: 0.2.0. Initial version 0.1.0 was extracted into a separate project on 2026-10-23. The installed skill includes instructions, deck/action/OBS references, a catalog of actual MATRIC definitions, standard-library Python helpers, and a two-page starter deck with an SVG background. Runtime authoring and ordinary testing are independent of the MATRIC source tree.
+Current release: 0.3.1. The entries below record development history; their release status and version references reflect when they were written. Initial version 0.1.0 was extracted into a separate project on 2026-10-23. The installed skill includes instructions, deck/action/OBS references, a catalog of actual MATRIC definitions, standard-library Python helpers, and a two-page starter deck with an SVG background. Runtime authoring and ordinary testing are independent of the MATRIC source tree.
 
 The original acceptance run passed eight offline tests and MATRIC's native import â†’ export â†’ reimport check, preserving two pages, five controls, hotkey configuration and the bundled SVG. OBS discovery was also exercised against a local saved collection; that user configuration is not part of this repository. Repository extraction adds a packaging acceptance test and cross-platform CI configuration. Local standalone validation passed all nine tests, release packaging/checksum verification, native import/export/reimport, and catalog refresh against the identified MATRIC build. GitHub CI passed on Windows and Linux for the initial push and release tag: [main run](https://github.com/tgudelj/matric-deck-skill/actions/runs/40028705824), [v0.1.0 run](https://github.com/tgudelj/matric-deck-skill/actions/runs/40028707247).
 
@@ -211,6 +211,8 @@ The README now highlights discovery of a user's own OBS Studio setup and include
 
 Version 0.3.0 packages the OBS discovery, game input and custom applet workflows and the authoring guidance added since v0.2.0. Live integrations, device-specific behavior and experimental Stream Deck support retain the limits documented in the skill and feature guide.
 
-## Community gallery suggestions (unreleased)
+## Community gallery suggestions (v0.3.1)
 
 The skill may suggest a relevant existing MATRIC Community gallery deck when internet access is available, with a direct link and an honest account of its fit and known limits. This supplements requested authoring; it does not assume permission to reuse or redistribute a community deck. No helper behavior or live compatibility claims changed.
+
+Version 0.3.1 includes the community gallery suggestion guidance. It does not change helper behavior or claim live integration testing.

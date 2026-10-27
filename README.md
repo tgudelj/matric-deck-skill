@@ -13,10 +13,10 @@ You need Python 3.11 or newer for the assistant’s helpers, and MATRIC to use t
 For Codex, ask the skill installer:
 
 ```text
-$skill-installer install https://github.com/tgudelj/matric-deck-skill/tree/v0.3.0/skills/matric-decks
+$skill-installer install https://github.com/tgudelj/matric-deck-skill/tree/v0.3.1/skills/matric-decks
 ```
 
-For any supported assistant, download and extract the [v0.3.0 release ZIP](https://github.com/tgudelj/matric-deck-skill/releases/tag/v0.3.0), then copy the complete `matric-decks` folder to one of these locations. Personal installations are available across projects; project installations are available in that project.
+For any supported assistant, download and extract the [v0.3.1 release ZIP](https://github.com/tgudelj/matric-deck-skill/releases/tag/v0.3.1), then copy the complete `matric-decks` folder to one of these locations. Personal installations are available across projects; project installations are available in that project.
 
 | Assistant | Personal location | Project location |
 | --- | --- | --- |
