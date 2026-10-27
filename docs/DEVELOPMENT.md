@@ -210,3 +210,7 @@ The README now highlights discovery of a user's own OBS Studio setup and include
 ## Version 0.3.0 release preparation
 
 Version 0.3.0 packages the OBS discovery, game input and custom applet workflows and the authoring guidance added since v0.2.0. Live integrations, device-specific behavior and experimental Stream Deck support retain the limits documented in the skill and feature guide.
+
+## Community gallery suggestions (unreleased)
+
+The skill may suggest a relevant existing MATRIC Community gallery deck when internet access is available, with a direct link and an honest account of its fit and known limits. This supplements requested authoring; it does not assume permission to reuse or redistribute a community deck. No helper behavior or live compatibility claims changed.
