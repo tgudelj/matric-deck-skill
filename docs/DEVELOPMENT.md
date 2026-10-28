@@ -2,6 +2,8 @@
 
 ## Current state
 
+README introduction broadened on 2026-10-28 to introduce DCS cockpit controls and feedback, plus MSFS, Star Citizen and Elite Dangerous input-profile panels alongside OBS. This is a documentation-only clarification of existing workflows; no new game integration or live validation is claimed.
+
 Current release: 0.4.1. The entries below record development history; their release status and version references reflect when they were written. Initial version 0.1.0 was extracted into a separate project on 2026-10-23. The installed skill includes instructions, deck/action/OBS references, a catalog of actual MATRIC definitions, standard-library Python helpers, and a two-page starter deck with an SVG background. Runtime authoring and ordinary testing are independent of the MATRIC source tree.
 
 The original acceptance run passed eight offline tests and MATRIC's native import â†’ export â†’ reimport check, preserving two pages, five controls, hotkey configuration and the bundled SVG. OBS discovery was also exercised against a local saved collection; that user configuration is not part of this repository. Repository extraction adds a packaging acceptance test and cross-platform CI configuration. Local standalone validation passed all nine tests, release packaging/checksum verification, native import/export/reimport, and catalog refresh against the identified MATRIC build. GitHub CI passed on Windows and Linux for the initial push and release tag: [main run](https://github.com/tgudelj/matric-deck-skill/actions/runs/40028705824), [v0.1.0 run](https://github.com/tgudelj/matric-deck-skill/actions/runs/40028707247).

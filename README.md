@@ -4,7 +4,7 @@
 
 Create a custom MATRIC control deck with your AI assistant. Describe the controls you want and the skill produces editable files and a `.deck` package to import into MATRIC.
 
-The skill can discover your own OBS Studio scenes, sources and other settings, so your assistant can build a deck around your setup. It can read a live OBS connection or an exported collection; the finished deck uses MATRIC's OBS integration.
+Build Digital Combat Simulator cockpit panels with controls and live simulator feedback through DCS-BIOS and DCS-BIOS-MATRIC-Middleware (DBMM). The skill can also use your input profiles to create panels for Microsoft Flight Simulator 2020/2024, Star Citizen and Elite Dangerous. For OBS Studio, it can discover your own scenes, sources and settings from a live connection or an exported collection, then build a deck around your setup using MATRIC's OBS integration.
 
 ## Install
 
