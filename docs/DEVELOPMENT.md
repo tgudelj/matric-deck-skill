@@ -222,3 +222,17 @@ Version 0.3.1 includes the community gallery suggestion guidance. It does not ch
 The skill now documents CalculateRequestFunction from read-only inspection of the target MATRIC implementation: synchronous request calculation from variable/event snapshots, PC-side HTTP execution, response variables and applet integration. The bundled catalog remains unchanged pending refresh from an explicitly supplied build. No live action execution or new compatibility claim is made.
 
 Version 0.4.1 releases this guidance with updated installation links. Independent tests and packaging validate the portable payload; native HTTP execution remains a separate target-build acceptance step.
+
+## World Clock applet exercise (2026-10-28)
+
+An ignored local delivery in `.qa/world-clock` contains four original font-independent SVG clock faces (two analog, two digital), per-instance IANA timezone/label settings, seconds and 12-hour options, an applet package, demo deck and browser gallery. All clock lettering uses geometric glyphs with documented Latin-character limits. Browser checks covered rendering, timezone changes, invalid zones and phone layout; package validators, all 53 Python tests and 7 existing Node tests passed. No applet was installed in a live library and no native MATRIC-client acceptance is claimed. Generated user artifacts stay outside the distributed skill.
+
+World Clock 1.1 darkens inactive amber segments to almost match the display background, improving digit separation. Revised packages and browser preview passed the same scoped checks.
+
+World Clock 1.2 adds Minimal and Railway analog faces, Split-flap and LCD digital faces, and an eight-face browser gallery. The demo deck uses two supported 12-by-8 pages; existing controls and applet identity are preserved. Package validation, eight-face browser rendering/geometry checks, all 53 Python tests and 7 independent Node tests passed. Split-flap tiles are not animated; native MATRIC-client acceptance remains outstanding.
+
+World Clock 1.3 changes TimeZone to a MATRIC list parameter with Device local time, UTC and 418 named timezone locations from Intl. Saved string values and parameter identity are preserved. The browser gallery also uses a dropdown; selection propagation to all eight instances, package validation and all 53 Python tests passed. Native MATRIC editor/client acceptance remains outstanding.
+
+## Searchable applet list parameters (2026-10-28)
+
+At the user's explicit request, the separate MATRIC checkout's applet parameter editor now uses Vuetify autocomplete for list parameters. The clock 1.3 manifest needs no schema change. Search filters labels while selections retain their existing string values; unmatched text leaves the selected value unchanged. The MATRIC manual was updated and its affected page rendered through Word/PDF and inspected. The editor production build and 21 focused applet tests passed. This application change is local to that checkout and takes effect in a subsequent MATRIC build; it is not a skill release or a live-library modification.
