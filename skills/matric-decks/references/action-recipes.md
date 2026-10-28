@@ -58,6 +58,30 @@ ActionMixerMute's enum strings include `"mute"`, `"unmute"`, `"toggle"`; audio D
 
 Run/focus application, HTTP, virtual joystick and other native actions are available in the catalog. Read the matching template and verify the target path, URL, device/driver requirements or action-specific values. Structural validation cannot establish that those external targets exist. For a deck intended to be portable, state those dependencies explicitly.
 
+## HTTP requests and calculated parameters
+
+`ActionExecHttp` executes on the MATRIC PC (`IsClientSide: false`). Static configuration uses `Method`, `Url`, `Headers` and `Body`. In the inspected newer implementation, optional `CalculateRequestFunction` contains the **body** of `calculateRequest(request, variables, eventData)`, not a full function declaration. An empty calculation preserves the static request.
+
+The function receives a fresh request object with lowercase `method`, `url`, `headers` and `body`, a snapshot of current server variables indexed by name, and the activating event payload. JSONOBJECT variables are parsed into JavaScript values. Return the request object synchronously; use `JSON.stringify` for a JSON body. For example, with an explicitly configured non-secret numeric variable:
+
+```javascript
+request.url += '?value=' + encodeURIComponent(variables.dashboard_value);
+request.method = 'POST';
+request.headers['Content-Type'] = 'application/json';
+request.body = JSON.stringify({selection: eventData});
+return request;
+```
+
+The returned URL must be absolute HTTP(S), method must be GET/POST/HEAD/PUT/DELETE/PATCH, headers must have string values, and body must be a string or null. The inspected sender sends bodies only for POST/PUT/PATCH. Calculations run in an isolated V8 engine with a two-second execution deadline; promises and invalid results fail before sending. This is synchronous request preparation, not browser JavaScript: do not assume fetch, WebSocket, filesystem access, environment variables or credential-store access. Changing the snapshots does not persist variable or saved configuration changes.
+
+Execution publishes `exec_http_<identifier>_success`, `exec_http_<identifier>_response_code` and, when a body/content type is present, `exec_http_<identifier>_response`. The identifier is the control Name when nonempty, otherwise its Id; choose unique stable names. A response content type containing `json` produces a JSONOBJECT variable; other bodies produce STRING. Treat HTTP success separately from valid application data and show missing/stale/error states explicitly.
+
+For an applet dashboard, declare a deliberate refresh event allowing runtime action ID `ActionExecHttp`, attach the native HTTP action to that event, and render its response variables through the applet bridge. A request runs on the PC, avoiding browser CORS restrictions and reaching PC-local HTTP services. The action supplies no automatic polling schedule: design refresh separately and do not emit actions automatically in response to feedback. Verify endpoint semantics, authentication/refresh requirements and any scheduling mechanism before promising a companion-free integration. HTTP request calculation does not implement a stdio or WebSocket protocol.
+
+Do not embed credentials in distributable decks or scripts. Server variables are not established secret storage and may be exposed to applets/clients or exports; require a reviewed local credential setup for authenticated requests.
+
+Evidence: read-only inspection of the target MATRIC checkout's `ActionExecHttp.cs`, `ActionExecHttpConfig.cs`, `BAHTTP.vue` and `HttpActionCheck.cs`. The bundled catalog predates `CalculateRequestFunction`; do not silently modify its provenance or treat structural validation as proof of this field's support. Verify the target build (or refresh the catalog from an explicitly supplied build) before relying on this newer capability. No live HTTP action was executed for this documentation update.
+
 ## Experimental Stream Deck plugins
 
 Do not invent plugin UUIDs, action UUIDs, opaque settings, controller values or resource declarations. Reuse a tested binding supplied by the user or configure it through the plugin's inspector. Preserve opaque settings when editing an existing deck. A fresh occurrence needs its own StreamDeckInstanceId, but changing that ID without remapping plugin-owned resources is insufficient for cloning a resource-bearing action. Plugin installers and global settings are not bundled by the offline helper. Keep the currently documented compatibility exclusions.

@@ -66,6 +66,10 @@ Design for client scaling, not pixel-perfect composition. MATRIC adapts the page
 
 Before delivering a new or revised illustrated deck, hide its page background and check that each control still has its complete label, bezel and state display. Move any missing alignment-dependent artwork onto that control; merely documenting the limitation does not fix it. Do not assume a fixed-proportion rendering mode exists in the target client.
 
+## HTTP-backed controls and dashboards
+
+For HTTP-backed controls and dashboards, read [HTTP requests and calculated parameters](references/action-recipes.md#http-requests-and-calculated-parameters). Newer MATRIC builds can calculate request URLs, methods, headers and bodies from server variables and event data, execute the request on the PC, and publish response variables for native controls or applets. Check this native path before proposing browser fetch or a separate companion service; verify endpoint authentication and target-build support.
+
 ## OBS panels
 
 When the task involves OBS collections, scenes, sources, groups, filters, transitions, or shortcuts, read [OBS discovery](references/obs-discovery.md). Prefer a live, read-only snapshot when OBS is running and its WebSocket endpoint is available. The bundled standard-library client authenticates through an environment variable or a private interactive prompt; keep credentials outside chat prompts, reports and deck files. Use saved collection files for offline discovery, inactive collections or saved keyboard bindings:
