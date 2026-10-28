@@ -3,6 +3,15 @@
   const model = new window.HistoryModel();
   const el = id => document.getElementById(id);
   const chart = el('chart');
+  let padding = 0, backgroundColor = '#101827';
+  function appearance(params = {}) {
+    if (typeof params.Padding === 'number' && Number.isFinite(params.Padding)) padding = Math.max(0, Math.min(256, params.Padding));
+    if (typeof params.BackgroundColor === 'string' && CSS.supports('color', params.BackgroundColor)) backgroundColor = params.BackgroundColor;
+    const inset = Math.min(padding, Math.max(0, (Math.min(innerWidth, innerHeight) - 1) / 2));
+    document.body.style.padding = inset + 'px';
+    document.body.style.backgroundColor = backgroundColor;
+    document.documentElement.style.backgroundColor = backgroundColor;
+  }
   function render() {
     const settings = model.settings, values = model.values, points = model.points();
     el('caption').textContent = String(settings.Caption ?? 'Signal history');
@@ -19,9 +28,9 @@
     el('selection').textContent = point ? (settings.ShowValues ? 'Selected: ' + values[model.selected] : 'Sample selected') : 'Tap a sample to inspect it';
   }
   const bridge = new window.MatricApplet({
-    params(params) { const changed = model.configure(params); render(); if (changed) bridge.requestVariables(model.settings.SignalVariable); },
+    params(params) { appearance(params); const changed = model.configure(params); render(); if (changed) bridge.requestVariables(model.settings.SignalVariable); },
     variables(variables) { if (model.update(variables)) render(); },
-    resize() { render(); } // Responsive CSS follows the iframe; no fixed-canvas zoom.
+    resize() { appearance(); render(); } // Responsive CSS follows the iframe; no fixed-canvas zoom.
   });
   function select(index) {
     const data = model.select(index);
@@ -47,10 +56,13 @@
     }
   });
   function cancel() { bridge.release('select-sample'); }
+  function resizeAppearance() { appearance(); }
+  window.addEventListener('resize', resizeAppearance);
   window.addEventListener('blur', cancel);
   chart.addEventListener('pointercancel', cancel);
-  window.addEventListener('pagehide', () => { cancel(); bridge.dispose(); });
+  window.addEventListener('pagehide', () => { cancel(); bridge.dispose(); window.removeEventListener('resize', resizeAppearance); });
   document.addEventListener('visibilitychange', () => { if (document.hidden) cancel(); });
+  appearance();
   render();
   bridge.requestVariables(model.settings.SignalVariable);
 })();

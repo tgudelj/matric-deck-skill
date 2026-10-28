@@ -60,7 +60,7 @@ class AppletTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 applets.manifest(case)
         case = copy.deepcopy(self.raw)
-        case["AppletParams"][-1]["Default"] = "not-an-option"
+        next(parameter for parameter in case["AppletParams"] if parameter["ParamType"] == "list")["Default"] = "not-an-option"
         with self.assertRaises(ValueError):
             applets.manifest(case)
 

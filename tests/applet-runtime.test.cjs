@@ -12,7 +12,7 @@ function environment(id='instance-1'){
                removeEventListener:(name,handler)=>{if(handlers[name]===handler)delete handlers[name];}};
  const ctx={window};vm.createContext(ctx);
  for(const file of ['bridge.js','history.js'])vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),ctx);
- return {window,parent,handlers,sent};
+ return {window,parent,handlers,sent,ctx};
 }
 test('bridge uses control identity, exposes event payload and scopes requests',()=>{
  const e=environment();const bridge=new e.window.MatricApplet({});
@@ -71,4 +71,27 @@ test('finite extreme signal ranges do not overflow plot geometry',()=>{
  const model=new (environment().window.HistoryModel)();
  for(const value of [-Number.MAX_VALUE,0,Number.MAX_VALUE])model.update({skill_demo_signal:value});
  for(const [x,y]of model.points())assert.ok(Number.isFinite(x)&&Number.isFinite(y));
+});
+
+test('starter appearance retains partial settings, honors zero and clamps padding on resize',()=>{
+ const e=environment();
+ const nodes=new Map();
+ function node(){return {style:{setProperty(name,value){this[name]=value;}},setAttribute(){},toggleAttribute(){},addEventListener(){}};}
+ const body=node(),html=node();
+ e.ctx.document={body,documentElement:html,hidden:false,addEventListener(){},getElementById(id){if(!nodes.has(id))nodes.set(id,node());return nodes.get(id);}};
+ e.ctx.CSS={supports:(_,value)=>/^#[0-9a-f]{6}$/i.test(value)};
+ e.ctx.innerWidth=400;e.ctx.innerHeight=300;
+ vm.runInContext(fs.readFileSync(path.join(root,'main.js'),'utf8'),e.ctx);
+ function params(payload){e.handlers.message({source:e.parent,data:{messageId:'PARAMSUPDATE',payload}});}
+ assert.equal(body.style.padding,'0px');assert.equal(body.style.backgroundColor,'#101827');
+ params({Padding:24,BackgroundColor:'#123456'});
+ assert.equal(body.style.padding,'24px');assert.equal(body.style.backgroundColor,'#123456');
+ params({Caption:'A visual-only change'});
+ params({Padding:Infinity,BackgroundColor:'url(https://invalid.invalid)'});
+ assert.equal(body.style.padding,'24px');assert.equal(body.style.backgroundColor,'#123456');
+ e.ctx.innerWidth=30;e.ctx.innerHeight=20;e.handlers.resize();
+ assert.equal(body.style.padding,'9.5px');
+ params({Padding:0});assert.equal(body.style.padding,'0px');
+ assert.equal(html.style.backgroundColor,'#123456');
+ assert.equal(e.sent.length,1,'Appearance changes do not request data again or emit actions');
 });

@@ -40,6 +40,8 @@ Prefer a native control that matches the interaction: a multi-position switch fo
 
 When native controls cannot satisfactorily express a requested interaction or visualization, use the advanced [custom applet workflow](references/custom-applets.md). It covers original HTML/CSS/JavaScript applets, manifests, variables/events, responsive input handling, manifest-aware deck checks and separate `.mapl` packaging. Prefer native controls for ordinary buttons/sliders/rotaries, including when only their appearance needs changing. Do not install an applet into the live library to test generation.
 
+Every applet authored must expose configurable `Padding` (nonnegative iframe CSS pixels) and `BackgroundColor` (a color parameter), with matching runtime defaults. Apply the padding inside the iframe edge, outside any proportional design scaling, and paint the entire iframe with the selected background color. Preserve these settings on partial parameter updates. See the applet reference for fitting and validation details.
+
 ## Reuse installed visual templates first
 
 Before creating new button or control artwork, inspect the user's installed MATRIC template decks when their deck library is available. For ordinary decks, begin with **Default control templates**. For DCS decks, inspect **Aviation button templates** first for its aviation-inspired skeuomorphic controls, then Default control templates. Identify them by deck title rather than a fixed folder ID. They are normally pre-installed, but a user may have removed them; their absence must never block authoring, validation, or packaging.

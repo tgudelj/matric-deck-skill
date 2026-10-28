@@ -7,6 +7,8 @@
   "VersionMinor": 0,
   "AppletParams": [
     {"Name": "SignalVariable", "DisplayName": "Signal variable", "ParamType": "variable", "Default": "skill_demo_signal"},
+    {"Name": "Padding", "DisplayName": "Edge padding in pixels (0-256)", "ParamType": "number", "Default": 0},
+    {"Name": "BackgroundColor", "DisplayName": "Background color", "ParamType": "color", "Default": "#101827"},
     {"Name": "Caption", "DisplayName": "Caption", "ParamType": "string", "Default": "Signal history"},
     {"Name": "SampleLimit", "DisplayName": "History length (3–120)", "ParamType": "number", "Default": 60},
     {"Name": "TraceColor", "DisplayName": "Trace color", "ParamType": "color", "Default": "#64ddd0"},
