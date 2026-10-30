@@ -7,10 +7,14 @@ A distributable `.deck` is a ZIP. The current importer expects exactly one outer
 ```text
 <deck.Id>/deck2.json
 <deck.Id>/panel.svg
-<deck.Id>/optional-subfolder/other-resource.png
+<deck.Id>/other-resource.png
 ```
 
 The local staging folder has `deck2.json` directly inside it. The packager adds the outer ID folder. Use UTF-8 JSON, exact PascalCase property names and case-sensitive resource references. The current code exports `DeckFileVersion: 3`; old `deck.json` is a different legacy format. Native format version 2 input is recognized by the validator, but new output uses the bundled current version.
+
+**Mandatory flat layout:** every image, audio file and other deck asset must sit beside `deck2.json`. No subfolders are allowed inside that deck folder; nested resources do not work correctly in MATRIC. Resource references must be filenames only, for example `button-off.png`, not `art/button-off.png` or `art\\button-off.png`. The single outer `<deck.Id>/` archive folder is required and does not count as a resource subfolder. Separately installed `.mapl` applets have their own packaging rules.
+
+For an existing deck with nested resources, stage a copy, give conflicting basenames unique filenames, move assets beside `deck2.json`, and update every affected reference and resource list. Preserve the original input and do not silently discard colliding assets or guess opaque plugin-owned paths. The helper rejects nested input rather than automatically flattening or claiming native compatibility.
 
 ## Deck and page
 

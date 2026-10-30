@@ -53,6 +53,48 @@ class AuthoringTests(unittest.TestCase):
             self.assertEqual(deck["Pages"][0]["Cols"], 5)
             self.assertFalse(deck_tool.validate(deck, files)["errors"])
 
+    def test_deck_assets_must_be_flat(self):
+        for separator in ("/", "\\"):
+            with self.subTest(separator=separator):
+                nested = "images" + separator + "panel.svg"
+                deck = copy.deepcopy(self.deck)
+                deck["Pages"][0]["BackgroundImage"] = nested
+                report = deck_tool.validate(deck, {**self.files, nested: b"<svg/>"})
+                self.assertTrue(any("Nested deck asset" in e for e in report["errors"]))
+                self.assertTrue(any("without subfolders" in e for e in report["errors"]))
+        # A nested reference is invalid even when its target file is absent.
+        deck["Pages"][0]["BackgroundImage"] = "images/missing.svg"
+        self.assertTrue(any("without subfolders" in e for e in deck_tool.validate(deck, self.files)["errors"]))
+
+    def test_nested_deck_folder_cannot_be_validated_or_packaged(self):
+        with tempfile.TemporaryDirectory(prefix="matric-flat-test-") as temp:
+            draft = Path(temp) / "draft"
+            draft.mkdir()
+            for name, content in self.files.items():
+                (draft / name).write_bytes(content)
+            nested = draft / "images"
+            nested.mkdir()
+            package = Path(temp) / "bad.deck"
+            for populated in (False, True):
+                if populated:
+                    (nested / "unused.svg").write_bytes(b"<svg/>")
+                for verb, extra in (("validate", []), ("pack", ["--output", package])):
+                    result = self.cli(verb, draft, *extra, success=False)
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertIn("subfolders are not allowed", result.stderr)
+                self.assertFalse(package.exists())
+
+    def test_nested_archive_entries_are_rejected(self):
+        with tempfile.TemporaryDirectory(prefix="matric-flat-archive-test-") as temp:
+            for entry in ("images/unused.svg", "images\\unused.svg", "images/"):
+                package = Path(temp) / "nested.deck"
+                with zipfile.ZipFile(package, "w") as archive:
+                    for name, content in self.files.items():
+                        archive.writestr(self.deck["Id"] + "/" + name, content)
+                    archive.writestr(self.deck["Id"] + "/" + entry, b"")
+                with self.assertRaisesRegex(ValueError, "subfolders are not allowed"):
+                    deck_tool.load_deck(package)
+
     def test_page_grid_supported_boundaries(self):
         draft = copy.deepcopy(self.deck)
         draft["Pages"] = draft["Pages"][:1]

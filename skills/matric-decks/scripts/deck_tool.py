@@ -52,6 +52,8 @@ def load_deck(source):
         for path in sorted(root.rglob("*")):
             if path.is_symlink():
                 raise ValueError(f"Linked resource is unsupported: {path}")
+            if path.is_dir():
+                raise ValueError(f"Deck subfolders are not allowed: {path.name}; place all assets beside deck2.json")
             if path.is_file():
                 files[safe_name(path.relative_to(root).as_posix())] = path.read_bytes()
         if "deck2.json" not in files:
@@ -65,6 +67,8 @@ def load_deck(source):
                 name = safe_name(entry.filename)
                 roots.add(name.split("/")[0])
                 if entry.is_dir():
+                    if "/" in name:
+                        raise ValueError("Deck subfolders are not allowed; place all assets beside deck2.json")
                     continue
                 if (entry.external_attr >> 16) & 0o170000 == 0o120000:
                     raise ValueError("Linked archive resources are unsupported.")
@@ -85,6 +89,8 @@ def load_deck(source):
                 raise ValueError("The archive's outer folder must match deck.Id.")
             files = {name[len(outer) + 1:]: data for name, data in files.items()}
     folded = [name.casefold() for name in files]
+    if any("/" in name for name in files):
+        raise ValueError("Deck subfolders are not allowed; place all assets beside deck2.json")
     if len(set(folded)) != len(folded):
         raise ValueError("Resource paths collide on a case-insensitive filesystem.")
     return deck, files
@@ -124,6 +130,9 @@ def check_fields(value, properties, where, errors):
 def validate(deck, files, applets=None):
     """Check deck structure, event/action compatibility, navigation, geometry and bundled native resources."""
     errors, warnings = [], []
+    for name in files:
+        if "/" in name or "\\" in name:
+            errors.append(f"Nested deck asset {name}: place all assets beside deck2.json; no subfolders are allowed")
     if not isinstance(deck, dict):
         return {"errors": ["Deck must be a JSON object"], "warnings": []}
     try:
@@ -152,6 +161,8 @@ def validate(deck, files, applets=None):
                 if schema.get("type") == "string" and (key.endswith("Image") or key.endswith("ImageActive") or key == "AudioFileName") and item:
                     try:
                         name = safe_name(item)
+                        if "/" in name:
+                            errors.append(f"{where}.{key}: deck resource must be a filename beside deck2.json, without subfolders")
                         if name not in files:
                             errors.append(f"{where}.{key}: missing resource {name}")
                     except ValueError as error:
