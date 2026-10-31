@@ -119,6 +119,8 @@ Convert gesture positions into the design element's local coordinates. For examp
 
 Version changed stylesheet/script URLs or use content-hashed names. A fresh HTML document can otherwise load cached assets from a previous applet revision. Distinguish that possibility from an observed cause: standalone rendering does not establish why a running editor failed. Test nested sandboxed iframes, hidden-to-visible startup, parent transforms, repeated frame resizing and stale/missing assets where relevant. Verify both bounds and visible output; document overflow:hidden alone can conceal a broken fit.
 
+When debugging an iframe control or a custom applet in MATRIC, starting the MATRIC server with the `-dev` command-line argument opens developer tools. This optional debugging mode can help inspect console errors, DOM/CSS layout and loaded resources in the actual host.
+
 ### Display widgets and local state
 
 For a display-only request, omit interactive DOM controls, focus targets and bindable action events; request variable snapshots only as needed. Keep histories bounded, accept zero as a value, define invalid/stale data behavior, and show gaps rather than fabricated live samples. Use numerically stable scaling for extreme finite values. Distinguish sampling unchanged values at a time interval from recording only value changes.

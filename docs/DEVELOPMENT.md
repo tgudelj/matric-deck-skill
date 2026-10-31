@@ -1,5 +1,9 @@
 # Development and compatibility
 
+## Iframe and applet debugging guidance (unreleased, 2026-10-31)
+
+Added the maintainer-provided tip to start the MATRIC server with `-dev` to open developer tools when debugging iframe controls or custom applets. This is optional host debugging guidance; no MATRIC code or launch settings were changed. Independent Python and Node tests and skill packaging passed. VERSION remains unchanged; no release was requested.
+
 ## Current state
 
 On 2026-10-30, maintainer feedback established a mandatory flat deck-resource layout: every asset must be beside `deck2.json`; resource subfolders do not work correctly in MATRIC. The earlier format example permitting a subfolder was incorrect, and the Elite Dangerous visual exercises used that invalid layout despite passing the old authoring checks. Skill guidance now requires filename-only references and collision-safe flattening; deck loading, validation and packaging reject nested assets and subdirectories. This does not change separately packaged applets or establish live-client acceptance. Regression tests cover flat archives, nested files/directories and both path separators.
