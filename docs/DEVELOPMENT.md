@@ -1,8 +1,8 @@
 # Development and compatibility
 
-## Iframe and applet debugging guidance (unreleased, 2026-10-31)
+## Release 0.4.3 (2026-10-31)
 
-Added the maintainer-provided tip to start the MATRIC server with `-dev` to open developer tools when debugging iframe controls or custom applets. This is optional host debugging guidance; no MATRIC code or launch settings were changed. Independent Python and Node tests and skill packaging passed. VERSION remains unchanged; no release was requested.
+Added the maintainer-provided tip to start the MATRIC server with `-dev` to open developer tools when debugging iframe controls or custom applets. This is optional host debugging guidance; no MATRIC code or launch settings were changed. Release validation: 56 independent Python tests, 8 Node tests, skill packaging and archive/checksum verification. No native MATRIC acceptance was performed.
 
 ## Current state
 
