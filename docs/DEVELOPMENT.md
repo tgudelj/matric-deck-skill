@@ -1,5 +1,9 @@
 # Development and compatibility
 
+## Grid-friendly applet authoring (unreleased, 2026-11-01)
+
+Applet guidance now requires practical integer-grid proportions or a responsive UI, favors compact minimum spans suitable for ordinary decks, and asks authors to document the intended proportions and minimum footprint. A 3×1 to 6×2 enlargement illustrates user-controlled scaling; an unnecessarily large 15×5 minimum for the same composition is discouraged. These recommendations introduce no manifest fields, editor restrictions, device/pixel-size requirements or MATRIC runtime changes. Independent Python/Node regression checks and skill packaging passed. VERSION remains unchanged; no release was requested.
+
 ## Release 0.4.3 (2026-10-31)
 
 Added the maintainer-provided tip to start the MATRIC server with `-dev` to open developer tools when debugging iframe controls or custom applets. This is optional host debugging guidance; no MATRIC code or launch settings were changed. Release validation: 56 independent Python tests, 8 Node tests, skill packaging and archive/checksum verification. No native MATRIC acceptance was performed.

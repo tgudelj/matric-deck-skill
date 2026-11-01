@@ -42,6 +42,8 @@ When native controls cannot satisfactorily express a requested interaction or vi
 
 Every applet authored must expose configurable `Padding` (nonnegative iframe CSS pixels) and `BackgroundColor` (a color parameter), with matching runtime defaults. Apply the padding inside the iframe edge, outside any proportional design scaling, and paint the entire iframe with the selected background color. Preserve these settings on partial parameter updates. See the applet reference for fitting and validation details.
 
+Design every applet for a practical footprint in whole columns and rows, or make its UI responsive to the available rectangle. Prefer small minimum grid spans that fit ordinary decks; avoid large minimum footprints just to accommodate an arbitrary design canvas. State the intended proportions and minimum grid footprint in its usage guidance, leaving resizing to the user. A 3-column × 1-row design should also work when enlarged to 6×2. See [grid-friendly applet proportions](references/custom-applets.md#grid-friendly-proportions-and-footprints).
+
 ## Reuse installed visual templates first
 
 Before creating new button or control artwork, inspect the user's installed MATRIC template decks when their deck library is available. For ordinary decks, begin with **Default control templates**. For DCS decks, inspect **Aviation button templates** first for its aviation-inspired skeuomorphic controls, then Default control templates. Identify them by deck title rather than a fixed folder ID. They are normally pre-installed, but a user may have removed them; their absence must never block authoring, validation, or packaging.
