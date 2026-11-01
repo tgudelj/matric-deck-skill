@@ -1,5 +1,9 @@
 # Development and compatibility
 
+## General frontal hardware presentation (unreleased, 2026-11-02)
+
+Generalized straight-on presentation to any machinery, panel, button box, instrument or hardware control represented in a deck. Shared guidance now covers consistent frontal views across domains while retaining material depth through texture and shading and allowing explicitly requested alternative presentations. Replaced the separate racing-only reminder with the general rule; cockpit photo-reference guidance remains. Independent Python/Node tests and packaging passed; VERSION remains unchanged.
+
 ## Racing button-box perspective (unreleased, 2026-11-02)
 
 Extended the flat-screen frontal-projection rule to racing button boxes and their controls. Angled product-shot compositions, foreshortening and mixed viewpoints are discouraged; material shading and bevels can still convey depth. No racing integration or runtime behavior was added. Independent Python/Node tests and skill packaging passed; VERSION remains unchanged.

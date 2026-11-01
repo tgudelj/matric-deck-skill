@@ -88,11 +88,11 @@ python scripts/obs_inventory.py /path/to/basic/scenes --output /path/to/obs-inve
 
 Use the exact discovered names when configuring native OBS actions. Review snapshot warnings and scope before using the results: live discovery describes the active collection and default canvas at discovery time; hotkey identifiers are not keyboard bindings. Saved files describe saved configuration. Do not switch collections or start/stop outputs just to discover a setup. No MATRIC connection is required for discovery; native MATRIC OBS actions still need MATRIC's OBS integration to execute.
 
-## Cockpit panel visuals
+## Machinery and panel visuals
+
+Present machinery, panels, button boxes, instruments and their individual controls straight-on for a flat screen. Use a consistent frontal view across the design; avoid oblique/isometric views, foreshortening and mixed camera angles. Surface texture, highlights, shadows and bevels may convey material depth while faces remain frontal. Apply this general rule beyond flight simulators and racing equipment, unless the user explicitly requests a different presentation.
 
 For aircraft cockpit panels or instruments in DCS or any other flight simulator, search for and visually inspect real photographs of the matching aircraft/panel before designing the artwork. DCS-BIOS definitions and input mappings establish behavior, not appearance. Treat visual fidelity as an important part of user satisfaction: favor realistic materials and textures over generic flat controls, and always compose the panel as viewed straight-on on a flat screen, without an oblique or isometric camera perspective. Keep these visuals on individual controls and preserve touch usability. Read [cockpit photographic references and flat-screen presentation](references/deck-format.md#cockpit-photographic-references-and-flat-screen-presentation).
-
-Racing button boxes follow the same perspective rule: present their faces, buttons, switches and rotaries straight-on for a flat screen. Material shading and bevels may convey depth, but avoid oblique/isometric views or mixed viewing angles.
 
 ## DCS cockpit panels
 

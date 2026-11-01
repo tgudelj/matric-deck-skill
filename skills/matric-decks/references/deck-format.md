@@ -79,6 +79,10 @@ The inspected Vue client uses a viewport-sized page container and derives grid-c
 
 Current authoring must not rely on a future proportion-preserving rendering mode. A different mode needs explicit support in the target client before it can justify fixed-canvas composition; an editor preview or matching tablet aspect ratio is not that evidence.
 
+## General machinery and instrument presentation
+
+For any machinery, panel, button box, instrument or individual hardware control represented on a MATRIC screen, use a consistent straight-on frontal view. This applies generally, including industrial equipment, audio consoles, vehicle dashboards, flight panels and racing button boxes. Avoid angled product-shot compositions, oblique/isometric cameras, foreshortening and controls shown from conflicting viewpoints. Texture, highlights, shadows, recesses and bevels can convey physical depth without changing the viewing direction. Keep aligned artwork self-contained on each control and leave final layout/resizing to the user. Follow an explicitly requested alternative presentation when provided.
+
 ## Cockpit photographic references and flat-screen presentation
 
 For aircraft cockpit panels and instruments in DCS and other flight simulators, search for real photographs and actually inspect the images before authoring the visual design. Prefer references matching the aircraft variant and panel revision; a supplied suitable real photograph can serve as the reference. Use the photos to establish control shapes, arrangement, legends, colors, materials and surface texture. Do not guess appearance from DCS-BIOS definition names, control categories or input mappings. If suitable photos cannot be accessed, disclose the visual-reference gap rather than describing guessed artwork as an accurate replica. Photographs inform appearance; verified definitions and input mappings still establish behavior. Do not redistribute reference photos as deck assets without permission.
@@ -94,8 +98,6 @@ A straight-on presentation can still have convincing depth. Highlights, soft sha
 Assess visual fidelity separately from layout fidelity. A task-focused page combining controls from several cockpit panels can still feel authentic through materials, hardware forms, legends and lighting. Do not copy a reference deck's control grouping merely because its artwork is the desired style. When the user provides a visual benchmark, inspect its actual control images at useful size alongside the generated controls and assembled deck. Reuse or adapt suitable installed aviation artwork before replacing it with simpler drawings; keep any user-deck artwork local unless redistribution is authorized. Preserve editable native labels when suitable, following the existing font rules for specialized display lettering.
 
 Keep the existing self-contained-control and client-scaling rules: each control owns its aligned labels, bezel, artwork and state display. Page backgrounds may carry stretch-tolerant surface texture, never a photographed fascia requiring independent controls to align with it. Photographic fidelity does not override the user's workflow or touch-layout needs.
-
-The same frontal-projection rule applies to racing button boxes. Render the box face and its buttons, switches, encoders and dials as viewed directly from in front. Avoid angled product-shot compositions, foreshortening and mixed viewpoints. Use surface texture, highlights, shadows and bevels to convey material depth while keeping the control faces straight-on; keep aligned artwork on each control rather than on a shared page background.
 
 ## Target screens and touch usability
 
