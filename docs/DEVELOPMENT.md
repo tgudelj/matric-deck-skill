@@ -1,5 +1,9 @@
 # Development and compatibility
 
+## Material realism from reference-deck comparison (unreleased, 2026-11-02)
+
+Comparison of the user's local F-16 DBMM deck with the private ICP exercise clarified that cockpit material realism is distinct from exact physical layout. Shared visual guidance now covers texture on individual controls, soft highlights and edge variation, recognizable hardware, recessed display housings, and depth conveyed in a frontal view. It asks authors to inspect actual reference assets and preserve richer suitable template artwork rather than replacing it with simplified drawings. No reference assets or private deck data were added to the skill. Independent Python/Node tests and packaging passed; VERSION remains unchanged and no release was requested.
+
 ## Cockpit visual-reference and projection guidance (unreleased, 2026-11-02)
 
 Aircraft panel authoring for DCS and other flight simulators now requires searching for and visually inspecting real photographs, using realistic textured materials, and composing controls in a consistent frontal projection for a flat screen. Definitions/input mappings remain behavioral evidence, not a visual reference. The latest private ICP exercise prompted this correction: a technically bound panel and depth effects alone did not satisfy the requested appearance. Shared guidance retains touch usability, self-contained controls, optional user-selected styles and stretch-tolerant background textures. Independent Python/Node tests and skill packaging passed. No application code or private decks were changed; VERSION remains unchanged.
