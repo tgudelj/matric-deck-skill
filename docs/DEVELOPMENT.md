@@ -1,5 +1,9 @@
 # Development and compatibility
 
+## Racing button-box perspective (unreleased, 2026-11-02)
+
+Extended the flat-screen frontal-projection rule to racing button boxes and their controls. Angled product-shot compositions, foreshortening and mixed viewpoints are discouraged; material shading and bevels can still convey depth. No racing integration or runtime behavior was added. Independent Python/Node tests and skill packaging passed; VERSION remains unchanged.
+
 ## Material realism from reference-deck comparison (unreleased, 2026-11-02)
 
 Comparison of the user's local F-16 DBMM deck with the private ICP exercise clarified that cockpit material realism is distinct from exact physical layout. Shared visual guidance now covers texture on individual controls, soft highlights and edge variation, recognizable hardware, recessed display housings, and depth conveyed in a frontal view. It asks authors to inspect actual reference assets and preserve richer suitable template artwork rather than replacing it with simplified drawings. No reference assets or private deck data were added to the skill. Independent Python/Node tests and packaging passed; VERSION remains unchanged and no release was requested.

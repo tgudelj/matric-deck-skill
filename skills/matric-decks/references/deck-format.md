@@ -95,6 +95,8 @@ Assess visual fidelity separately from layout fidelity. A task-focused page comb
 
 Keep the existing self-contained-control and client-scaling rules: each control owns its aligned labels, bezel, artwork and state display. Page backgrounds may carry stretch-tolerant surface texture, never a photographed fascia requiring independent controls to align with it. Photographic fidelity does not override the user's workflow or touch-layout needs.
 
+The same frontal-projection rule applies to racing button boxes. Render the box face and its buttons, switches, encoders and dials as viewed directly from in front. Avoid angled product-shot compositions, foreshortening and mixed viewpoints. Use surface texture, highlights, shadows and bevels to convey material depth while keeping the control faces straight-on; keep aligned artwork on each control rather than on a shared page background.
+
 ## Target screens and touch usability
 
 Fitting the logical grid on screen is not the same as making it usable by touch. The same deck can be comfortable on a 9-inch tablet yet have tiny keys, unreadable labels and cramped rotary gestures on a smartphone, even when that phone has a high pixel resolution.
