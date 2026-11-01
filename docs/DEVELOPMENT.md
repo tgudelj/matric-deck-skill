@@ -1,5 +1,9 @@
 # Development and compatibility
 
+## Cockpit visual-reference and projection guidance (unreleased, 2026-11-02)
+
+Aircraft panel authoring for DCS and other flight simulators now requires searching for and visually inspecting real photographs, using realistic textured materials, and composing controls in a consistent frontal projection for a flat screen. Definitions/input mappings remain behavioral evidence, not a visual reference. The latest private ICP exercise prompted this correction: a technically bound panel and depth effects alone did not satisfy the requested appearance. Shared guidance retains touch usability, self-contained controls, optional user-selected styles and stretch-tolerant background textures. Independent Python/Node tests and skill packaging passed. No application code or private decks were changed; VERSION remains unchanged.
+
 ## Grid-friendly applet authoring (unreleased, 2026-11-01)
 
 Applet guidance now requires practical integer-grid proportions or a responsive UI, favors compact minimum spans suitable for ordinary decks, and asks authors to document the intended proportions and minimum footprint. A 3×1 to 6×2 enlargement illustrates user-controlled scaling; an unnecessarily large 15×5 minimum for the same composition is discouraged. These recommendations introduce no manifest fields, editor restrictions, device/pixel-size requirements or MATRIC runtime changes. Independent Python/Node regression checks and skill packaging passed. VERSION remains unchanged; no release was requested.

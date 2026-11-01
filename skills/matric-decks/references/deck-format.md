@@ -79,6 +79,16 @@ The inspected Vue client uses a viewport-sized page container and derives grid-c
 
 Current authoring must not rely on a future proportion-preserving rendering mode. A different mode needs explicit support in the target client before it can justify fixed-canvas composition; an editor preview or matching tablet aspect ratio is not that evidence.
 
+## Cockpit photographic references and flat-screen presentation
+
+For aircraft cockpit panels and instruments in DCS and other flight simulators, search for real photographs and actually inspect the images before authoring the visual design. Prefer references matching the aircraft variant and panel revision; a supplied suitable real photograph can serve as the reference. Use the photos to establish control shapes, arrangement, legends, colors, materials and surface texture. Do not guess appearance from DCS-BIOS definition names, control categories or input mappings. If suitable photos cannot be accessed, disclose the visual-reference gap rather than describing guessed artwork as an accurate replica. Photographs inform appearance; verified definitions and input mappings still establish behavior. Do not redistribute reference photos as deck assets without permission.
+
+Visual fidelity is an important part of user satisfaction. For cockpit designs, favor realistic textured control faces, painted metal, molded keycaps, ribbed wheels, restrained wear and material shading as appropriate to the reference. Reuse suitable installed aviation templates first; adapt or create control-owned artwork where needed for the requested look. Generic flat rectangles and labels alone should not be the default visual treatment for an aircraft panel. Respect an explicitly requested alternative style. Preserve readable legends and usable touch areas rather than copying physical dimensions blindly.
+
+Always design the panel for a flat screen as if viewed directly from in front of its face. Keep panel faces, keycaps, instruments and rotaries in a consistent straight-on projection. Avoid oblique/isometric compositions, tilted camera views, foreshortened faces or a collage of controls drawn from different perspectives. Material highlights and shallow bevel shading can suggest depth without changing that frontal view. Do not use a perspective illustration merely because it looks three-dimensional in isolation. Review the assembled deck against the photos for both material fidelity and consistent viewing direction before delivery.
+
+Keep the existing self-contained-control and client-scaling rules: each control owns its aligned labels, bezel, artwork and state display. Page backgrounds may carry stretch-tolerant surface texture, never a photographed fascia requiring independent controls to align with it. Photographic fidelity does not override the user's workflow or touch-layout needs.
+
 ## Target screens and touch usability
 
 Fitting the logical grid on screen is not the same as making it usable by touch. The same deck can be comfortable on a 9-inch tablet yet have tiny keys, unreadable labels and cramped rotary gestures on a smartphone, even when that phone has a high pixel resolution.

@@ -88,6 +88,10 @@ python scripts/obs_inventory.py /path/to/basic/scenes --output /path/to/obs-inve
 
 Use the exact discovered names when configuring native OBS actions. Review snapshot warnings and scope before using the results: live discovery describes the active collection and default canvas at discovery time; hotkey identifiers are not keyboard bindings. Saved files describe saved configuration. Do not switch collections or start/stop outputs just to discover a setup. No MATRIC connection is required for discovery; native MATRIC OBS actions still need MATRIC's OBS integration to execute.
 
+## Cockpit panel visuals
+
+For aircraft cockpit panels or instruments in DCS or any other flight simulator, search for and visually inspect real photographs of the matching aircraft/panel before designing the artwork. DCS-BIOS definitions and input mappings establish behavior, not appearance. Treat visual fidelity as an important part of user satisfaction: favor realistic materials and textures over generic flat controls, and always compose the panel as viewed straight-on on a flat screen, without an oblique or isometric camera perspective. Keep these visuals on individual controls and preserve touch usability. Read [cockpit photographic references and flat-screen presentation](references/deck-format.md#cockpit-photographic-references-and-flat-screen-presentation).
+
 ## DCS cockpit panels
 
 For Digital Combat Simulator decks with two-way DCS-BIOS-MATRIC-Middleware (DBMM) integration, read [the DCS workflow](references/dcs-bios.md). Inspect the user's installed aircraft JSON and aliases with `scripts/dcs_bios.py inventory`; use `check` to audit commands and feedback dependencies. Do not guess aircraft identifiers, switch semantics, seat variants or live values. DBMM sends commands through `DCS_INPUT_COMMAND` and publishes telemetry as `dcs_<identifier>`. Initialize the command mailbox empty; keep simulator state separate from persistent user variables. The deck description must state that DBMM with DCS-BIOS is required and include the prescribed DBMM and DCS-BIOS release URLs.

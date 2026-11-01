@@ -17,6 +17,8 @@ The skill never installs or starts those applications, edits exporter configurat
 
 ## Cockpit layout and reference decks
 
+Follow [cockpit photographic references and flat-screen presentation](deck-format.md#cockpit-photographic-references-and-flat-screen-presentation): inspect real panel photos, use realistic textured materials, and render a consistent straight-on view. DCS-BIOS definitions do not establish visual appearance.
+
 Use user-provided decks to understand their workflow and preferred appearance, not as a universal aircraft template. Inspect the actual export when available. If using a similarly titled installed deck instead, disclose the substitution; title alone does not establish that it matches the supplied revision. Keep the reference and its artwork local unless redistribution is explicitly authorized.
 
 Prioritize the user's tasks and touch interaction over physical cockpit fidelity. A touchscreen lacks the tactile distinction, detents and landmarks of hardware, and a tablet may be much smaller than the actual panel, including an up-front controller. Copying every control's shape, spacing and position can therefore make operation harder. Follow an explicitly requested replica style, but adapt its touch targets and discuss material usability tradeoffs rather than assuming visual accuracy establishes a good experience.

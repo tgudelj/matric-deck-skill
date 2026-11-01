@@ -4,6 +4,8 @@ Use this workflow for Microsoft Flight Simulator 2020/2024, Star Citizen and Eli
 
 ## Choose useful auxiliary controls
 
+For aircraft cockpit panel or instrument designs, follow [cockpit photographic references and flat-screen presentation](deck-format.md#cockpit-photographic-references-and-flat-screen-presentation). Inspect real photographs for appearance, favor realistic textures and use a consistent straight-on view; input-profile discovery establishes bindings rather than visual design.
+
 Build a companion to the user's existing flight controls. Unless explicitly requested, leave primary flight-stick pitch/roll/yaw and continuous maneuvering to their physical controls. Good deck candidates are throttle/speed presets or sliders, flaps, spoilers, landing gear, trim steps, mixture, propeller pitch, radiator/cowl flaps, lights, autopilot, cameras and communications. Space-sim candidates include power allocation, targeting, travel/docking modes, speed limiter, mining/salvage controls and ship systems. These are design suggestions, not promises that a given aircraft/ship/version exposes every action.
 
 Use native sliders/absolute rotaries for confirmed analogue axes; encoders for verified increase/decrease actions; momentary buttons for taps/holds; multi-position switches only for actual discrete set-state inputs. A game toggle binding supports a toggle command, not a trustworthy ON/OFF indicator. Local slider/switch values show what the user last sent and can differ from the game after other input, respawn, aircraft changes or reconnects. Avoid unsolicited startup axis writes. Check throttle direction, reverse/idle ranges, aircraft-specific behavior and conflicts with a physical throttle before delivery.
