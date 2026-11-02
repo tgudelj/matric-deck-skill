@@ -15,9 +15,9 @@ Use the matric-decks skill to build an F-16C ICP panel using my installed
 DCS-BIOS definitions, with simulator feedback and a DBMM output checklist.
 ```
 
-## Flight and space sim inputs
+## Application input discovery
 
-The skill reads user input profiles for Microsoft Flight Simulator 2020/2024, Star Citizen and Elite Dangerous, with native keyboard/vJoy action candidates and profile/context checks. It focuses on auxiliary controls such as throttle, flaps, mixture, radiators and ship systems. Read [the game input guide](../skills/matric-decks/references/game-inputs.md) for discovery commands, virtual-device correspondence and supported file formats. This input-only workflow does not provide game-state feedback. Star Citizen overrides can omit defaults, and MSFS active profile layers need confirmation.
+The skill reads user input profiles for Microsoft Flight Simulator 2020/2024, X-Plane 11/12, Kerbal Space Program, Star Citizen, Elite Dangerous, Euro Truck Simulator 2, Farming Simulator, iRacing and Assetto Corsa Competizione, with native keyboard/vJoy action candidates and profile/context checks. The shared workflow maps configured application inputs to MATRIC keyboard/vJoy actions regardless of genre; per-application references document formats and limits. Read [the application input guide](../skills/matric-decks/references/application-inputs.md) for discovery commands, virtual-device correspondence and supported file formats. This input-only workflow does not provide game-state feedback. Star Citizen overrides can omit defaults, and MSFS active profile layers need confirmation. X-Plane discovery reads saved keyboard/joystick `.prf` assignments; active profiles, aircraft associations, numeric axis functions and device correspondence require confirmation.
 
 ```text
 Use the matric-decks skill to make an Elite Dangerous ship-systems deck

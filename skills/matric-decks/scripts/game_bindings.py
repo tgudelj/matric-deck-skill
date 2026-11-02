@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Read simulator input profiles and propose native MATRIC actions; never send input.
 
-Supports explicit Star Citizen rebinds, Elite Dangerous .binds, and readable
-MSFS 2020/2024 XML profiles. Reports preserve source semantics for author review.
+Supports explicit Star Citizen rebinds, Elite Dangerous .binds, readable
+MSFS 2020/2024 XML, and X-Plane keyboard/joystick preferences. Reports preserve
+source semantics for author review. Trucking, farming and racing formats are
+handled by the bundled driving_bindings module.
 """
 import argparse
 import hashlib
@@ -16,7 +18,7 @@ from pathlib import Path
 from deck_tool import action
 
 MAX_BYTES = 16 * 1024 * 1024
-GAMES = ("msfs2020", "msfs2024", "starcitizen", "elite")
+GAMES = ("msfs2020", "msfs2024", "starcitizen", "elite", "xplane", "ets2", "farmingsimulator", "iracing", "acc", "ksp")
 MODIFIERS = {"lctrl": (162, "LCONTROL"), "rctrl": (163, "RCONTROL"),
              "lcontrol": (162, "LCONTROL"), "rcontrol": (163, "RCONTROL"),
              "lshift": (160, "LSHIFT"), "rshift": (161, "RSHIFT"),
@@ -31,23 +33,34 @@ VK_MODIFIERS = {v[0]: v[1] for v in MODIFIERS.values()}
 VK_MODIFIERS.update({16: "LSHIFT", 17: "LCONTROL", 18: "LALT"})
 
 
-def read_xml(path, fragments=False):
-    """Read bounded Unicode XML, including MSFS's adjacent top-level elements."""
+def read_profile_bytes(path):
+    """Read bounded profile bytes and record their provenance."""
     path = Path(path)
     with path.open("rb") as stream:
         raw = stream.read(MAX_BYTES + 1)
     if len(raw) > MAX_BYTES:
         raise ValueError("Profile exceeds 16 MiB: " + str(path))
+    source = {"path": str(path.resolve()), "sha256": hashlib.sha256(raw).hexdigest(),
+              "modified_utc": datetime.fromtimestamp(path.stat().st_mtime, timezone.utc).isoformat()}
+    return raw, source
+
+
+def read_profile_text(path):
+    """Decode bounded Unicode profile text."""
+    raw, source = read_profile_bytes(path)
     encoding = "utf-16" if raw.startswith((b"\xff\xfe", b"\xfe\xff")) else "utf-8-sig"
-    text = raw.decode(encoding)
+    return raw.decode(encoding), source
+
+
+def read_xml(path, fragments=False):
+    """Read bounded Unicode XML, including MSFS's adjacent top-level elements."""
+    text, source = read_profile_text(path)
     if re.search(r"<!\s*(?:DOCTYPE|ENTITY)", text, re.I):
         raise ValueError("DTD/entity declarations are unsupported")
     text = re.sub(r"^\s*<\?xml[^?]*\?>", "", text, count=1)
     root = ET.fromstring("<ProfileFragment>" + text + "</ProfileFragment>" if fragments else text)
     if any("}" in node.tag for node in root.iter()):
         raise ValueError("Namespaced profile XML is unsupported")
-    source = {"path": str(path.resolve()), "sha256": hashlib.sha256(raw).hexdigest(),
-              "modified_utc": datetime.fromtimestamp(path.stat().st_mtime, timezone.utc).isoformat()}
     return root, source
 
 
@@ -132,6 +145,105 @@ def parse_msfs(root):
             "axis_settings": [snapshot(n) for n in root.iter("Axes")]}, rows
 
 
+def xplane_profile_kind(path):
+    """Recognize simulator preference names without selecting an active profile."""
+    name = Path(path).name.lower()
+    if name == "x-plane keys.prf" or name.endswith(" - keys.prf"):
+        return "keyboard"
+    if name == "x-plane joystick settings.prf" or name.endswith(" - joysticks.prf"):
+        return "joystick"
+    return None
+
+
+def parse_xplane(text, path):
+    """Inventory PRF assignments; retain unknown records instead of guessing them."""
+    lines = [(number, line.strip()) for number, line in enumerate(text.splitlines(), 1)
+             if line.strip() and not line.lstrip().startswith("#")]
+    if (len(lines) < 2 or lines[0][1] not in ("I", "A")
+            or not re.fullmatch(r"\d+\s+version", lines[1][1], re.I)):
+        raise ValueError("Expected X-Plane PRF platform and version header")
+    body = lines[2:]
+    kind = xplane_profile_kind(path)
+    if kind is None:
+        kind = "joystick" if any(line.startswith("_joy_") for _, line in body) else "keyboard"
+        if not body:
+            raise ValueError("Cannot identify empty renamed X-Plane preferences")
+    metadata = {"name": Path(path).stem, "kind": kind, "platform_marker": lines[0][1],
+                "format_version": lines[1][1].split()[0], "preferences": [],
+                "unparsed_lines": [], "warnings": []}
+    rows = []
+    for number, line in body:
+        settings = {"line": number, "raw": line}
+        if kind == "keyboard":
+            parts = line.split()
+            if len(parts) != 3 or not ("/" in parts[2] or parts[2].lower() == "<none>"):
+                metadata["unparsed_lines"].append(settings)
+                continue
+            key, modifier, command = parts
+            mods = [] if modifier.lower() == "<none>" else [
+                {"device": "Keyboard", "key": token} for token in modifier.split("+")]
+            settings.update({"kind": "key", "modifier_token": modifier})
+            binding = row("profile", command, "line-" + str(number), "Keyboard", [key],
+                          mods, settings, key.lower() == "<none>" or command.lower() in
+                          ("<none>", "sim/none/none"))
+        else:
+            match = re.fullmatch(r"_joy_(BUTN|AXIS)_use(\d+)(?:\s+(.*))?", line)
+            if not match:
+                target = "unparsed_lines" if line.startswith(("_joy_BUTN_use", "_joy_AXIS_use")) else "preferences"
+                metadata[target].append(settings)
+                continue
+            family, index, assignment = match.groups()
+            assignment = assignment or ""
+            if ((family == "AXIS" and not assignment.isdecimal())
+                    or (family == "BUTN" and assignment
+                        and (len(assignment.split()) != 1
+                             or ("/" not in assignment and assignment.lower() != "<none>")))):
+                metadata["unparsed_lines"].append(settings)
+                continue
+            token = "_joy_" + family + "_use" + index
+            settings.update({"kind": "axis" if family == "AXIS" else "button",
+                             "index": int(index), "assignment": assignment})
+            command = "axis-use:" + assignment if family == "AXIS" else assignment or "<none>"
+            binding = row("profile", command, token, "xplane-joystick", [token],
+                          settings=settings, unbound=assignment.lower() in
+                          ("", "0", "<none>", "sim/none/none"))
+            if family == "AXIS":
+                binding["warnings"].append("axis-use identifiers are raw numeric assignments, not command paths; verify their meaning in this X-Plane build. Calibration, reversal and response curves remain profile metadata.")
+        rows.append(binding)
+    if metadata["unparsed_lines"]:
+        metadata["warnings"].append("Some preference lines were not interpreted; inspect unparsed_lines for unsupported or malformed assignments.")
+    if kind == "joystick":
+        metadata["warnings"].append("Joystick indices are X-Plane's global preference indices, not vJoy IDs, button numbers or HID axes. Other preference records are retained without interpretation.")
+    if body and not rows and not xplane_profile_kind(path):
+        raise ValueError("No recognizable X-Plane input assignments")
+    return metadata, rows
+
+
+def read_game_profile(game, path):
+    """Dispatch a selected file to its game's profile reader."""
+    if game == "ksp":
+        from ksp_bindings import parse_ksp
+        text, source = read_profile_text(path)
+        metadata, rows = parse_ksp(text, row)
+    elif game in ("ets2", "farmingsimulator", "iracing", "acc"):
+        from driving_bindings import parse_driving
+        if game == "farmingsimulator":
+            data, source = read_xml(path)
+        elif game == "iracing":
+            data, source = read_profile_bytes(path)
+        else:
+            data, source = read_profile_text(path)
+        metadata, rows = parse_driving(game, data, row)
+    elif game == "xplane":
+        text, source = read_profile_text(path)
+        metadata, rows = parse_xplane(text, path)
+    else:
+        root, source = read_xml(path, game.startswith("msfs"))
+        metadata, rows = (parse_msfs(root) if game.startswith("msfs") else
+                          parse_elite(root) if game == "elite" else parse_sc(root))
+    return metadata, rows, source
+
+
 def key_code(token):
     token = token.lower().removeprefix("key_")
     token = {"leftcontrol": "lcontrol", "rightcontrol": "rcontrol",
@@ -150,7 +262,27 @@ def key_code(token):
 
 def keyboard_candidate(binding, game):
     """Translate only known keyboard tokens; preserve unfamiliar chords for review."""
-    if game.startswith("msfs"):
+    if game == "ksp":
+        from ksp_bindings import keyboard_action
+        return keyboard_action(binding, key_code)
+    if game in ("ets2", "farmingsimulator", "iracing", "acc"):
+        from driving_bindings import keyboard_action
+        return keyboard_action(binding, key_code)
+    if game == "xplane":
+        if binding["device"] != "Keyboard":
+            return None
+        token = binding["inputs"][0].lower()
+        if re.fullmatch(r"numpad-[0-9]", token):
+            code = 96 + int(token[-1])
+        elif token in KEYS or re.fullmatch(r"[a-z0-9]|f(?:[1-9]|1\d|2[0-4])", token):
+            code = key_code(token)
+        else:
+            return None
+        mods = {"CTRL": 162, "SHIFT": 160, "ALT": 164}
+        if any(m["key"].upper() not in mods for m in binding["modifiers"]):
+            return None
+        codes = [code] + [mods[m["key"].upper()] for m in binding["modifiers"]]
+    elif game.startswith("msfs"):
         if binding["settings"]["device"].get("DeviceName", "").lower() != "keyboard":
             return None
         try:
@@ -242,13 +374,18 @@ def inventory(game, paths, devices=None, required=(), active_confirmed=False):
         report["warnings"].append("Explicit rebinds only: omitted actions and default activation modes are unknown. Use matching-build defaults or in-game verification; do not assume absent means unbound.")
     if game.startswith("msfs"):
         report["warnings"].append("Profiles remain separate. Confirm general/category/aircraft layers; no precedence is inferred. MSFS flags, keyboard layout and axis curves require review.")
+    if game == "xplane":
+        report["warnings"].append("Saved X-Plane keyboard and joystick preferences remain separate. Confirm the active profile and aircraft association in Settings. Command paths do not establish plugin availability, command timing or simulator feedback. Numeric axis assignments and global device indices require target-build review; .joy device defaults are not active preferences.")
     for path in paths:
-        root, source = read_xml(path, game.startswith("msfs"))
-        metadata, rows = (parse_msfs(root) if game.startswith("msfs") else
-                          parse_elite(root) if game == "elite" else parse_sc(root))
+        metadata, rows, source = read_game_profile(game, path)
+        if (game == "xplane" and metadata["kind"] == "joystick"
+                and "xplane-joystick" in devices
+                and any(p["kind"] == "joystick" for p in report["profiles"])):
+            raise ValueError("X-Plane vJoy mappings require one selected joystick profile per inventory")
         index = len(report["sources"])
         report["sources"].append(source)
         report["profiles"].append(metadata)
+        report["warnings"].extend(source["path"] + ": " + warning for warning in metadata.get("warnings", []))
         if not rows:
             report["warnings"].append("No supported binding entries in " + source["path"])
         for binding in rows:
@@ -257,7 +394,7 @@ def inventory(game, paths, devices=None, required=(), active_confirmed=False):
             if not binding["action"]:
                 raise ValueError("Binding lacks an action identifier")
             if not binding["unbound"]:
-                binding["candidate"] = keyboard_candidate(binding, game) or vjoy_candidate(binding, devices)
+                binding["candidate"] = (keyboard_candidate(binding, game) or vjoy_candidate(binding, devices)) if not binding["settings"].get("manual_only") else None
                 binding["warnings"].append("Review context, activation timing and hold/toggle semantics before choosing the MATRIC event. Local control state is not simulator feedback.")
                 if not binding["candidate"]:
                     binding["warnings"].append("No automatic translation: inspect tokens/modifiers or confirm a vJoy device/input correspondence. Rebinding may be needed.")
@@ -288,6 +425,8 @@ def inventory(game, paths, devices=None, required=(), active_confirmed=False):
 
 def discover(game, root):
     """List candidates only under an explicitly selected folder; never select by age."""
+    if game not in GAMES:
+        raise ValueError("Unsupported game")
     root = Path(root).resolve()
     if not root.is_dir():
         raise ValueError("Discovery root must be a directory")
@@ -304,16 +443,19 @@ def discover(game, root):
             if path.stat().st_size <= 4096:
                 results.append({"path": str(path), "selected_presets": path.read_text(encoding="utf-8-sig").splitlines()})
             continue
-        plausible = (path.suffix.lower() == ".binds" if game == "elite" else
+        from driving_bindings import plausible_driving
+        plausible = (path.name.lower() == "settings.cfg" if game == "ksp" else
+                     plausible_driving(game, path) if game in ("ets2", "farmingsimulator", "iracing", "acc") else
+                     xplane_profile_kind(path) is not None if game == "xplane" else
+                     path.suffix.lower() == ".binds" if game == "elite" else
                      path.suffix.lower() == ".xml" if game == "starcitizen" else
                      path.suffix.lower() == ".xml" or path.name.startswith("inputprofile_") or not path.suffix)
         if not plausible:
             continue
         try:
-            root_node, _ = read_xml(path, game.startswith("msfs"))
-            metadata, _ = (parse_msfs(root_node) if game.startswith("msfs") else
-                           parse_elite(root_node) if game == "elite" else parse_sc(root_node))
+            metadata, _, _ = read_game_profile(game, path)
             results.append({"path": str(path), "metadata": metadata})
+            warnings.extend(str(path) + ": " + warning for warning in metadata.get("warnings", []))
         except (ValueError, OSError, ET.ParseError, UnicodeError):
             continue
     return {"game": game, "candidates": results, "warnings": warnings,

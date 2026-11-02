@@ -1,6 +1,9 @@
 """Acceptance checks for distribution of the standalone skill."""
 import hashlib
 import importlib.util
+import json
+import subprocess
+import sys
 import tempfile
 import unittest
 import zipfile
@@ -13,6 +16,22 @@ spec.loader.exec_module(packager)
 
 
 class PackagingTests(unittest.TestCase):
+    def test_packaged_xplane_inventory_runs_without_repository(self):
+        with tempfile.TemporaryDirectory(prefix="matric-xplane-package-") as temp:
+            root = Path(temp)
+            archive, _ = packager.package(root / "release")
+            with zipfile.ZipFile(archive) as zipped:
+                zipped.extractall(root / "installed")
+            profile = root / "X-Plane Keys.prf"
+            profile.write_text("I\n1005 version\nG CTRL sim/synthetic/gear\n", encoding="utf-8")
+            script = root / "installed/matric-decks/scripts/game_bindings.py"
+            result = subprocess.run([sys.executable, "-B", str(script), "inventory", "--game", "xplane",
+                                     "--profile", str(profile)], cwd=root, capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            report = json.loads(result.stdout)
+            self.assertEqual(report["bindings"][0]["candidate"]["KeyCode"], 71)
+            self.assertEqual(report["bindings"][0]["candidate"]["Modifiers"], ["LCONTROL"])
+
     def test_portable_reproducible_payload_and_checksum(self):
         with tempfile.TemporaryDirectory(prefix="matric-package-test-") as temp:
             archive, checksum = packager.package(Path(temp) / "first")

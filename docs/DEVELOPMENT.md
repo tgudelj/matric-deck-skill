@@ -1,5 +1,67 @@
 # Development and compatibility
 
+Release and development entries are historical snapshots. Their version references and "unreleased" labels describe the status at the time each entry was written; see **Current state** for the current release.
+
+## Release 0.5.0 (2026-11-02)
+
+Adds saved input discovery for X-Plane, Euro Truck Simulator 2, Farming Simulator, iRacing and Kerbal Space Program, plus Assetto Corsa Competizione input JSON inspection. All applications share one discovery/mapping guide with per-application format references. Missing recipes now trigger evidence-based research; DCS authoring explicitly checks integration choice and prerequisite evidence. This release also includes the updated installation links and layout/visual-review guidance developed since 0.4.6.
+
+Validation: 75 independent Python tests, 8 JavaScript tests, reference/selector checks and portable packaging with ZIP integrity, source-byte, checksum and license verification. iRacing remains experimental with manual translation; other reader-specific exclusions remain documented. No new native-import or live application/driver acceptance is claimed. The optional skill metadata validator requires unavailable PyYAML; frontmatter was checked separately.
+
+## DCS integration choice and prerequisite evidence (unreleased, 2026-11-02)
+
+The skill entry point and DCS reference now require establishing the intended keyboard or DBMM/DCS-BIOS path and checking available installation/configuration evidence before assuming prerequisites are present. Missing or unverified components must be disclosed and the desired setup-dependent deck or alternative approach established. Existing explicit choices permit offline authoring without repeated confirmation; verified mappings remain required, and static validation does not establish live readiness. Setup instructions are explicitly distinguished from installation evidence. No installation, runtime, parser or VERSION change was introduced. Validation covers the independent suites, reference links, whitespace and portable packaging.
+
+## Input discovery without an existing recipe (unreleased, 2026-11-02)
+
+The skill entry point and shared application-inputs reference now explicitly direct authors to research official documentation and internet sources, inspect relevant local configuration and verify methods against the target version when no application recipe exists. Existing readers are starting points rather than an authoring boundary. Task-specific inspection/readers need format evidence; published defaults do not establish user assignments. Unavailable discovery leads to a concrete request for evidence or an agreed unresolved layout, without authorizing installs, configuration edits or control execution. No parser, supported-format claim or VERSION change was introduced. Validation covers the independent suites, reference links, whitespace and portable packaging.
+
+## Application input discovery documentation (unreleased, 2026-11-02)
+
+Replaced genre-based game/driving guides with one application-inputs.md workflow and an inputs/ directory of application-specific format references. Profile selection, source provenance, unresolved bindings, keyboard/vJoy mapping, control semantics, delivery and acceptance are documented once. The format references preserve paths, schema details, implementation evidence and limits for every existing reader. SKILL.md, action recipes and the feature guide now route through the shared entry point. Historical entries below retain their original document names.
+
+The existing game_bindings.py CLI and --game selectors remain unchanged for compatibility. No parser, action/catalog compatibility, live integration or supported-application claim changed. VERSION remains unchanged; no release was requested. Validation passed 75 Python tests, 8 JavaScript tests, all skill Markdown file links, coverage of every existing CLI selector in the shared guide, whitespace checks and portable packaging. The package was checked for ZIP integrity, matching source bytes, checksum, licenses and removal of superseded genre guides.
+
+## Kerbal Space Program input discovery (unreleased, 2026-11-02)
+
+Added `--game ksp` for KSP 1 installation-root settings.cfg files. The portable standard-library reader preserves raw ConfigNode text and nested/duplicate fields, inventories primary/secondary keys and legacy/nested axis layouts, and retains group, switchState, modeMask, inversion, sensitivity and deadzone settings. Known Unity keys produce hotkey candidates; modifier-only/unknown keys, legacy axis IDs and non-Any switch states remain manual. Joystick inputs require explicit verified vJoy correspondence. MODIFIER_KEY never implicitly adds chords. KSP 2, mod-specific inputs, craft action groups and telemetry are outside this addition. Format evidence and usage are linked in references/ksp-inputs.md; only synthetic fixtures were added.
+
+Validation passed 75 Python tests, 8 JavaScript tests, portable packaging, archive integrity/checksum/byte/license checks, reference/whitespace checks and an extracted-package KSP CLI smoke check. No live KSP, driver or native MATRIC acceptance was performed. VERSION remains unchanged; no release was requested.
+
+## Trucking, farming and racing input discovery (unreleased, 2026-11-02)
+
+Added `ets2`, `farmingsimulator`, `iracing` and `acc` discovery/inventory choices with a bundled standard-library `driving_bindings.py` reader. ETS2 inventories readable SII mixes while preserving expressions and aliases; GIANTS XML preserves actions, devices, alternatives and axis components; ACC inventories keyboard/controller command lists and retains full axis/device JSON, long-press and pinkie settings. Simple known keyboard bindings can produce native hotkey candidates. Complex expressions and ACC controller/timing entries remain manual. iRacing's experimental bounded GFCC 20/LRTC 8 reader inventories raw records and leaves all translations manual; unknown versions are rejected. No game input, configuration edits, profile switching or telemetry was introduced.
+
+The new driving-inputs reference documents paths, CLI examples, selection checks, evidence and format limits. Euro Truck Simulator is interpreted as ETS2; the original game is not claimed. Farming Simulator support covers the documented readable XML subset rather than all editions. iRacing format evidence is reverse-engineered, and ACC schema evidence is an original configuration example rather than an official schema. Real user data and third-party code were not added. VERSION remains unchanged; this is unreleased work and does not establish live game, driver or native MATRIC acceptance.
+
+Validation passed 70 independent Python tests and 8 JavaScript tests, portable packaging, packaged-file byte comparisons, ZIP integrity/checksum/license verification, local reference checks and an extracted-package Farming Simulator CLI smoke check. Synthetic tests cover each format, modifiers, complex expressions, extended actions, raw fields, malformed/oversized data, version rejection, CLI no-overwrite behavior and conflicts. No live-game acceptance was performed.
+
+## X-Plane input preference discovery (unreleased, 2026-11-02)
+
+Added `--game xplane` to the portable `game_bindings.py` discovery/inventory workflow. Discovery recognizes global X-Plane keyboard/joystick preferences and named profile pairs under an explicitly selected folder. Inventory preserves keyboard modifiers and alternatives, built-in/plugin command paths, global joystick button/axis indices, raw numeric axis functions, other preference records (including identity/calibration/response settings), unparsed lines and source provenance. Known keyboard assignments produce catalog-based hotkey candidates; vJoy candidates require an explicit confirmed global-input correspondence and one selected joystick profile. The helper does not operate a game, send input, edit preferences, choose active profiles or merge precedence.
+
+The game input reference documents X-Plane 11/12 file locations, CLI examples, format evidence and limits. Evidence includes Laminar's manual, SDK key definitions and `.joy` documentation, plus original keyboard-reader and FlyWithLua assignment examples linked in that reference. Numeric axis functions are retained as `axis-use:<number>` helper identifiers rather than guessed command paths. Unknown keys/modifiers and malformed assignments remain unresolved; other joystick extensions, aircraft associations, plugin availability and command timing require inspection. `.joy` defaults and direct command/dataref transport are outside this addition. No live X-Plane, vJoy or native MATRIC acceptance is claimed. VERSION remains unchanged; no release was requested.
+
+Validation passed 64 independent Python tests and 8 JavaScript tests. Synthetic coverage includes global/named discovery, keyboard alternatives/modifiers and conflicts, plugin commands, unresolved keys, raw joystick indices and axis functions, explicit vJoy mapping, malformed/oversized profiles, UTF-16 and empty profiles, CLI no-overwrite/read-only behavior, native catalog validation and execution from an extracted portable skill package. Portable packaging, ZIP byte/checksum/license verification, local reference checks and whitespace checks passed. The skill-creator validator could not start because PyYAML is unavailable; the simple skill frontmatter was checked separately.
+
+## Cockpit design priorities and conditional visual review (unreleased, 2026-11-02)
+
+Clarified that reproducing the physical cockpit layout is optional, while realistic materials and a consistent frontal view are defaults for depicted hardware; explicit user style/presentation choices and task flow, readability and touch usability take precedence. Aligned the main skill and deck-format, DCS and game-input references. Rendered composition and background-hidden checks now depend on suitable rendering being available. Without it, authors inspect control resources, complete structural validation, deliver the package and identify rendered visual review as outstanding. These guidance changes add no renderer or live compatibility claim; VERSION remains unchanged.
+
+Validation passed 56 Python tests, 8 JavaScript tests, local reference checks, packaging, packaged Markdown byte comparisons, ZIP integrity/checksum/license verification and whitespace checks. The skill-creator validator could not start because PyYAML is unavailable; the skill frontmatter was separately confirmed unchanged.
+
+## Latest-release installation links (2026-11-02)
+
+README and installation-guide downloads now use GitHub's stable `releases/latest` URL. Codex installation prompts resolve the latest release tag, and the GitHub CLI example uses its latest-release selection rather than a fixed version. Gemini's default-branch command is explicitly a development alternative to the release ZIP. Versioned release assets and historical entries remain unchanged. This documentation correction changes no skill behavior or release version; live integration limits remain unchanged.
+
+## Installation version alignment (2026-11-02)
+
+Aligned the README installer command and all pinned installation-guide examples with release 0.4.6, and dated the current-release statement. Historical release entries retain their original versions and status labels. This documentation correction changes no skill behavior or release version; native and live compatibility limits remain unchanged.
+
+## Cockpit template authoring exercise (2026-11-02)
+
+Produced a private eight-page template library with 67 unbound controls, including three complete families of 2–12-position native switches. Original control-owned SVG artwork, editable sources, inventory audits and offline previews remain under ignored `.qa/`; no user decks, reference images or application binaries were added to the installable payload. Staged and packaged deck validation reported zero errors and warnings; the inventory audit covered all 231 selector state images and 16 offline page/aspect layouts. The independent suites passed 56 Python and 8 JavaScript tests, and skill packaging passed. Native import/export, live application behavior and physical touch usability remain unverified. No skill behavior or release version changed.
+
 ## Release 0.4.6 (2026-11-02)
 
 Added the official DCS documentation download page as a module-manual source for panel illustrations, labels and operating behavior. Manuals supplement photographic references; installed DCS-BIOS definitions and implementation still establish exact bindings. Updated the installation link to this release. This is a guidance-only change; no application code, private assets or simulator behavior changed. Release checks cover the independent Python/JavaScript suites, packaging, archive integrity, checksum and matching license notices; no native or live DCS acceptance is claimed.
@@ -44,13 +106,13 @@ On 2026-10-30, maintainer feedback established a mandatory flat deck-resource la
 
 README introduction broadened on 2026-10-28 to introduce DCS cockpit controls and feedback, plus MSFS, Star Citizen and Elite Dangerous input-profile panels alongside OBS. This is a documentation-only clarification of existing workflows; no new game integration or live validation is claimed.
 
-Current release: 0.4.4. The entries below record development history; their release status and version references reflect when they were written. Initial version 0.1.0 was extracted into a separate project on 2026-10-23. The installed skill includes instructions, deck/action/OBS references, a catalog of actual MATRIC definitions, standard-library Python helpers, and a two-page starter deck with an SVG background. Runtime authoring and ordinary testing are independent of the MATRIC source tree.
+Current release: 0.5.0 (2026-11-02). Initial version 0.1.0 was extracted into a separate project on 2026-10-23. The installed skill includes instructions, deck/action/OBS references, a catalog of actual MATRIC definitions, standard-library Python helpers, and a two-page starter deck with an SVG background. Runtime authoring and ordinary testing are independent of the MATRIC source tree.
 
-The original acceptance run passed eight offline tests and MATRIC's native import â†’ export â†’ reimport check, preserving two pages, five controls, hotkey configuration and the bundled SVG. OBS discovery was also exercised against a local saved collection; that user configuration is not part of this repository. Repository extraction adds a packaging acceptance test and cross-platform CI configuration. Local standalone validation passed all nine tests, release packaging/checksum verification, native import/export/reimport, and catalog refresh against the identified MATRIC build. GitHub CI passed on Windows and Linux for the initial push and release tag: [main run](https://github.com/tgudelj/matric-deck-skill/actions/runs/40028705824), [v0.1.0 run](https://github.com/tgudelj/matric-deck-skill/actions/runs/40028707247).
+The original acceptance run passed eight offline tests and MATRIC's native import → export → reimport check, preserving two pages, five controls, hotkey configuration and the bundled SVG. OBS discovery was also exercised against a local saved collection; that user configuration is not part of this repository. Repository extraction adds a packaging acceptance test and cross-platform CI configuration. Local standalone validation passed all nine tests, release packaging/checksum verification, native import/export/reimport, and catalog refresh against the identified MATRIC build. GitHub CI passed on Windows and Linux for the initial push and release tag: [main run](https://github.com/tgudelj/matric-deck-skill/actions/runs/40028705824), [v0.1.0 run](https://github.com/tgudelj/matric-deck-skill/actions/runs/40028707247).
 
 The public [v0.1.0 release](https://github.com/tgudelj/matric-deck-skill/releases/tag/v0.1.0) is published under MIT. Its downloaded ZIP and SHA-256 were verified, and installation from the tagged GitHub skill directory was checked against the release source. The active local skill installation was updated from that version. The previous skill additions and manual edits were removed from the MATRIC working tree, leaving it clean.
 
-Saved OBS discovery is implemented, and the development skill now includes a direct read-only obs-websocket client (see the unreleased section below). A rendered MATRIC-client preview is not implemented. Preserve these distinctions in user-facing claims.
+The current release includes saved OBS discovery and a direct read-only obs-websocket client. A rendered MATRIC-client preview is not implemented. Preserve these distinctions in user-facing claims.
 
 ## Supported page bounds and compact source controls (unreleased, 2026-10-26)
 

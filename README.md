@@ -4,7 +4,7 @@
 
 Create a custom MATRIC control deck with your AI assistant. Describe the controls you want and the skill produces editable files and a `.deck` package to import into MATRIC.
 
-Build Digital Combat Simulator cockpit panels with controls and live simulator feedback through DCS-BIOS and DCS-BIOS-MATRIC-Middleware (DBMM). The skill can also use your input profiles to create panels for Microsoft Flight Simulator 2020/2024, Star Citizen and Elite Dangerous. For OBS Studio, it can discover your own scenes, sources and settings from a live connection or an exported collection, then build a deck around your setup using MATRIC's OBS integration.
+Build Digital Combat Simulator cockpit panels with controls and live simulator feedback through DCS-BIOS and DCS-BIOS-MATRIC-Middleware (DBMM). The skill can also use your input profiles to create panels for Microsoft Flight Simulator 2020/2024, X-Plane 11/12, Kerbal Space Program, Star Citizen, Elite Dangerous, Euro Truck Simulator 2, Farming Simulator, iRacing and Assetto Corsa Competizione. For OBS Studio, it can discover your own scenes, sources and settings from a live connection or an exported collection, then build a deck around your setup using MATRIC's OBS integration.
 
 ## Install
 
@@ -13,10 +13,11 @@ You need Python 3.11 or newer for the assistant’s helpers, and MATRIC to use t
 For Codex, ask the skill installer:
 
 ```text
-$skill-installer install https://github.com/tgudelj/matric-deck-skill/tree/v0.4.2/skills/matric-decks
+$skill-installer install skills/matric-decks from the latest published release of
+https://github.com/tgudelj/matric-deck-skill (resolve the latest release tag first).
 ```
 
-For any supported assistant, download and extract the [v0.4.6 release ZIP](https://github.com/tgudelj/matric-deck-skill/releases/tag/v0.4.6), then copy the complete `matric-decks` folder to one of these locations. Personal installations are available across projects; project installations are available in that project.
+For any supported assistant, download and extract the skill ZIP from the [latest release](https://github.com/tgudelj/matric-deck-skill/releases/latest), then copy the complete `matric-decks` folder to one of these locations. Personal installations are available across projects; project installations are available in that project.
 
 | Assistant | Personal location | Project location |
 | --- | --- | --- |
@@ -56,7 +57,7 @@ for import into MATRIC.
 
 Review the actions and any required integrations, then import the `.deck` in MATRIC. The skill does not install the deck or run its controls for you.
 
-The published release also supports DCS-BIOS and DBMM cockpit panels. The skill also supports OBS discovery, flight and space sim input profiles, and custom applets. See [features and compatibility](docs/FEATURES.md) for details and limitations.
+The published release also supports DCS-BIOS and DBMM cockpit panels. The skill also supports OBS discovery, application input configuration discovery, and custom applets. See [features and compatibility](docs/FEATURES.md) for details and limitations.
 
 ## More information
 

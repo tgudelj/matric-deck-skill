@@ -34,6 +34,34 @@ MSFS = '''<?xml version="1.0"?><Version Num="1"/><FriendlyName>Test keyboard</Fr
 <Context ContextName="AIRCRAFT"><Actions ActionName="KEY_FLAPS_INCR" Flag="34" Delay="0.25">
 <Primary><KEY Information="G">71</KEY></Primary><Secondary><KEY>162</KEY><KEY>70</KEY></Secondary></Actions>
 <Action ActionName="KEY_UNUSED" Flag="2"/></Context></Device>'''
+XPLANE_KEYS = '''I
+1005 version
+# Synthetic assignments, not shipped X-Plane defaults
+G <none> sim/synthetic/gear
+G SHIFT+CTRL sim/synthetic/alternate_gear
+Numpad-0 CTRL sim/synthetic/store_view
+Space ALT synthetic/plugin/action
+; <none> sim/synthetic/punctuation
+KEY136 <none> sim/synthetic/unknown_key
+P OPT sim/synthetic/mac_modifier
+F2 META sim/synthetic/unknown_modifier
+<none> <none> sim/synthetic/unassigned
+G <none> sim/synthetic/conflict
+'''
+XPLANE_JOYSTICKS = '''I
+1100 version
+_joy_unique_id0 SYNTHETIC-PHYSICAL
+_joy_AXIS_rev0 1
+_joy_AXIS_min0 -1.000000
+_joy_AXIS_curve0 0.2 0.7 1.0
+_joy_BUTN_use0 sim/synthetic/gear
+_joy_BUTN_use160 synthetic/plugin/action
+_joy_BUTN_use161 sim/none/none
+_joy_BUTN_use162
+_joy_AXIS_use0 11
+_joy_AXIS_use25 0
+_joy_future_setting0 opaque value
+'''
 DEVICES = {"VIRTUAL-A": {"DeviceId": 1, "buttons": 8, "axes": [50], "povs": 1,
                           "inputs": {"Joy_3": {"kind": "button", "button": 3},
                                      "Joy_ZAxis": {"kind": "axis", "axis": 50, "invert": True}}}}
@@ -170,6 +198,140 @@ class GameBindingsTests(unittest.TestCase):
             stream.truncate(games.MAX_BYTES + 1)
         with self.assertRaises(ValueError):
             games.read_xml(path)
+
+    def test_xplane_keys_modifiers_alternatives_plugins_and_conflicts(self):
+        path = self.profile(XPLANE_KEYS, "X-Plane Keys.prf")
+        report = games.inventory("xplane", [path], required=["sim/synthetic/gear", "missing"])
+        rows = report["bindings"]
+        self.assertEqual(rows[0]["action"], "sim/synthetic/gear")
+        self.assertEqual(rows[0]["candidate"]["KeyCode"], 71)
+        self.assertEqual(rows[0]["candidate"]["Modifiers"], [])
+        self.assertEqual(rows[1]["candidate"]["Modifiers"], ["LSHIFT", "LCONTROL"])
+        self.assertEqual(rows[1]["settings"]["modifier_token"], "SHIFT+CTRL")
+        self.assertEqual(rows[2]["candidate"]["KeyCode"], 96)
+        self.assertEqual(rows[3]["action"], "synthetic/plugin/action")
+        self.assertEqual(rows[3]["candidate"]["Modifiers"], ["LALT"])
+        self.assertTrue(all(b["candidate"] is None for b in rows[4:9]))
+        self.assertTrue(rows[8]["unbound"])
+        self.assertEqual(report["missing_actions"], ["missing"])
+        self.assertEqual(len(report["conflicts"]), 1)
+        self.assertEqual(report["conflicts"][0]["bindings"], [rows[0]["id"], rows[9]["id"]])
+        self.assertEqual(len(report["sources"][0]["sha256"]), 64)
+        self.assertEqual(path.read_text(), XPLANE_KEYS)
+
+    def test_xplane_joystick_indices_axis_functions_and_settings_are_preserved(self):
+        report = games.inventory("xplane", [self.profile(XPLANE_JOYSTICKS, "Trainer - Joysticks.prf")])
+        rows = report["bindings"]
+        self.assertEqual(rows[1]["inputs"], ["_joy_BUTN_use160"])
+        self.assertEqual(rows[1]["device"], "xplane-joystick")
+        self.assertEqual(rows[1]["settings"]["index"], 160)
+        self.assertTrue(rows[2]["unbound"])
+        self.assertTrue(rows[3]["unbound"])
+        self.assertEqual(rows[4]["action"], "axis-use:11")
+        self.assertEqual(rows[4]["settings"]["assignment"], "11")
+        self.assertTrue(rows[5]["unbound"])
+        self.assertTrue(all(b["candidate"] is None for b in rows))
+        preferences = report["profiles"][0]["preferences"]
+        self.assertIn("_joy_unique_id0 SYNTHETIC-PHYSICAL", [p["raw"] for p in preferences])
+        self.assertIn("_joy_AXIS_curve0 0.2 0.7 1.0", [p["raw"] for p in preferences])
+        self.assertIn("_joy_future_setting0 opaque value", [p["raw"] for p in preferences])
+        self.assertTrue(rows[4]["warnings"])
+        self.assertFalse(report["active_profiles_confirmed"])
+
+    def test_xplane_vjoy_requires_explicit_global_input_correspondence(self):
+        path = self.profile(XPLANE_JOYSTICKS, "X-Plane Joystick Settings.prf")
+        devices = {"xplane-joystick": {"DeviceId": 2, "buttons": 8, "axes": [50], "povs": 0,
+                   "inputs": {"_joy_BUTN_use160": {"kind": "button", "button": 3},
+                              "_joy_AXIS_use0": {"kind": "axis", "axis": 50, "invert": True}}}}
+        report = games.inventory("xplane", [path], devices)
+        rows = report["bindings"]
+        self.assertIsNone(rows[0]["candidate"])
+        self.assertEqual(rows[1]["candidate"]["DeviceId"], 2)
+        self.assertEqual(rows[1]["candidate"]["ButtonId"], 3)
+        self.assertEqual(rows[4]["candidate"]["Axis"], 50)
+        self.assertTrue(rows[4]["candidate"]["InvertAxis"])
+        devices["xplane-joystick"]["inputs"]["_joy_AXIS_use25"] = {"kind": "axis", "axis": 50}
+        self.assertIsNone(games.inventory("xplane", [path], devices)["bindings"][5]["candidate"])
+        other = self.profile(XPLANE_JOYSTICKS, "Other - Joysticks.prf")
+        with self.assertRaisesRegex(ValueError, "one selected joystick profile"):
+            games.inventory("xplane", [path, other], devices)
+
+    def test_xplane_discovery_finds_global_and_named_pairs_without_selecting(self):
+        self.profile(XPLANE_KEYS, "X-Plane Keys.prf")
+        self.profile(XPLANE_JOYSTICKS, "X-Plane Joystick Settings.prf")
+        profiles = self.root / "control profiles"
+        profiles.mkdir()
+        (profiles / "Trainer - Keys.prf").write_text(XPLANE_KEYS, encoding="utf-8")
+        (profiles / "Trainer - Joysticks.prf").write_text(XPLANE_JOYSTICKS, encoding="utf-8")
+        self.profile(XPLANE_KEYS, "Plane Maker Keys.prf")
+        self.profile(XPLANE_KEYS, "X-Plane.prf")
+        self.profile('I\n1100 version\nJOY\nOS: Windows', "default.joy")
+        self.profile('<Root/>', "Unrelated - Keys.prf")
+        found = games.discover("xplane", self.root)
+        self.assertEqual(len(found["candidates"]), 4)
+        self.assertEqual({c["metadata"]["kind"] for c in found["candidates"]}, {"keyboard", "joystick"})
+        paths = [Path(c["path"]) for c in found["candidates"]]
+        report = games.inventory("xplane", paths, active_confirmed=True)
+        self.assertEqual(len(report["profiles"]), 4)
+        self.assertTrue(report["active_profiles_confirmed"])
+        self.assertTrue(report["conflicts"])
+
+    def test_xplane_unknown_lines_invalid_headers_and_oversize(self):
+        path = self.profile(XPLANE_KEYS + "invalid assignment\n", "X-Plane Keys.prf")
+        report = games.inventory("xplane", [path])
+        self.assertEqual(report["profiles"][0]["unparsed_lines"][0]["raw"], "invalid assignment")
+        self.assertTrue(report["profiles"][0]["warnings"])
+        data = XPLANE_JOYSTICKS + "_joy_AXIS_use1 mystery\n_joy_BUTN_use2 ???\n_joy_BUTN_use_bad unknown\n_joy_BUTN_use3 sim/test unexpected\n"
+        path = self.profile(data, "Trainer - Joysticks.prf")
+        report = games.inventory("xplane", [path])
+        self.assertEqual(len(report["profiles"][0]["unparsed_lines"]), 4)
+        for data in ("", "I\nnot-a-version\nG <none> sim/test", "<Root/>", "I\n1005 version\ngarbage"):
+            with self.assertRaises(ValueError):
+                games.inventory("xplane", [self.profile(data, "renamed.prf")])
+        path.write_bytes(b"\xff\x00")
+        with self.assertRaises(UnicodeError):
+            games.inventory("xplane", [path])
+        with path.open("wb") as stream:
+            stream.truncate(games.MAX_BYTES + 1)
+        with self.assertRaises(ValueError):
+            games.inventory("xplane", [path])
+
+    def test_xplane_renamed_utf16_empty_profiles_and_keyboard_key_distinctions(self):
+        path = self.root / "renamed.prf"
+        path.write_bytes(XPLANE_KEYS.replace("I\n", "A\n", 1).encode("utf-16"))
+        report = games.inventory("xplane", [path])
+        self.assertEqual(report["profiles"][0]["platform_marker"], "A")
+        empty = self.profile("I\n1005 version\n", "Empty - Keys.prf")
+        self.assertEqual(games.inventory("xplane", [empty])["bindings"], [])
+        self.assertEqual(len(games.discover("xplane", self.root)["candidates"]), 1)
+        text = "I\n1005 version\n0 <none> sim/test/top\nNumpad-0 <none> sim/test/pad\nF1 <none> sim/test/fn\n"
+        report = games.inventory("xplane", [self.profile(text, "Keys.prf")])
+        self.assertEqual([b["candidate"]["KeyCode"] for b in report["bindings"]], [48, 96, 112])
+        self.assertEqual(report["conflicts"], [])
+
+    def test_xplane_cli_discovery_inventory_no_overwrite_and_portable_actions(self):
+        path = self.profile(XPLANE_KEYS, "X-Plane Keys.prf")
+        command = [sys.executable, "-B", str(SCRIPTS / "game_bindings.py")]
+        found = subprocess.run(command + ["discover", "--game", "xplane", "--root", str(self.root)],
+                               capture_output=True, text=True)
+        self.assertEqual(found.returncode, 0, found.stderr)
+        self.assertEqual(len(json.loads(found.stdout)["candidates"]), 1)
+        output = self.root / "report.json"
+        args = command + ["inventory", "--game", "xplane", "--profile", str(path), "--output", str(output)]
+        result = subprocess.run(args, capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(subprocess.run(args, capture_output=True).returncode, 2)
+        self.assertEqual(path.read_text(), XPLANE_KEYS)
+        deck, _ = deck_tool.load_deck(SCRIPTS.parent / "assets/starter")
+        page = deck["Pages"][0]
+        deck["Pages"] = [page]
+        page["Controls"] = []
+        page["BackgroundImage"] = None
+        for index, binding in enumerate(json.loads(output.read_text())["bindings"][:4]):
+            control = deck_tool.new_control("MCButton", "Synthetic", index, 0)
+            control["ControlEvents"] = [{"Name": "press", "Actions": [binding["candidate"]]}]
+            page["Controls"].append(control)
+        self.assertEqual(deck_tool.validate(deck, set())["errors"], [])
 
     def test_cli_no_overwrite_and_input_read_only(self):
         path = self.profile(ELITE)

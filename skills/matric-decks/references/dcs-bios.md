@@ -4,7 +4,13 @@ Use this workflow for Digital Combat Simulator panels that send cockpit commands
 
 ## Establish the aircraft and setup
 
+Before choosing the input path, establish whether the user wants keyboard input or DBMM/DCS-BIOS commands and feedback. Use the request and existing session context; do not ask again when the choice is already clear. Check available installation/configuration evidence for the chosen path. For DBMM-backed controls, inspect the relevant DCS Saved Games profile, DCS-BIOS definitions and exporter configuration, DBMM installation/configuration and MATRIC integration settings when accessible. Inspect these read-only; ask for missing paths or confirmation when local evidence is unavailable. Definitions alone do not establish that DBMM is installed, the exporter is configured or the connection works. For keyboard input, verify the user's actual DCS assignments through the shared [application input discovery workflow](application-inputs.md); DBMM and DCS-BIOS are not required for keyboard-only controls.
+
+If prerequisites are missing or unverified, disclose the specific gap and establish whether the user wants a deck requiring setup or an alternative input approach. An explicit choice already made in the session is sufficient to continue offline authoring with disclosed setup requirements; do not turn installation or live connection into a prerequisite for producing the package. Command identifiers and feedback mappings still need verified definitions. Never silently substitute keyboard input for requested feedback, fabricate bindings, or assume missing components are installed. Static deck validation cannot establish readiness or live operation.
+
 Ask for the exact DCS aircraft/variant, desired panels, device layout and installed DCS-BIOS definition directory. Do not infer cockpit identifiers, switch positions, seat-specific controls or command support from a screenshot or a different aircraft. Separate a keyboard-only deck from a DBMM-backed panel when the user asks for one; FC3 and other modules can expose different subsets of cockpit functionality.
+
+The following setup steps are instructions for configuring the DBMM path, not evidence that those prerequisites are already present:
 
 1. Install [DCS-Skunkworks DCS-BIOS](https://github.com/DCS-Skunkworks/dcs-bios#installation) in the active DCS Saved Games profile. Preserve existing `Scripts/Export.lua` integrations; merge the documented DCS-BIOS hook instead of replacing another exporter. The game installation directory is not the Saved Games profile.
 2. Locate `Scripts/DCS-BIOS/doc/json` under that profile, commonly `%USERPROFILE%\Saved Games\DCS\Scripts\DCS-BIOS\doc\json`. Older installations may use `DCS.openbeta`; custom profiles differ. Use definitions matching the user's installed DCS-BIOS version and modules, rather than a stale online snapshot. Missing generated definitions may require running DCS with that aircraft as described by DCS-BIOS.
@@ -17,7 +23,7 @@ The skill never installs or starts those applications, edits exporter configurat
 
 ## Cockpit layout and reference decks
 
-Follow [cockpit photographic references and flat-screen presentation](deck-format.md#cockpit-photographic-references-and-flat-screen-presentation): inspect real panel photos, use realistic textured materials, and render a consistent straight-on view. DCS-BIOS definitions do not establish visual appearance.
+Follow [cockpit photographic references and flat-screen presentation](deck-format.md#cockpit-photographic-references-and-flat-screen-presentation): inspect real panel photos and, when depicting cockpit hardware, default to realistic textured materials and a consistent straight-on view unless the user requests another style or presentation. Reproducing the physical cockpit layout is optional; prioritize the user's workflow and touch usability. DCS-BIOS definitions do not establish visual appearance.
 
 Download the relevant module manual from the [official DCS documentation page](https://www.digitalcombatsimulator.com/en/downloads/documentation/) as another reference for panel illustrations, control labels and operating behavior. Match the aircraft variant and manual revision where possible. Use manuals alongside real photographs; continue to verify exact command identifiers, supported inputs and feedback against the user's installed DCS-BIOS definitions and implementation.
 
@@ -130,7 +136,7 @@ The audit combines native deck validation with literal command checks, mailbox i
 
 If the panel uses a custom applet, supply its folder or `.mapl` with repeatable `--applet` arguments. This enables manifest event/parameter checks and includes applet `variable` parameter values/defaults in the dependency audit. Applet JavaScript can access additional variables that this static check cannot infer; include those in the DBMM output checklist explicitly. See [custom applets](custom-applets.md).
 
-In DBMM, select the needed outputs for the detected aircraft and any applicable common/metadata modules, then use **File Ã¢â€ â€™ Export variables list** to produce a companion configuration. Users can apply it with **File Ã¢â€ â€™ Import variables list**, which merges the entries. Verify the selected outputs after import and restart/restart listening as needed for the installed build. This companion file is separate from `.deck` packaging.
+In DBMM, select the needed outputs for the detected aircraft and any applicable common/metadata modules, then use **File → Export variables list** to produce a companion configuration. Users can apply it with **File → Import variables list**, which merges the entries. Verify the selected outputs after import and restart/restart listening as needed for the installed build. This companion file is separate from `.deck` packaging.
 
 Aircraft aliases and additional component modules need particular care: the installed DCS-BIOS alias map and DBMM's filter-module selection are not interchangeable. The inspected DBMM implementation combines the selected aircraft's list with CommonData and metadata lists; do not assume all aliased modules' filters are combined. Its variable names also ignore output suffixes, so controls with multiple outputs need middleware-specific verification. The helper refuses to automatically build such a feedback binding.
 
