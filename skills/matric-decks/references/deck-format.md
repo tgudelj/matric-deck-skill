@@ -99,6 +99,14 @@ Assess visual fidelity separately from layout fidelity. A task-focused page comb
 
 Keep the existing self-contained-control and client-scaling rules: each control owns its aligned labels, bezel, artwork and state display. Page backgrounds may carry stretch-tolerant surface texture, never a photographed fascia requiring independent controls to align with it. Photographic fidelity does not override the user's workflow or touch-layout needs.
 
+## Layout composition review
+
+Plan functional groups before assigning individual control bounds. Identify groups such as a keypad, display/selection bank, radio controls and function row, then establish relative sizes, shared baselines and a consistent row rhythm. Align an associated selection button with its display row. Keep a radio's volume, channel display and channel selector in a recognizable group. Prefer smaller gaps within a group than between groups, and allow empty space where it clarifies those relationships.
+
+Preserve characteristic control proportions: do not turn square function keys into wide rectangles merely to fill available width. Equal spacing alone is insufficient when meaningful groups start at unrelated heights or their paired controls no longer align. A UFC, for example, can align its scratchpad with the first option-display row and use a shared row rhythm through the option bank and keypad. This is an example of preserving useful spatial relationships, not a mandatory layout for every panel.
+
+Recompose after changing the grid. Rounding scaled coordinates and spans can alter alignment, gaps, control proportions and group balance even when every control remains within bounds. Compare the assembled panel with the user's reference for grouping, visual hierarchy, relative proportions and interaction pairs. Evaluate artwork/material quality and structural/binding checks separately; passing either does not establish a good layout. Adapt relationships to the user's screen and workflow rather than copying unsupported page dimensions or assuming physical cockpit fidelity is always the best touch layout.
+
 ## Target screens and touch usability
 
 Fitting the logical grid on screen is not the same as making it usable by touch. The same deck can be comfortable on a 9-inch tablet yet have tiny keys, unreadable labels and cramped rotary gestures on a smartphone, even when that phone has a high pixel resolution.

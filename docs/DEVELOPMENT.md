@@ -1,5 +1,9 @@
 # Development and compatibility
 
+## Release 0.4.5 (2026-11-02)
+
+Added a layout-composition review: plan functional groups, relative proportions and common baselines; align interaction pairs; keep radio controls together; preserve characteristic key shapes; and recompose after grid changes instead of trusting rounded coordinate scaling. The private UFC reference comparison motivated the lesson, but its exact layout is not imposed on unrelated panels. Supported pages remain limited to 50 columns and 50 rows. Release validation: 56 Python tests, 8 JavaScript tests, packaging and archive/checksum/license verification. No application code, private decks/assets or native runtime acceptance are included.
+
 ## Release 0.4.4 (2026-11-02)
 
 This release consolidates compact integer-grid applet footprints, photographic cockpit references, realistic material detail on individual controls, visual fidelity independent of physical layout, and consistent straight-on presentation of all machinery, panels, button boxes and instruments. Richer suitable template artwork should be preserved rather than replaced by simplified drawings. The development entries below describe the changes before release.

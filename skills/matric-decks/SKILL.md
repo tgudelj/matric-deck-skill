@@ -88,6 +88,8 @@ python scripts/obs_inventory.py /path/to/basic/scenes --output /path/to/obs-inve
 
 Use the exact discovered names when configuring native OBS actions. Review snapshot warnings and scope before using the results: live discovery describes the active collection and default canvas at discovery time; hotkey identifiers are not keyboard bindings. Saved files describe saved configuration. Do not switch collections or start/stop outputs just to discover a setup. No MATRIC connection is required for discovery; native MATRIC OBS actions still need MATRIC's OBS integration to execute.
 
+Before placing individual controls, plan the functional groups, their relative proportions, common baselines and spacing. Keep interaction pairs aligned and related controls together; preserve characteristic key shapes instead of stretching them to fill gaps. Recompose after grid changes rather than assuming rounded scaled coordinates preserve the design. Review the complete rendered panel against the reference separately from artwork quality and structural validation. See [layout composition review](references/deck-format.md#layout-composition-review).
+
 ## Machinery and panel visuals
 
 Present machinery, panels, button boxes, instruments and their individual controls straight-on for a flat screen. Use a consistent frontal view across the design; avoid oblique/isometric views, foreshortening and mixed camera angles. Surface texture, highlights, shadows and bevels may convey material depth while faces remain frontal. Apply this general rule beyond flight simulators and racing equipment, unless the user explicitly requests a different presentation.
