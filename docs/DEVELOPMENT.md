@@ -1,5 +1,9 @@
 # Development and compatibility
 
+## Release 0.4.6 (2026-11-02)
+
+Added the official DCS documentation download page as a module-manual source for panel illustrations, labels and operating behavior. Manuals supplement photographic references; installed DCS-BIOS definitions and implementation still establish exact bindings. Updated the installation link to this release. This is a guidance-only change; no application code, private assets or simulator behavior changed. Release checks cover the independent Python/JavaScript suites, packaging, archive integrity, checksum and matching license notices; no native or live DCS acceptance is claimed.
+
 ## Release 0.4.5 (2026-11-02)
 
 Added a layout-composition review: plan functional groups, relative proportions and common baselines; align interaction pairs; keep radio controls together; preserve characteristic key shapes; and recompose after grid changes instead of trusting rounded coordinate scaling. The private UFC reference comparison motivated the lesson, but its exact layout is not imposed on unrelated panels. Supported pages remain limited to 50 columns and 50 rows. Release validation: 56 Python tests, 8 JavaScript tests, packaging and archive/checksum/license verification. No application code, private decks/assets or native runtime acceptance are included.

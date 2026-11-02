@@ -16,7 +16,7 @@ For Codex, ask the skill installer:
 $skill-installer install https://github.com/tgudelj/matric-deck-skill/tree/v0.4.2/skills/matric-decks
 ```
 
-For any supported assistant, download and extract the [v0.4.2 release ZIP](https://github.com/tgudelj/matric-deck-skill/releases/tag/v0.4.2), then copy the complete `matric-decks` folder to one of these locations. Personal installations are available across projects; project installations are available in that project.
+For any supported assistant, download and extract the [v0.4.6 release ZIP](https://github.com/tgudelj/matric-deck-skill/releases/tag/v0.4.6), then copy the complete `matric-decks` folder to one of these locations. Personal installations are available across projects; project installations are available in that project.
 
 | Assistant | Personal location | Project location |
 | --- | --- | --- |
