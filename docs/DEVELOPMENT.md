@@ -1,5 +1,11 @@
 # Development and compatibility
 
+## Release 0.4.4 (2026-11-02)
+
+This release consolidates compact integer-grid applet footprints, photographic cockpit references, realistic material detail on individual controls, visual fidelity independent of physical layout, and consistent straight-on presentation of all machinery, panels, button boxes and instruments. Richer suitable template artwork should be preserved rather than replaced by simplified drawings. The development entries below describe the changes before release.
+
+Release validation: 56 independent Python tests, 8 JavaScript tests, skill packaging and archive/checksum/license verification. No runtime integration changed or native MATRIC acceptance was performed. Private reference decks, generated ICP packages and user assets are excluded from the skill release.
+
 ## General frontal hardware presentation (unreleased, 2026-11-02)
 
 Generalized straight-on presentation to any machinery, panel, button box, instrument or hardware control represented in a deck. Shared guidance now covers consistent frontal views across domains while retaining material depth through texture and shading and allowing explicitly requested alternative presentations. Replaced the separate racing-only reminder with the general rule; cockpit photo-reference guidance remains. Independent Python/Node tests and packaging passed; VERSION remains unchanged.
@@ -30,7 +36,7 @@ On 2026-10-30, maintainer feedback established a mandatory flat deck-resource la
 
 README introduction broadened on 2026-10-28 to introduce DCS cockpit controls and feedback, plus MSFS, Star Citizen and Elite Dangerous input-profile panels alongside OBS. This is a documentation-only clarification of existing workflows; no new game integration or live validation is claimed.
 
-Current release: 0.4.2. The entries below record development history; their release status and version references reflect when they were written. Initial version 0.1.0 was extracted into a separate project on 2026-10-23. The installed skill includes instructions, deck/action/OBS references, a catalog of actual MATRIC definitions, standard-library Python helpers, and a two-page starter deck with an SVG background. Runtime authoring and ordinary testing are independent of the MATRIC source tree.
+Current release: 0.4.4. The entries below record development history; their release status and version references reflect when they were written. Initial version 0.1.0 was extracted into a separate project on 2026-10-23. The installed skill includes instructions, deck/action/OBS references, a catalog of actual MATRIC definitions, standard-library Python helpers, and a two-page starter deck with an SVG background. Runtime authoring and ordinary testing are independent of the MATRIC source tree.
 
 The original acceptance run passed eight offline tests and MATRIC's native import â†’ export â†’ reimport check, preserving two pages, five controls, hotkey configuration and the bundled SVG. OBS discovery was also exercised against a local saved collection; that user configuration is not part of this repository. Repository extraction adds a packaging acceptance test and cross-platform CI configuration. Local standalone validation passed all nine tests, release packaging/checksum verification, native import/export/reimport, and catalog refresh against the identified MATRIC build. GitHub CI passed on Windows and Linux for the initial push and release tag: [main run](https://github.com/tgudelj/matric-deck-skill/actions/runs/40028705824), [v0.1.0 run](https://github.com/tgudelj/matric-deck-skill/actions/runs/40028707247).
 
