@@ -2,6 +2,24 @@
 
 Release and development entries are historical snapshots. Their version references and "unreleased" labels describe the status at the time each entry was written; see **Current state** for the current release.
 
+## Release 0.5.1 (2026-11-03)
+
+Adds general control-authoring guidance from panel review: optional style preferences and existing-deck visual references, intentional label wrapping and native preview limits, workflow-based first-page priorities, state-aware control economy, preservation of suitable template geometry, and aspect-ratio decisions based on artwork construction. Operational layouts may communicate relationships through familiar patterns, alignment and proximity, including an adjacent mute icon and labeled volume slider. No user decks/assets or parser/runtime/catalog changes are included.
+
+Release validation: 75 independent Python tests, 8 JavaScript tests, local references/anchors, whitespace and portable packaging with archive integrity, source-byte, checksum and license verification. No new native-client or live application acceptance is claimed. VERSION is 0.5.1; prior unreleased entries below describe their development-time status.
+
+## Resizing according to visual construction (unreleased, 2026-11-03)
+
+Clarified that aspect-ratio preservation depends on proportion-sensitive artwork or an intended characteristic shape, not template provenance. Plain/color-only controls and stretch-tolerant textures may change proportions; labels, internal elements and touch areas still require review. The skill entry point links to general resizing guidance, and the layout-composition paragraph no longer implies a universal fixed-ratio rule. No OBS-specific restriction, user assets, runtime/catalog changes or VERSION change were introduced. Validation covers independent suites, reference links, whitespace and portable packaging.
+
+## Optional control style preference (unreleased, 2026-11-03)
+
+The skill now offers a brief optional style question when the user has not specified a look: describe it, reference an existing deck or delegate to installed templates. Existing preferences are reused without repeated questions, and discovery can continue while an optional answer is pending. Reference decks inform appearance through inspected controls/assets; they do not implicitly choose layout or behavior. The shared format guide documents unavailable-reference handling and existing asset-reuse limits. No runtime, catalog or VERSION changes were introduced. Validation covers the independent suites, local reference checks and portable packaging.
+
+## General authoring lessons from panel review (unreleased, 2026-11-03)
+
+Added general guidance on intentional label wrapping and the limits of approximate previews, first-page priorities based on user workflow rather than discovered names, compact state-aware controls where verified semantics and actual feedback support them, and preserving suitable template geometry until a demonstrated need justifies changes. Separate commands and alternative layouts remain appropriate where the task requires them; this is decision guidance rather than an OBS-specific layout rule. The skill entry point links to the shared deck-format discussion. No user deck/assets, runtime behavior, catalog or VERSION changes are included. Validation passed 75 independent Python tests, 8 JavaScript tests, local reference/anchor checks, whitespace checks and portable packaging with ZIP integrity, source-byte, checksum and license verification. These checks do not establish native label fit or live control behavior.
+
 ## Release 0.5.0 (2026-11-02)
 
 Adds saved input discovery for X-Plane, Euro Truck Simulator 2, Farming Simulator, iRacing and Kerbal Space Program, plus Assetto Corsa Competizione input JSON inspection. All applications share one discovery/mapping guide with per-application format references. Missing recipes now trigger evidence-based research; DCS authoring explicitly checks integration choice and prerequisite evidence. This release also includes the updated installation links and layout/visual-review guidance developed since 0.4.6.
@@ -106,7 +124,7 @@ On 2026-10-30, maintainer feedback established a mandatory flat deck-resource la
 
 README introduction broadened on 2026-10-28 to introduce DCS cockpit controls and feedback, plus MSFS, Star Citizen and Elite Dangerous input-profile panels alongside OBS. This is a documentation-only clarification of existing workflows; no new game integration or live validation is claimed.
 
-Current release: 0.5.0 (2026-11-02). Initial version 0.1.0 was extracted into a separate project on 2026-10-23. The installed skill includes instructions, deck/action/OBS references, a catalog of actual MATRIC definitions, standard-library Python helpers, and a two-page starter deck with an SVG background. Runtime authoring and ordinary testing are independent of the MATRIC source tree.
+Current release: 0.5.1 (2026-11-03). Initial version 0.1.0 was extracted into a separate project on 2026-10-23. The installed skill includes instructions, deck/action/OBS references, a catalog of actual MATRIC definitions, standard-library Python helpers, and a two-page starter deck with an SVG background. Runtime authoring and ordinary testing are independent of the MATRIC source tree.
 
 The original acceptance run passed eight offline tests and MATRIC's native import → export → reimport check, preserving two pages, five controls, hotkey configuration and the bundled SVG. OBS discovery was also exercised against a local saved collection; that user configuration is not part of this repository. Repository extraction adds a packaging acceptance test and cross-platform CI configuration. Local standalone validation passed all nine tests, release packaging/checksum verification, native import/export/reimport, and catalog refresh against the identified MATRIC build. GitHub CI passed on Windows and Linux for the initial push and release tag: [main run](https://github.com/tgudelj/matric-deck-skill/actions/runs/40028705824), [v0.1.0 run](https://github.com/tgudelj/matric-deck-skill/actions/runs/40028707247).
 

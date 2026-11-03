@@ -103,9 +103,19 @@ Keep the existing self-contained-control and client-scaling rules: each control 
 
 Plan functional groups before assigning individual control bounds. Identify groups such as a keypad, display/selection bank, radio controls and function row, then establish relative sizes, shared baselines and a consistent row rhythm. Align an associated selection button with its display row. Keep a radio's volume, channel display and channel selector in a recognizable group. Prefer smaller gaps within a group than between groups, and allow empty space where it clarifies those relationships.
 
-Preserve characteristic control proportions: do not turn square function keys into wide rectangles merely to fill available width. Equal spacing alone is insufficient when meaningful groups start at unrelated heights or their paired controls no longer align. A UFC, for example, can align its scratchpad with the first option-display row and use a shared row rhythm through the option bank and keypad. This is an example of preserving useful spatial relationships, not a mandatory layout for every panel.
+Preserve characteristic control proportions when the requested appearance or shape-dependent artwork relies on them; do not turn depicted square function keys into wide rectangles merely to fill available width. This is not a fixed aspect-ratio requirement for plain controls; see [control resizing and artwork proportions](#control-resizing-and-artwork-proportions). Equal spacing alone is insufficient when meaningful groups start at unrelated heights or their paired controls no longer align. A UFC, for example, can align its scratchpad with the first option-display row and use a shared row rhythm through the option bank and keypad. This is an example of preserving useful spatial relationships, not a mandatory layout for every panel.
 
 Recompose after changing the grid. Rounding scaled coordinates and spans can alter alignment, gaps, control proportions and group balance even when every control remains within bounds. When suitable rendering is available, compare the assembled panel with the user's reference for grouping, visual hierarchy, relative proportions and interaction pairs. Otherwise complete structural checks, deliver the package and identify rendered visual review as outstanding. Evaluate artwork/material quality and structural/binding checks separately; passing either does not establish a good layout. Adapt relationships to the user's screen and workflow rather than copying unsupported page dimensions or assuming physical cockpit fidelity is always the best touch layout.
+
+## Workflow priorities and control economy
+
+In operational layouts, use familiar interaction patterns, alignment and proximity to communicate clear relationships between controls. For example, a compact mute icon beside a labeled volume slider can identify one audio channel without repeating the source name on the button. Keep related controls closer together than neighboring groups, and retain enough context to distinguish their targets. Preserve descriptive names and descriptions for editing.
+
+Allocate prominent space according to the user's tasks and frequency of use. Discovered source, device and action names establish identity and possible function, not personal importance. Infer routine placement from the request and existing workflow evidence; ask a focused question when choosing among plausible primary controls would materially change usability. Keep secondary functions on task-focused pages where that helps the target screen, without requiring the user to design every control.
+
+Consider consolidating opposing commands into one toggle or state-aware control when a verified action supports the intended behavior and actual-state feedback can make its meaning clear. This can save touch space otherwise consumed by separate start/stop, enable/disable or similar controls. Do not implement this as an assumed local toggle that can drift from the application. Separate commands can remain appropriate when the user prefers them, explicit set-state operation matters, or toggle semantics/feedback are unavailable. Preserve momentary, held and multi-position behavior rather than treating every pair as a toggle.
+
+Fit labels within the actual control face, accounting for bezels, padding, font metrics and active-state styling. Prefer intentional two-line labels where wording needs the room; use the target client's supported line-break representation and keep the function understandable. Check long labels and changed control spans at the intended scale. An approximate preview may wrap or measure text differently from MATRIC, so it cannot establish native label fit; use actual-client evidence when available and identify remaining native text review when it is not. Do not treat reducing font size as the only solution to clipping.
 
 ## Target screens and touch usability
 
@@ -147,6 +157,12 @@ Action JSON can contain numeric enums or string enums depending on the original 
 
 Page backgrounds and native control image fields refer to resource files inside the deck directory. Mobile audio uses `AudioFileName`, also bundled. PC audio uses `AudioPath`, which is a machine-specific external path. Custom fonts, custom applet installations, native drivers and plugin installations need separate setup. Do not quietly embed a local executable, credentials or an entire OBS configuration into a deck.
 
+## Visual style preferences and reference decks
+
+If the request leaves visual style open, offer a short optional question about the preferred look: a description, a specific existing deck or suitable installed control templates. Accept everyday descriptions such as minimal, high-contrast or realistic hardware; the user need not specify individual visual fields. Do not repeat a preference question already answered or make a style decision a prerequisite for discovery, validation or packaging. If the user delegates the choice or supplies no preference, proceed with suitable installed templates and preserve their working visual geometry unless adaptation is needed.
+
+When an existing deck is the visual reference, inspect its actual controls and assets when available rather than inferring appearance from its title. Establish which features of its appearance to carry over when that is unclear and consequential. A style reference does not automatically select its layout, actions, feedback or control behavior; author those for the current task. If the reference cannot be accessed, identify the gap and use the available description or templates without claiming to have matched unseen artwork. Keep user-deck assets local unless redistribution is authorized, and follow the visual-only transfer rules below.
+
 ## Reusing installed control templates
 
 When the user's MATRIC deck library is available, use its pre-installed template decks as a visual source before designing new artwork. Find them by their visible deck titles, not a hard-coded library folder or deck ID:
@@ -158,9 +174,17 @@ These decks are a convenience, not an input requirement: users may have deleted 
 
 To reuse a design, start with a newly generated control of the appropriate catalog type and fresh ID. Transfer only the visual fields that fit the target (for example, colors, text styling, `BackgroundImage`, `DialImage`, `ButtonImage`, and state visuals) and copy each referenced normal, pressed, active, or state resource into the staged deck. Then create the target's layout, bindings and actions from its actual requirements. Never carry over the template control's `ControlEvents`, bindings, variables, control ID, navigation, or plugin-specific settings merely because its appearance is useful. Validate that every transferred resource is packaged and that the target remains complete when the page background is hidden.
 
+Preserve a suitable template's internal geometry as the starting point, including track/thumb offsets, label placement and padding. Change it for a concrete need such as a different orientation, clipping or interaction area, then review the result against the original. Resizing or copying a control is not by itself a reason to rearrange its internals. Avoid speculative visual adjustments that add no demonstrated benefit; continue to author actions and feedback independently of template behavior.
+
 For an existing deck, preserve all original resource files and unknown root metadata. Stream Deck action resources have separate ownership and remapping rules. The validator warns about those actions but does not certify their resource snapshots or settings. Use MATRIC's own Save As/copy/export workflow for cloning plugin-owned identities/resources.
 
 Custom applet files have separate ownership too: an `MCCustom` container references a separately installed AppletId. Use the [custom applet workflow](custom-applets.md) to create/validate the manifest, package a `.mapl`, and check deck events/parameters with `deck_tool.py validate ... --applet /path/to/applet`. A `.deck` archive alone does not install applet files.
+
+## Control resizing and artwork proportions
+
+Inspect the visual construction of each control before deciding whether its aspect ratio matters. A background image depicting a keycap, bezel, circular face or other proportion-sensitive geometry can look distorted when stretched to a different rectangle. Preserve that artwork's intended proportions, select a better-fitting template or deliberately adapt the artwork when the layout needs another shape. Check normal and active states and any other image layers whose geometry depends on the control bounds.
+
+A control without a background image, or with only a solid background color, can generally change width and height independently without image distortion. An image is not automatically proportion-sensitive either: plain textures and other stretch-tolerant decoration may resize freely. Do not require proportional resizing solely because a control came from a template or contains an image. Label fit, meaningful control shape, internal elements and usable interaction areas still need review after resizing, even when no background artwork is distorted. This applies across all applications and deck types.
 
 ## Fonts and optional fidelity
 
