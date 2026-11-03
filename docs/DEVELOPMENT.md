@@ -2,6 +2,12 @@
 
 Release and development entries are historical snapshots. Their version references and "unreleased" labels describe the status at the time each entry was written; see **Current state** for the current release.
 
+## Release 0.5.2 (2026-11-03)
+
+Broadens visual-template discovery to consider decks whose controls have no attached actions, regardless of title. Actionless content is a discovery hint; assets, bindings and other configuration still require inspection. User-selected references take priority, and partial design families can be extended to missing control types using consistent visual language adapted to native interaction and geometry. Reused and newly created matching designs remain distinguishable. No real decks/assets, runtime/parser changes or catalog updates are included.
+
+Validation: 75 independent Python tests, 8 JavaScript tests, local reference/anchor and frontmatter checks, whitespace and portable packaging with archive integrity, source-byte, checksum and license verification. No native-client or live application acceptance is claimed. VERSION is 0.5.2.
+
 ## Release 0.5.1 (2026-11-03)
 
 Adds general control-authoring guidance from panel review: optional style preferences and existing-deck visual references, intentional label wrapping and native preview limits, workflow-based first-page priorities, state-aware control economy, preservation of suitable template geometry, and aspect-ratio decisions based on artwork construction. Operational layouts may communicate relationships through familiar patterns, alignment and proximity, including an adjacent mute icon and labeled volume slider. No user decks/assets or parser/runtime/catalog changes are included.
@@ -124,7 +130,7 @@ On 2026-10-30, maintainer feedback established a mandatory flat deck-resource la
 
 README introduction broadened on 2026-10-28 to introduce DCS cockpit controls and feedback, plus MSFS, Star Citizen and Elite Dangerous input-profile panels alongside OBS. This is a documentation-only clarification of existing workflows; no new game integration or live validation is claimed.
 
-Current release: 0.5.1 (2026-11-03). Initial version 0.1.0 was extracted into a separate project on 2026-10-23. The installed skill includes instructions, deck/action/OBS references, a catalog of actual MATRIC definitions, standard-library Python helpers, and a two-page starter deck with an SVG background. Runtime authoring and ordinary testing are independent of the MATRIC source tree.
+Current release: 0.5.2 (2026-11-03). Initial version 0.1.0 was extracted into a separate project on 2026-10-23. The installed skill includes instructions, deck/action/OBS references, a catalog of actual MATRIC definitions, standard-library Python helpers, and a two-page starter deck with an SVG background. Runtime authoring and ordinary testing are independent of the MATRIC source tree.
 
 The original acceptance run passed eight offline tests and MATRIC's native import → export → reimport check, preserving two pages, five controls, hotkey configuration and the bundled SVG. OBS discovery was also exercised against a local saved collection; that user configuration is not part of this repository. Repository extraction adds a packaging acceptance test and cross-platform CI configuration. Local standalone validation passed all nine tests, release packaging/checksum verification, native import/export/reimport, and catalog refresh against the identified MATRIC build. GitHub CI passed on Windows and Linux for the initial push and release tag: [main run](https://github.com/tgudelj/matric-deck-skill/actions/runs/40028705824), [v0.1.0 run](https://github.com/tgudelj/matric-deck-skill/actions/runs/40028707247).
 

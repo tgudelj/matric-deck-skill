@@ -165,12 +165,16 @@ When an existing deck is the visual reference, inspect its actual controls and a
 
 ## Reusing installed control templates
 
-When the user's MATRIC deck library is available, use its pre-installed template decks as a visual source before designing new artwork. Find them by their visible deck titles, not a hard-coded library folder or deck ID:
+When the user's MATRIC deck library is available, honor a user-selected visual reference first. Otherwise use its pre-installed template decks as a starting visual source before designing new artwork. Find them by their visible deck titles, not a hard-coded library folder or deck ID:
 
 - For ordinary decks, inspect **Default control templates**.
 - For a DCS deck, inspect **Aviation button templates** first for aviation-style skeuomorphic controls, then **Default control templates**.
 
-These decks are a convenience, not an input requirement: users may have deleted them, and the portable skill must not ship their artwork. If neither deck is available or no design fits, use native visual configuration and the user's brief; create original artwork only when it materially improves a requested look.
+When the user's deck library is available, also consider decks whose controls have no attached actions as potential visual-template sources, regardless of their titles. Treat this as a discovery hint: inspect their controls, assets, bindings and other configuration before reuse. A user-selected visual reference takes priority; other suitable candidates can supplement the installed default templates.
+
+A design-source deck need not cover every required control type. Reuse suitable designs directly, and create missing control types using the same visual language: colors, materials, borders, typography, proportions where relevant, and normal/active-state treatment. Adapt that language to each control's native interaction and geometry; do not force button artwork onto an unsuitable slider, switch or other control. Distinguish reused designs from newly created matching designs, and author actions and feedback for the target task independently.
+
+These decks are a convenience, not an input requirement: users may have deleted them, and the portable skill must not ship their artwork. If no suitable design source is available, use native visual configuration and the user's brief; create original artwork when it materially improves the requested look.
 
 To reuse a design, start with a newly generated control of the appropriate catalog type and fresh ID. Transfer only the visual fields that fit the target (for example, colors, text styling, `BackgroundImage`, `DialImage`, `ButtonImage`, and state visuals) and copy each referenced normal, pressed, active, or state resource into the staged deck. Then create the target's layout, bindings and actions from its actual requirements. Never carry over the template control's `ControlEvents`, bindings, variables, control ID, navigation, or plugin-specific settings merely because its appearance is useful. Validate that every transferred resource is packaged and that the target remains complete when the page background is hidden.
 
