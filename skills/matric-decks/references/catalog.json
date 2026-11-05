@@ -1,7 +1,7 @@
 {
   "deck_file_version": 3,
-  "source_commit": "4b8cdecd5ce2917c50cab6d0577edbea4c6b3a78",
-  "assembly_sha256": "eb948a7ae652d75ea2d13fead01db8ef45a27b8758de7bc93d160ee055632598",
+  "source_commit": "82dc2f22a656507d4657ca7c51782be41f63ac0b",
+  "assembly_sha256": "5537a848fe34bc936c8c113c20693e630749baea1f0435ecc4c1146a0870523c",
   "controls": {
     "MCButton": {
       "name": "Button",
@@ -34,6 +34,7 @@
           "BackgroundColorActive": null,
           "BackgroundImage": null,
           "BackgroundImageActive": null,
+          "AdditionalResources": {},
           "LabelCustomCSS": null,
           "LabelCustomCSSActive": null,
           "ControlBindings": []
@@ -286,6 +287,14 @@
         }
       },
       "properties": {
+        "AdditionalResources": {
+          "nullable": true,
+          "type": "object",
+          "additionalProperties": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
         "AutoRepeat": {
           "nullable": false,
           "type": "boolean"
@@ -411,6 +420,7 @@
           "BackgroundColorActive": null,
           "BackgroundImage": null,
           "BackgroundImageActive": null,
+          "AdditionalResources": {},
           "LabelCustomCSS": null,
           "LabelCustomCSSActive": null,
           "ControlBindings": []
@@ -446,6 +456,14 @@
         }
       },
       "properties": {
+        "AdditionalResources": {
+          "nullable": true,
+          "type": "object",
+          "additionalProperties": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
         "BackgroundColor": {
           "nullable": true,
           "type": "string"
@@ -649,6 +667,7 @@
           "BackgroundColorActive": null,
           "BackgroundImage": null,
           "BackgroundImageActive": null,
+          "AdditionalResources": {},
           "LabelCustomCSS": null,
           "LabelCustomCSSActive": null,
           "ControlBindings": []
@@ -664,6 +683,14 @@
         }
       },
       "properties": {
+        "AdditionalResources": {
+          "nullable": true,
+          "type": "object",
+          "additionalProperties": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
         "BackgroundColor": {
           "nullable": true,
           "type": "string"
@@ -854,6 +881,7 @@
           "BackgroundColorActive": null,
           "BackgroundImage": null,
           "BackgroundImageActive": null,
+          "AdditionalResources": {},
           "LabelCustomCSS": null,
           "LabelCustomCSSActive": null,
           "ControlBindings": []
@@ -2934,6 +2962,14 @@
         }
       },
       "properties": {
+        "AdditionalResources": {
+          "nullable": true,
+          "type": "object",
+          "additionalProperties": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
         "BackgroundColor": {
           "nullable": true,
           "type": "string"
@@ -3066,6 +3102,7 @@
           "BackgroundColorActive": null,
           "BackgroundImage": null,
           "BackgroundImageActive": null,
+          "AdditionalResources": {},
           "LabelCustomCSS": null,
           "LabelCustomCSSActive": null,
           "ControlBindings": []
@@ -5938,6 +5975,14 @@
         }
       },
       "properties": {
+        "AdditionalResources": {
+          "nullable": true,
+          "type": "object",
+          "additionalProperties": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
         "BackgroundColor": {
           "nullable": true,
           "type": "string"
@@ -6070,6 +6115,7 @@
           "BackgroundColorActive": null,
           "BackgroundImage": null,
           "BackgroundImageActive": null,
+          "AdditionalResources": {},
           "LabelCustomCSS": null,
           "LabelCustomCSSActive": null,
           "ControlBindings": []
@@ -7358,6 +7404,14 @@
         }
       },
       "properties": {
+        "AdditionalResources": {
+          "nullable": true,
+          "type": "object",
+          "additionalProperties": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
         "BackgroundColor": {
           "nullable": true,
           "type": "string"
@@ -7490,6 +7544,7 @@
           "BackgroundColorActive": null,
           "BackgroundImage": null,
           "BackgroundImageActive": null,
+          "AdditionalResources": {},
           "LabelCustomCSS": null,
           "LabelCustomCSSActive": null,
           "ControlBindings": []
@@ -8514,6 +8569,14 @@
         }
       },
       "properties": {
+        "AdditionalResources": {
+          "nullable": true,
+          "type": "object",
+          "additionalProperties": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
         "BackgroundColor": {
           "nullable": true,
           "type": "string"
@@ -8703,6 +8766,7 @@
           "BackgroundColorActive": null,
           "BackgroundImage": null,
           "BackgroundImageActive": null,
+          "AdditionalResources": {},
           "LabelCustomCSS": null,
           "LabelCustomCSSActive": null,
           "ControlBindings": []
@@ -11047,6 +11111,14 @@
         }
       },
       "properties": {
+        "AdditionalResources": {
+          "nullable": true,
+          "type": "object",
+          "additionalProperties": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
         "BackgroundColor": {
           "nullable": true,
           "type": "string"
@@ -11193,6 +11265,7 @@
           "BackgroundColorActive": null,
           "BackgroundImage": null,
           "BackgroundImageActive": null,
+          "AdditionalResources": {},
           "LabelCustomCSS": null,
           "LabelCustomCSSActive": null,
           "ControlBindings": []
@@ -11472,6 +11545,14 @@
         }
       },
       "properties": {
+        "AdditionalResources": {
+          "nullable": true,
+          "type": "object",
+          "additionalProperties": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
         "AutoReset": {
           "nullable": false,
           "type": "boolean"
@@ -11651,6 +11732,7 @@
           "BackgroundColorActive": null,
           "BackgroundImage": null,
           "BackgroundImageActive": null,
+          "AdditionalResources": {},
           "LabelCustomCSS": null,
           "LabelCustomCSSActive": null,
           "ControlBindings": []
@@ -12117,6 +12199,14 @@
         }
       },
       "properties": {
+        "AdditionalResources": {
+          "nullable": true,
+          "type": "object",
+          "additionalProperties": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
         "BackgroundColor": {
           "nullable": true,
           "type": "string"
@@ -12255,6 +12345,7 @@
           "BackgroundColorActive": null,
           "BackgroundImage": null,
           "BackgroundImageActive": null,
+          "AdditionalResources": {},
           "LabelCustomCSS": null,
           "LabelCustomCSSActive": null,
           "ControlBindings": []
@@ -14071,6 +14162,14 @@
         }
       },
       "properties": {
+        "AdditionalResources": {
+          "nullable": true,
+          "type": "object",
+          "additionalProperties": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
         "BackgroundColor": {
           "nullable": true,
           "type": "string"
@@ -14203,6 +14302,7 @@
           "BackgroundColorActive": null,
           "BackgroundImage": null,
           "BackgroundImageActive": null,
+          "AdditionalResources": {},
           "LabelCustomCSS": null,
           "LabelCustomCSSActive": null,
           "ControlBindings": []
@@ -15755,6 +15855,14 @@
         }
       },
       "properties": {
+        "AdditionalResources": {
+          "nullable": true,
+          "type": "object",
+          "additionalProperties": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
         "BackgroundColor": {
           "nullable": true,
           "type": "string"
@@ -15903,6 +16011,7 @@
           "BackgroundColorActive": null,
           "BackgroundImage": null,
           "BackgroundImageActive": null,
+          "AdditionalResources": {},
           "LabelCustomCSS": null,
           "LabelCustomCSSActive": null,
           "ControlBindings": []
@@ -15938,6 +16047,14 @@
         }
       },
       "properties": {
+        "AdditionalResources": {
+          "nullable": true,
+          "type": "object",
+          "additionalProperties": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
         "AutoReset": {
           "nullable": false,
           "type": "boolean"
@@ -16120,6 +16237,7 @@
           "BackgroundColorActive": null,
           "BackgroundImage": null,
           "BackgroundImageActive": null,
+          "AdditionalResources": {},
           "LabelCustomCSS": null,
           "LabelCustomCSSActive": null,
           "ControlBindings": []
@@ -18728,6 +18846,14 @@
         }
       },
       "properties": {
+        "AdditionalResources": {
+          "nullable": true,
+          "type": "object",
+          "additionalProperties": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
         "BackgroundColor": {
           "nullable": true,
           "type": "string"
@@ -18860,6 +18986,7 @@
           "BackgroundColorActive": null,
           "BackgroundImage": null,
           "BackgroundImageActive": null,
+          "AdditionalResources": {},
           "LabelCustomCSS": null,
           "LabelCustomCSSActive": null,
           "ControlBindings": []
@@ -19620,6 +19747,14 @@
         }
       },
       "properties": {
+        "AdditionalResources": {
+          "nullable": true,
+          "type": "object",
+          "additionalProperties": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
         "BackgroundColor": {
           "nullable": true,
           "type": "string"
@@ -19736,16 +19871,7 @@
         "Height": 0,
         "X": 0,
         "Y": 0,
-        "ControlEvents": [
-          {
-            "Name": "valuechange",
-            "Actions": [
-              {
-                "ActionTypeName": "EXM.MatricPro.Actions.ActionTouchpad"
-              }
-            ]
-          }
-        ],
+        "ControlEvents": [],
         "Config": {
           "Sensitivity": 5,
           "ScrollSensitivity": 5,
@@ -19761,6 +19887,7 @@
           "BackgroundColorActive": null,
           "BackgroundImage": null,
           "BackgroundImageActive": null,
+          "AdditionalResources": {},
           "LabelCustomCSS": null,
           "LabelCustomCSSActive": null,
           "ControlBindings": []
@@ -19776,6 +19903,14 @@
         }
       },
       "properties": {
+        "AdditionalResources": {
+          "nullable": true,
+          "type": "object",
+          "additionalProperties": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
         "BackgroundColor": {
           "nullable": true,
           "type": "string"
@@ -19894,6 +20029,7 @@
           "BackgroundColorActive": null,
           "BackgroundImage": null,
           "BackgroundImageActive": null,
+          "AdditionalResources": {},
           "LabelCustomCSS": null,
           "LabelCustomCSSActive": null,
           "ControlBindings": []
@@ -23030,6 +23166,14 @@
         }
       },
       "properties": {
+        "AdditionalResources": {
+          "nullable": true,
+          "type": "object",
+          "additionalProperties": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
         "BackgroundColor": {
           "nullable": true,
           "type": "string"
@@ -23162,6 +23306,7 @@
           "BackgroundColorActive": null,
           "BackgroundImage": null,
           "BackgroundImageActive": null,
+          "AdditionalResources": {},
           "LabelCustomCSS": null,
           "LabelCustomCSSActive": null,
           "ControlBindings": []
@@ -23658,6 +23803,14 @@
         }
       },
       "properties": {
+        "AdditionalResources": {
+          "nullable": true,
+          "type": "object",
+          "additionalProperties": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
         "BackgroundColor": {
           "nullable": true,
           "type": "string"
@@ -23791,6 +23944,7 @@
           "BackgroundColorActive": null,
           "BackgroundImage": null,
           "BackgroundImageActive": null,
+          "AdditionalResources": {},
           "LabelCustomCSS": null,
           "LabelCustomCSSActive": null,
           "ControlBindings": []
@@ -23806,6 +23960,14 @@
         }
       },
       "properties": {
+        "AdditionalResources": {
+          "nullable": true,
+          "type": "object",
+          "additionalProperties": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
         "AutoReset": {
           "nullable": false,
           "type": "boolean"
@@ -24033,15 +24195,24 @@
         "Method": "GET",
         "Url": null,
         "Body": null,
+        "CalculateRequestFunction": null,
         "ActionTypeName": "EXM.MatricPro.Actions.ActionExecHttp",
         "Headers": {}
       },
       "properties": {
         "Headers": {
           "nullable": true,
-          "type": "any"
+          "type": "object",
+          "additionalProperties": {
+            "nullable": true,
+            "type": "string"
+          }
         },
         "Body": {
+          "nullable": true,
+          "type": "string"
+        },
+        "CalculateRequestFunction": {
           "nullable": true,
           "type": "string"
         },
@@ -24731,7 +24902,7 @@
       "template": {
         "ActionTypeName": "EXM.MatricPro.Actions.ActionStreamDeckContainer",
         "StreamDeckActionResources": {},
-        "StreamDeckInstanceId": "ac24858a931c47b69864af0f861cd77e",
+        "StreamDeckInstanceId": "dd3d99a96a43496aa55061a4ac67a5e8",
         "StreamDeckPluginUUID": null,
         "StreamDeckActionUUID": null,
         "StreamDeckController": null,
@@ -24740,7 +24911,11 @@
       "properties": {
         "StreamDeckActionResources": {
           "nullable": true,
-          "type": "any"
+          "type": "object",
+          "additionalProperties": {
+            "nullable": true,
+            "type": "string"
+          }
         },
         "StreamDeckActionSettings": {
           "nullable": true,

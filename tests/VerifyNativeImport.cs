@@ -17,8 +17,15 @@ internal static class VerifyNativeImport {
         if (!imported.Success) throw new InvalidDataException(imported.ErrorMessage);
         var deck = imported.ImportedDeck;
         bool dcs = args.Length > 2 && args[2] == "dcs";
+        bool resources = args.Length > 2 && args[2] == "resources";
+        System.Collections.Generic.Dictionary<string, byte[]> expectedResources = null;
         byte[] expectedImage = null;
         if (dcs) VerifyDcs(deck);
+        else if (resources) {
+            VerifyResources(deck);
+            DeckResourceHelper.SaveDeck(deck, first);
+            expectedResources = ((MatricControlConfigBase)deck.Pages[0].Controls[0].Config).AdditionalResources.Values.ToDictionary(name => name, name => File.ReadAllBytes(Path.Combine(first, deck.Id, name)));
+        }
         else {
             if (deck.Pages.Count != 2 || deck.Pages.Sum(p => p.Controls.Count) != 5) throw new InvalidDataException("Unexpected starter layout.");
             var copy = deck.Pages[0].Controls[0].ControlEvents[0].Actions[0] as ActionHotkeyConfig;
@@ -29,11 +36,23 @@ internal static class VerifyNativeImport {
         var second = DeckImporter.ImportDeck(exported, Path.Combine(root, "second"));
         if (!second.Success) throw new InvalidDataException(second.ErrorMessage);
         if (dcs) VerifyDcs(second.ImportedDeck);
+        else if (resources) {
+            VerifyResources(second.ImportedDeck);
+            foreach (var file in expectedResources) if (!file.Value.SequenceEqual(File.ReadAllBytes(Path.Combine(root, "second", deck.Id, file.Key)))) throw new InvalidDataException("Additional resource changed.");
+        }
         else {
             if (!expectedImage.SequenceEqual(File.ReadAllBytes(Path.Combine(root, "second", deck.Id, "panel.svg")))) throw new InvalidDataException("Bundled image changed.");
             if (second.ImportedDeck.Pages.Sum(p => p.Controls.Count) != 5) throw new InvalidDataException("Round-trip changed the control count.");
         }
-        Console.WriteLine("PASS: native import/export/reimport (" + (dcs ? "DCS commands, mailbox and feedback bindings" : "starter hotkeys and SVG") + "). No actions executed.");
+        Console.WriteLine("PASS: native import/export/reimport (" + (dcs ? "DCS commands, mailbox and feedback bindings" : resources ? "additional resources, save retention and SVG bytes" : "starter hotkeys and SVG") + "). No actions executed.");
+    }
+
+    /// <summary>Checks synthetic additional-resource declarations and bindings without evaluating any actions.</summary>
+    private static void VerifyResources(Deck deck) {
+        if (deck.Pages.Count != 1 || deck.Pages[0].Controls.Count != 1) throw new InvalidDataException("Unexpected resource example layout.");
+        var config = (MatricControlConfigBase)deck.Pages[0].Controls[0].Config;
+        if (config.AdditionalResources.Count != 3 || config.AdditionalResources["muted"] != "muted.svg" || config.AdditionalResources["live"] != "live.svg" || config.AdditionalResources["unknown"] != "unknown.svg") throw new InvalidDataException("Resource aliases changed.");
+        if (!config.ControlBindings.All(b => b.Transform.Contains("resources["))) throw new InvalidDataException("Resource calculations changed.");
     }
 
     /// <summary>Checks DCS command configuration and feedback without starting the simulator or changing variables.</summary>

@@ -64,7 +64,11 @@ Edit its `deck2.json`. In a Python authoring script, import `new_control` and `a
 
 **All deck assets MUST be in the same folder as `deck2.json`. No subfolders are allowed: nested assets do not work correctly in MATRIC.** Reference images, audio and other deck resources by filename only, such as `button-off.png`, never `images/button-off.png`. When flattening an existing deck, resolve filename collisions explicitly and update every affected reference, including normal/active states and resource lists; do not overwrite assets silently. This rule concerns deck resources, not the internal layout of separately packaged applets.
 
+For images or other assets selected dynamically by a control-property calculation, declare every possible file in `Config.AdditionalResources` and reference it through `resources["key"]`. MATRIC save cleanup cannot discover filenames embedded only in scripts, and copying may rename files. This requires the updated server/client feature; see [additional calculation resources](references/deck-format.md#additional-calculation-resources) for authoring, compatibility and a synthetic example. Keep all files beside `deck2.json`.
+
 Prefer native colors/text/icons for simple panels; create original images when no suitable installed template exists or the user has requested a specific visual design. Grid dimensions and positions are cell counts, not pixels. In the inspected native renderer, TextSize is a percentage of the control's shorter dimension: `cellSize * min(Height, Width) * TextSize / 100`, not a font size in points. Recheck labels when changing control spans.
+
+When combining icons and text make sure there is at least 0.5em of spacing between them, measured from the icon’s visible edge.
 
 Keep controls self-contained as a general authoring rule, especially for inventories/templates users drag into other layouts. Put each control's identifying label, artwork, actions and feedback on that control, not on neighboring label widgets or page artwork. If an operation needs multiple controls, make each independently understandable and functional when copied, and disclose any shared variables or separately installed applet dependencies. Copy referenced resources with the control; do not infer that a visually complete group will be copied together.
 
@@ -87,6 +91,8 @@ Before delivering a new or revised illustrated deck, inspect its control resourc
 For HTTP-backed controls and dashboards, read [HTTP requests and calculated parameters](references/action-recipes.md#http-requests-and-calculated-parameters). MATRIC can calculate request URLs, methods, headers and bodies from server variables and event data, execute the request on the PC, and publish response variables for native controls or applets. Check this native path before proposing browser fetch or a separate companion service; verify endpoint authentication and target-build support.
 
 ## OBS panels
+
+When an OBS deck request leaves details unspecified, default to scene switching, microphone mute and active-scene feedback. Label scenes by name and color-code them; use subtle flat gradients with contrasting text and icons. Include OBS audio mixer controls on the scene-switching page for a tablet when space permits usable controls; otherwise put the mixer sliders on a separate page. Apply these defaults only to gaps in the request, preserving explicit user choices. See [OBS deck defaults](references/obs-discovery.md#default-obs-deck) for layout and feedback requirements.
 
 When the task involves OBS collections, scenes, sources, groups, filters, transitions, or shortcuts, read [OBS discovery](references/obs-discovery.md). Prefer a live, read-only snapshot when OBS is running and its WebSocket endpoint is available. The bundled standard-library client authenticates through an environment variable or a private interactive prompt; keep credentials outside chat prompts, reports and deck files. Use saved collection files for offline discovery, inactive collections or saved keyboard bindings:
 

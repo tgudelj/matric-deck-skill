@@ -54,3 +54,9 @@ The bundled catalog covers deck format 3, with 21 native control definitions and
 
 Stream Deck plugin support remains experimental. Opaque plugin configurations and resources need MATRIC-specific verification; plugin installations and global settings are not bundled. Existing MATRIC compatibility exclusions remain in effect. See [the skill instructions](../skills/matric-decks/SKILL.md).
 
+
+## Additional calculation resources
+
+Declare dynamic native-control assets with `Config.AdditionalResources` and select filenames using `resources["key"]` in property bindings. The helper validates keys, paths and file presence; the included synthetic example demonstrates three image states. Resource-map support requires an updated MATRIC server/client, independently of deck format and this skill version. Older servers may delete the declarations/files when saving. See [the resource reference](../skills/matric-decks/references/deck-format.md#additional-calculation-resources).
+
+Optional native verification of the synthetic resource example uses the developer-only checker: pack `skills/matric-decks/assets/additional-resources` to a temporary `.deck`, then run `tests/test-native-import.ps1 -Package <example.deck> -DesktopBin <explicit-feature-build> -Scenario resources`. It uses isolated collections, checks save retention and byte-preserving export/reimport, and executes no actions.

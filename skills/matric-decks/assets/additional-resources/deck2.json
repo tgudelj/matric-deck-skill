@@ -1,0 +1,84 @@
+{
+  "Id": "3d02e04a-51dc-5284-b2c6-4629d3a82ea8",
+  "Title": "Additional resources synthetic demo",
+  "Author": "",
+  "Description": "Synthetic image-selection demonstration for a landscape tablet, assuming 9\u201311 inches and a 4:3 layout. Does not control OBS or an audio device.",
+  "DeckFileVersion": 3,
+  "ReferencedUserVariables": [],
+  "DefaultPageId": "77e70c42-a4b0-5929-aaec-4129059a8275",
+  "Pages": [
+    {
+      "Id": "77e70c42-a4b0-5929-aaec-4129059a8275",
+      "Title": "Demo",
+      "Cols": 4,
+      "Rows": 3,
+      "BackgroundColor": "#101923",
+      "BackgroundImage": null,
+      "BackgroundSize": "cover",
+      "Controls": [
+        {
+          "Id": "2582fd96-446d-522f-acac-51173049a3c0",
+          "Name": "Synthetic resource toggle",
+          "Description": null,
+          "ControlTypeName": "EXM.MatricPro.Controls.MCButton",
+          "ControlConfigTypeName": "EXM.MatricPro.Controls.Config.MCButtonConfig",
+          "Text": "SYNTHETIC DEMO",
+          "Width": 4,
+          "Height": 3,
+          "X": 0,
+          "Y": 0,
+          "ControlEvents": [
+            {
+              "Name": "release",
+              "Actions": [
+                {
+                  "VariableName": "skill_demo_muted",
+                  "VariableValue": null,
+                  "VariableCalculateValueFunction": "return !variables['skill_demo_muted'];",
+                  "VariableType": "BOOL",
+                  "ActionTypeName": "EXM.MatricPro.Actions.ActionSetServerVariable"
+                }
+              ]
+            }
+          ],
+          "Config": {
+            "AutoRepeat": false,
+            "AutoRepeatDelay": 1000,
+            "AutoRepeatInterval": 100,
+            "Toggle": false,
+            "FontFace": "text",
+            "TextSize": 12,
+            "Padding": 4,
+            "Halign": "center",
+            "Valign": "bottom",
+            "TextColor": "#ffffff",
+            "TextColorActive": "#ffffff",
+            "BackgroundColor": "#263449",
+            "BackgroundColorActive": "#4169e1",
+            "BackgroundImage": "unknown.svg",
+            "BackgroundImageActive": "unknown.svg",
+            "LabelCustomCSS": null,
+            "LabelCustomCSSActive": null,
+            "ControlBindings": [
+              {
+                "PropertyPath": "Config.BackgroundImage",
+                "VariableName": "skill_demo_muted",
+                "Transform": "if (typeof value !== \"boolean\") return resources[\"unknown\"]; return value ? resources[\"muted\"] : resources[\"live\"];"
+              },
+              {
+                "PropertyPath": "Config.BackgroundImageActive",
+                "VariableName": "skill_demo_muted",
+                "Transform": "if (typeof value !== \"boolean\") return resources[\"unknown\"]; return value ? resources[\"muted\"] : resources[\"live\"];"
+              }
+            ],
+            "AdditionalResources": {
+              "unknown": "unknown.svg",
+              "live": "live.svg",
+              "muted": "muted.svg"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

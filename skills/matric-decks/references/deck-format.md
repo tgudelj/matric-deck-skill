@@ -145,6 +145,35 @@ For a native touchpad, use `new_control("MCTouchpad", ...)`: its event is `touch
 
 `Config.ControlBindings` is an array of `{ "PropertyPath": "...", "VariableName": "...", "Transform": "..." }`. PropertyPath is a client-state property path, not necessarily the C# configuration property name. Reuse a verified binding or inspect the relevant MATRIC client component. Transform is an optional JavaScript function body receiving `value` and `variables`; an omitted transform binds the value directly. Do not invent built-in variable names.
 
+## Additional calculation resources
+
+Updated MATRIC builds support `Config.AdditionalResources` on native controls using the shared configuration base. It is a case-sensitive map of stable keys to flat deck resource filenames. Register every possible image/audio file selected by a calculation, including unavailable-state artwork. Missing/null maps behave as empty maps. Applet and iframe controls retain their separate resource systems.
+
+```json
+"AdditionalResources": {
+  "unknown": "mic-unknown.svg",
+  "live": "mic-live.svg",
+  "muted": "mic-muted.svg"
+}
+```
+
+Control property bindings receive `calculateValue(value, variables, resources)`. The third argument is a read-only snapshot of the owning control's map. Return the selected filename; normal deck resource loading resolves it. For example:
+
+```javascript
+if (typeof value !== "boolean") return resources["unknown"];
+return value ? resources["muted"] : resources["live"];
+```
+
+An absent key returns `undefined`; provide a suitable fallback. Existing two-argument scripts still work. Server-variable and action calculations keep their existing signatures and do not receive this control-owned map.
+
+Declared files appear in the computed `FileResources` index, survive save cleanup and follow copied controls/pages. If copying encounters a same-name/different-content file, MATRIC updates map values; keys and scripts remain unchanged. Do not hard-code the filenames in binding transforms or manually populate the computed `FileResources` list as a substitute. Save As and export/import preserve declared files. Removing entries makes files eligible for cleanup only when nothing else still references them.
+
+In the editor, use **Control properties → Advanced → RESOURCES (x)**. The count is entries, not distinct files. The dialog provides Add, image Preview, Replace and Remove; Apply updates the draft and Cancel discards map edits. Rename/remove are direct operations without confirmation popups. Empty/duplicate keys and invalid filenames have inline errors. Renaming a key does not rewrite scripts. Uploaded files from canceled edits may remain until normal cleanup. The calculation dialog shows the new signature, lists insertable resource expressions and tests against the current map.
+
+Compatibility is capability-based: the catalog records the verified implementation commit and assembly hash. Do not infer availability from deck format 3 or the skill's version. Older servers may open the deck, then discard its map and delete additional files on save. Older clients cannot evaluate scripts using `resources`. Require an updated feature-capable server and client web content; preserve an exported copy before opening in an older server. For an older target, use directly referenced static states or explicitly leave a layout unresolved rather than shipping dynamic untracked artwork.
+
+`assets/additional-resources` is a synthetic, self-contained example with three original SVGs. Create a user BOOL variable `skill_demo_muted`, initially false, before operating it. Its button toggles only that demo variable; it controls no real microphone or OBS input. Copy the example to staging with fresh deck/page/control IDs when adapting it. The offline validator checks map shapes, keys, flat filenames and file presence; it does not execute bindings or establish native/client behavior.
+
 ## Actions and events
 
 An action's discriminant is `ActionTypeName`, the implementation class's full name. It is not the configuration class name. The converter resolves the corresponding configuration type. Internal action IDs can differ from serialized type names: Set variable serializes as `EXM.MatricPro.Actions.ActionSetServerVariable` (singular), while its internal ID ends in `ActionSetServerVariables`. The catalog keys and event maps use serialized implementation names; `action_metadata` also accepts the old internal ID as a lookup alias. Assembly-qualified `ActionType` strings and computed `FileResources` arrays are not needed in newly authored JSON.

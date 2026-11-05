@@ -31,6 +31,9 @@ internal static class ExportMatricCatalog {
         else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>)) {
             result["type"] = "array";
             result["items"] = Describe(type.GetGenericArguments()[0], null, depth + 1);
+        } else if (type == typeof(Dictionary<string, string>)) {
+            result["type"] = "object";
+            result["additionalProperties"] = Describe(typeof(string), null, depth + 1);
         } else if (type == typeof(object) || typeof(IDictionary).IsAssignableFrom(type) || depth > 4) result["type"] = "any";
         else {
             result["type"] = "object";

@@ -2,6 +2,19 @@
 
 Prefer the bundled live discovery helper when OBS is running and the user has made its WebSocket endpoint available for the task. It obtains exact names, membership and current state directly from OBS without a MATRIC connection or extra Python packages. Use saved files when OBS is offline, the endpoint is unavailable, or the task needs inactive collections or saved keyboard bindings. Neither path requires MATRIC source or binaries.
 
+## Default OBS deck
+
+Fill unspecified parts of an OBS deck request with these defaults. Explicit user requirements take precedence; these defaults do not authorize changes to OBS configuration.
+
+- Build a scene-switching panel with microphone mute and active-scene feedback. Use the user's actual scene and microphone names from discovery; resolve an ambiguous microphone rather than guessing an input.
+- Give every scene a readable name label and a consistent identifying color. Keep labels visible so scene recognition does not depend on color alone. Distinguish the active program scene with a clear feedback-driven highlight, separate from the scene's identifying color and momentary press appearance.
+- Use subtle gradients on otherwise flat control surfaces, with contrasting text and icons. Follow the skill's icon/text spacing rule and keep each control's artwork and label self-contained. This is the default style when the user has not requested a different look.
+- Include mixer controls for the relevant discovered OBS audio inputs. If the deck is intended for a tablet and scene buttons, microphone control and usable mixer sliders fit comfortably, place them on the same page. Otherwise place the audio mixer sliders on a separate, clearly linked Mixer page with a route back to scenes. Do not shrink controls merely to force a single page; use the intended screen size and scene/input counts to judge available space.
+
+Active-scene, microphone mute and mixer feedback must use verified MATRIC OBS integration bindings for the target version. A discovery snapshot supplies names and authoring context, not ongoing feedback. If a live feedback mapping is unavailable or OBS is disconnected, show an unavailable state and disclose the missing setup rather than simulating an active scene or mute state from the last button pressed. Native scene and audio action details are in [action recipes](action-recipes.md#obs-studio).
+
+When feedback changes an image filename, register every normal/active/unknown image in `Config.AdditionalResources` and select it with `resources["key"]`. Files mentioned only in script strings are not retained by MATRIC save cleanup and cannot be safely remapped on library copy. See [additional calculation resources](deck-format.md#additional-calculation-resources) and require a feature-capable target.
+
 ## Saved collections
 
 Prefer a JSON exported with OBS **Scene Collection → Export**, or an explicitly identified local collection file. Common normal-install locations are:

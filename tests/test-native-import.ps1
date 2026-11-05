@@ -1,4 +1,4 @@
-param([Parameter(Mandatory=$true)][string]$Package, [Parameter(Mandatory=$true)][string]$DesktopBin, [ValidateSet("starter", "dcs")][string]$Scenario = "starter")
+param([Parameter(Mandatory=$true)][string]$Package, [Parameter(Mandatory=$true)][string]$DesktopBin, [ValidateSet("starter", "dcs", "resources")][string]$Scenario = "starter")
 $ErrorActionPreference = 'Stop'
 $DesktopBin = [IO.Path]::GetFullPath($DesktopBin)
 $Package = [IO.Path]::GetFullPath($Package)

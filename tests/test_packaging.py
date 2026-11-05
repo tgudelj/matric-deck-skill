@@ -41,6 +41,7 @@ class PackagingTests(unittest.TestCase):
             with zipfile.ZipFile(archive) as zipped:
                 names = zipped.namelist()
                 self.assertIn("matric-decks/SKILL.md", names)
+                self.assertIn("matric-decks/assets/additional-resources/deck2.json", names)
                 self.assertIn("matric-decks/scripts/obs_inventory.py", names)
                 self.assertIn("matric-decks/scripts/obs_live.py", names)
                 self.assertIn("matric-decks/scripts/applet_tool.py", names)

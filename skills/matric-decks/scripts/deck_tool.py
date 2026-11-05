@@ -114,6 +114,9 @@ def check_value(value, schema, where, errors):
     if kind == "array":
         for i, item in enumerate(value):
             check_value(item, schema["items"], f"{where}[{i}]", errors)
+    elif kind == "object" and "additionalProperties" in schema:
+        for key, item in value.items():
+            check_value(item, schema["additionalProperties"], f"{where}[{key!r}]", errors)
     elif kind == "object":
         check_fields(value, schema.get("properties", {}), where, errors)
 
@@ -167,6 +170,20 @@ def validate(deck, files, applets=None):
                             errors.append(f"{where}.{key}: missing resource {name}")
                     except ValueError as error:
                         errors.append(str(error))
+                elif key == "AdditionalResources" and item is not None:
+                    if not isinstance(item, dict):
+                        errors.append(f"{where}.{key}: expected a key-to-filename map")
+                        continue
+                    for alias, filename in item.items():
+                        location = f"{where}.{key}[{alias!r}]"
+                        if not isinstance(alias, str) or not alias.strip():
+                            errors.append(f"{location}: resource keys must be nonempty strings")
+                        if not isinstance(filename, str) or not filename.strip():
+                            errors.append(f"{location}: resource values must be nonempty filenames")
+                            continue
+                        if filename.casefold() in ("deck.json", "deck2.json"):
+                            errors.append(f"{location}: deck definitions are not resource assets")
+                        resources({"Image": filename}, location, {"Image": {"type": "string"}})
                 elif key == "SwitchStateImages" and isinstance(item, list):
                     for i, image in enumerate(item):
                         resources({"Image": image}, f"{where}.{key}[{i}]", {"Image": {"type": "string"}})
