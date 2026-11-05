@@ -119,6 +119,8 @@ When deck is intended to represent a specific real-life or game device like cock
 
 ## Flight simulator panels
 
+For cockpit decks in any flight simulator, follow [flight simulator cockpit authoring](references/flight-sim-cockpits.md). Honor the user's desired look and feel and any chosen reference deck; otherwise default to skeuomorphic aircraft controls. Establish the visual benchmark, render a representative control before extending a new visual family, and compare the assembled result against that benchmark independently of functional checks. Native controls and custom applets must share the chosen visual language. Missing simulator bindings do not justify unfinished artwork or a generic replacement UI.
+
 For cockpit hardware in any flight simulator, read [cockpit control groups and touch regions](references/deck-format.md#cockpit-control-groups-and-touch-regions). Preserve useful local relationships such as directional switches, paired controls and display/selection keys while arranging the overall panel for the user's tasks. Plan each region that responds to an input separately from its visible artwork, keeping legends readable. For a directional assembly, inspect the full bounds of each native button, including transparent areas, and check that each direction can be selected without activating its neighbor on the intended device. Verify each component's input behavior and distinguish local press appearance from simulator feedback; appearance alone establishes neither.
 
 ## DCS cockpit panels

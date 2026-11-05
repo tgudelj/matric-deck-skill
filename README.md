@@ -8,6 +8,28 @@ Dynamic control images can declare additional resources that survive saving and 
 
 Build Digital Combat Simulator cockpit panels with controls and live simulator feedback through DCS-BIOS and DCS-BIOS-MATRIC-Middleware (DBMM). The skill can also use your input profiles to create panels for Microsoft Flight Simulator 2020/2024, X-Plane 11/12, Kerbal Space Program, Star Citizen, Elite Dangerous, Euro Truck Simulator 2, Farming Simulator, iRacing and Assetto Corsa Competizione. For OBS Studio, it can discover your own scenes, sources and settings from a live connection or an exported collection, then build a deck around your setup using MATRIC's OBS integration.
 
+## Prompt examples and results
+
+Describe the panel you want. These examples pair a prompt with the resulting layout.
+
+### OBS Studio panel
+
+> Use my OBS setup to build a tablet panel for scene switching, microphone mute and active-scene feedback.
+
+![OBS landscape tablet panel with scene switching, microphone mute, active-scene feedback and audio faders](docs/images/obs-tablet-panel.png)
+
+### F-16 ECM panel
+
+> Make a DCS F-16 ECM panel for a tablet in landscape orientation. It does not need to be absolutely photorealistic.
+
+![F-16 ECM landscape tablet panel with power and transmit switches, module keys and status lamps](docs/images/f16-ecm-tablet-panel.png)
+
+### F-16 CMDS panel
+
+> Make an F-16 CMDS panel for a tablet in landscape orientation.
+
+![F-16 CMDS landscape tablet panel with countermeasure quantities, switches and program and mode selectors](docs/images/f16-cmds-tablet-panel.png)
+
 ## Install
 
 You need Python 3.11 or newer for the assistant’s helpers, and MATRIC to use the finished deck. No MATRIC source code or build is needed.
@@ -47,14 +69,6 @@ For a DCS cockpit panel:
 ```text
 Use the matric-decks skill to build an F-16C ICP panel using my installed
 DCS-BIOS definitions, with simulator feedback and a DBMM output checklist.
-```
-
-For your own OBS Studio:
-
-```text
-Use the matric-decks skill to inspect my OBS Studio setup and create a deck
-for switching my scenes, controlling sources and muting my audio. Package it
-for import into MATRIC.
 ```
 
 Review the actions and any required integrations, then import the `.deck` in MATRIC. The skill does not install the deck or run its controls for you.
