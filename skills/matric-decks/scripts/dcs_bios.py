@@ -151,14 +151,21 @@ def ensure_mailbox(value):
 
 
 def audit(value, files, catalog, applets=None):
-    """Check native structure, known commands and literal telemetry references without evaluating JavaScript."""
+    """Audit structure, commands, telemetry and encoder/selector review needs without evaluating JavaScript."""
     report = deck.validate(value, files, applets)
     if not isinstance(value, dict):
         return report
     references, commands, script_count = set(), [], 0
-    def walk(item):
+    encoder_owners = {}
+    def walk(item, encoder=None, event=None):
         nonlocal script_count
         if isinstance(item, dict):
+            if "ControlTypeName" in item:
+                encoder = ((item.get("Name") or item.get("Id") or "Unnamed encoder")
+                           if item["ControlTypeName"] == "EXM.MatricPro.Controls.MCRotaryEncoder" else None)
+                event = None
+            if encoder is not None and "Actions" in item and "Name" in item:
+                event = item["Name"]
             # Variable parameters expose dependencies absent from generic VariableName scanning.
             config = item.get("Config")
             if isinstance(config, dict) and isinstance(config.get("AppletId"), str):
@@ -180,15 +187,18 @@ def audit(value, files, catalog, applets=None):
                     script_count += 1
             if item.get("ActionTypeName") == deck.ACTION_PREFIX + "ActionSetServerVariable" and variable == MAILBOX:
                 commands.append(item)
+                if encoder is not None and event in ("clockwise", "counterclockwise"):
+                    encoder_owners[id(item)] = encoder
             for child in item.values():
-                walk(child)
+                walk(child, encoder, event)
         elif isinstance(item, list):
             for child in item:
-                walk(child)
+                walk(child, encoder, event)
     walk(value)
     if script_count:
         report["warnings"].append("JavaScript is not evaluated; dynamically constructed variable names and command arguments need manual verification")
     for action in commands:
+        control = None
         if action.get("VariableType") != "STRING":
             report["errors"].append("DCS_INPUT_COMMAND actions must use VariableType STRING")
         script = action.get("VariableCalculateValueFunction")
@@ -212,9 +222,18 @@ def audit(value, files, catalog, applets=None):
                 if not isinstance(command, str) or " " not in command:
                     raise ValueError("Mailbox actions require an identifier and argument")
                 identifier, argument = command.split(" ", 1)
-                command_text(find_control(catalog, identifier), argument)
+                control = find_control(catalog, identifier)
+                command_text(control, argument)
             except ValueError as error:
                 report["errors"].append(str(error))
+        encoder = encoder_owners.get(id(action))
+        if encoder is not None and control is not None and control.get("control_type") in ("selector", "limited_dial"):
+            detail = ("Prefer a finite-position control with mapped simulator feedback unless a relative alternative is explicitly intended"
+                      if control["control_type"] == "selector" else
+                      "Verify physical detents versus continuous travel; a normalized range does not establish continuous hardware")
+            report["warnings"].append(
+                f"{encoder}: MCRotaryEncoder targets DCS-BIOS {control['control_type']} {control['identifier']}. "
+                f"{detail}; review aircraft evidence and detent mapping")
     declared = value.get("ReferencedUserVariables", [])
     if not isinstance(declared, list) or not all(isinstance(v, dict) for v in declared):
         report["errors"].append("ReferencedUserVariables must contain variable objects")

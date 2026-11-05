@@ -106,6 +106,86 @@ class DcsTests(unittest.TestCase):
         self.assertEqual(dcs.audit(value, files, self.catalog)["errors"], [])
         self.assertIn("dcs_SYN_READOUT", dcs.audit(value, files, self.catalog)["telemetry_variables"])
 
+    def encoder_fixture(self, control_type, normalized=False, calculated=False):
+        """Create an encoder and a synthetic target without asserting physical detent semantics."""
+        catalog = copy.deepcopy(self.catalog)
+        target = dcs.find_control(catalog, "SYN_DIMMER" if normalized else "SYN_POWER")
+        target["control_type"] = control_type
+        encoder = dcs.deck.new_control("MCRotaryEncoder", "", 0, 0, 1, 1)
+        encoder["Name"] = "Synthetic dial"
+        encoder["Config"].update(Ticks=16, DialSize=50)
+        if calculated:
+            command = dcs.scaled_action(target)
+        else:
+            command = dcs.command_action(target, "+3200" if normalized else "INC")
+        encoder["ControlEvents"] = [{"Name": "clockwise", "Actions": [command]}]
+        value = {"Id": "synthetic-deck", "DeckFileVersion": 3, "DefaultPageId": "synthetic-page",
+                 "Pages": [{"Id": "synthetic-page", "Cols": 1, "Rows": 1, "Controls": [encoder]}]}
+        dcs.ensure_mailbox(value)
+        return value, catalog, encoder
+
+    def test_encoder_selector_warning_uses_metadata_not_increment_support(self):
+        for control_type in ("selector", "potentiometer", None):
+            with self.subTest(control_type=control_type):
+                value, catalog, encoder = self.encoder_fixture(control_type)
+                # Identical INC input is legal in all cases; only selector metadata warrants this review warning.
+                report = dcs.audit(value, {}, catalog)
+                self.assertEqual(report["errors"], [])
+                warnings = [w for w in report["warnings"] if "MCRotaryEncoder targets" in w]
+                self.assertEqual(len(warnings), int(control_type == "selector"))
+                if warnings:
+                    self.assertIn("SYN_POWER", warnings[0])
+                    self.assertIn("Synthetic dial", warnings[0])
+                # Two directions for one target produce one review warning, not duplicate notices.
+                encoder["ControlEvents"].append({"Name": "counterclockwise", "Actions": [dcs.command_action(dcs.find_control(catalog, "SYN_POWER"), "DEC")]})
+                report = dcs.audit(value, {}, catalog)
+                self.assertEqual(len([w for w in report["warnings"] if "MCRotaryEncoder targets" in w]), len(warnings))
+
+    def test_encoder_normalized_limited_dial_needs_hardware_review(self):
+        for calculated in (False, True):
+            with self.subTest(calculated=calculated):
+                value, catalog, _ = self.encoder_fixture("limited_dial", normalized=True, calculated=calculated)
+                report = dcs.audit(value, {}, catalog)
+                self.assertEqual(report["errors"], [])
+                warnings = [w for w in report["warnings"] if "MCRotaryEncoder targets" in w]
+                self.assertEqual(len(warnings), 1)
+                self.assertIn("SYN_DIMMER", warnings[0])
+                self.assertIn("detents versus continuous travel", warnings[0])
+
+    def test_finite_native_switch_does_not_raise_encoder_review(self):
+        value, catalog, encoder = self.encoder_fixture("selector")
+        switch = dcs.deck.new_control("MCTwoPositionSwitch", "", 0, 0, 1, 1)
+        switch["ControlEvents"] = [{"Name": "positionchange-0-1", "Actions": [dcs.command_action(dcs.find_control(catalog, "SYN_POWER"), 1)]}]
+        switch["Config"]["ControlBindings"] = [dcs.feedback(dcs.find_control(catalog, "SYN_POWER"), "state.position")]
+        value["Pages"][0]["Controls"].insert(0, switch)
+        report = dcs.audit(value, {}, catalog)
+        self.assertEqual(report["errors"], [])
+        self.assertEqual(len([w for w in report["warnings"] if "MCRotaryEncoder targets" in w]), 1)
+        value["Pages"][0]["Controls"].remove(encoder)
+        report = dcs.audit(value, {}, catalog)
+        self.assertEqual(report["errors"], [])
+        self.assertFalse(any("MCRotaryEncoder targets" in w for w in report["warnings"]))
+
+    def test_unrecognized_calculated_encoder_target_still_requires_manual_review(self):
+        value, catalog, encoder = self.encoder_fixture("selector")
+        command = encoder["ControlEvents"][0]["Actions"][0]
+        command.update(VariableValue="", VariableCalculateValueFunction="return variables['chosen_command'];")
+        report = dcs.audit(value, {}, catalog)
+        self.assertEqual(report["errors"], [])
+        self.assertTrue(any("no recognized literal identifier" in w for w in report["warnings"]))
+        self.assertFalse(any("MCRotaryEncoder targets" in w for w in report["warnings"]))
+
+    def test_encoder_center_pushbutton_is_not_classified_as_rotation(self):
+        value, catalog, encoder = self.encoder_fixture("potentiometer", normalized=True)
+        # The same encoder may legitimately carry a discrete momentary centre button.
+        button = dcs.find_control(catalog, "SYN_POWER")
+        button["control_type"] = "selector"
+        for name, argument in (("press", 1), ("release", 0)):
+            encoder["ControlEvents"].append({"Name": name, "Actions": [dcs.command_action(button, argument)]})
+        report = dcs.audit(value, {}, catalog)
+        self.assertEqual(report["errors"], [])
+        self.assertFalse(any("MCRotaryEncoder targets" in w for w in report["warnings"]))
+
 
 if __name__ == "__main__":
     unittest.main()
