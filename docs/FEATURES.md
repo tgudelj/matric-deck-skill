@@ -1,6 +1,18 @@
 # Features and compatibility
 
-This guide describes the published skill. AI authoring instructions and detailed workflows live in [the installable skill](../skills/matric-decks/SKILL.md).
+This guide describes the published v0.7.0 skill. AI authoring instructions and detailed workflows live in [the installable skill](../skills/matric-decks/SKILL.md).
+
+## Setup, handover and revision checks
+
+The portable `workflow_tool.py` helper provides three read-only authoring commands:
+
+- `setup` checks the installed payload and selected OBS, game-profile or DCS definition inputs. An explicit OBS endpoint can use live read-only discovery. Reports distinguish checked facts, user confirmations, unresolved prerequisites and blocked checks; they do not infer that MATRIC integrations work.
+- `handover` explains a final deck's controls, declared feedback, dependencies and unresolved setup. Structural validation is separate from recorded visual, import, device and live-test evidence. Evidence is bound to the exact deck and supplied applet bytes. JSON reports retain input fingerprints for later revisions.
+- `compare` reports changed layout, artwork, actions, feedback, dependencies, identities and unknown data. An optional baseline handover rechecks recorded profile/definition/applet files. `--presentation-only` returns nonzero when changes outside known presentation fields or recorded-source drift require review.
+
+Both Markdown and JSON output are available. Reports stay outside staged decks, and existing report files are never overwritten. These tools execute no actions or scripts and require neither MATRIC binaries nor a source checkout. They supplement the existing OBS defaults and cockpit visual-reference research. See [commands, evidence and limitations](../skills/matric-decks/references/workflow-reports.md).
+
+Markdown reports lead with plain-language results and next steps. Technical IDs, hashes and field paths are kept in expandable details. Checks not covered in the report say "Not checked here yet"; failed checks say "Needs fixing." JSON retains the same status codes for other tools.
 
 ## OBS discovery
 

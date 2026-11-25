@@ -73,7 +73,7 @@ DCS-BIOS definitions, with simulator feedback and a DBMM output checklist.
 
 Review the actions and any required integrations, then import the `.deck` in MATRIC. The skill does not install the deck or run its controls for you.
 
-The published release also supports DCS-BIOS and DBMM cockpit panels. The skill also supports OBS discovery, application input configuration discovery, and custom applets. See [features and compatibility](docs/FEATURES.md) for details and limitations.
+The published release also supports DCS-BIOS and DBMM cockpit panels. The skill also supports OBS discovery, application input configuration discovery, and custom applets. It can check your authoring setup, deliver a plain-language deck guide and compare revisions to highlight changes to control actions. See [features and compatibility](docs/FEATURES.md) for details and limitations.
 
 ## More information
 

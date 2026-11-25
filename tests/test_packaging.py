@@ -16,6 +16,28 @@ spec.loader.exec_module(packager)
 
 
 class PackagingTests(unittest.TestCase):
+    def test_workflow_commands_run_from_the_installed_payload_without_repository(self):
+        with tempfile.TemporaryDirectory(prefix="matric-workflow-package-") as temp:
+            root = Path(temp)
+            archive, _ = packager.package(root / "release")
+            with zipfile.ZipFile(archive) as zipped:
+                zipped.extractall(root / "installed")
+            skill = root / "installed/matric-decks"
+            tool = skill / "scripts/workflow_tool.py"
+            starter = skill / "assets/starter"
+            for arguments, kind in ((("setup",), "setup"), (("handover", str(starter)), "handover"),
+                                    (("compare", str(starter), str(starter)), "comparison")):
+                result = subprocess.run([sys.executable, "-B", str(tool), *arguments, "--format", "json"],
+                                        cwd=root, capture_output=True, text=True)
+                expected = 1 if kind == "setup" and sys.version_info < (3, 11) else 0
+                self.assertEqual(result.returncode, expected, result.stderr)
+                report = json.loads(result.stdout)
+                self.assertEqual(report["kind"], kind)
+                if kind == "handover":
+                    self.assertEqual(report["checks"]["live_application"]["status"], "not_recorded")
+                if kind == "comparison":
+                    self.assertFalse(report["changes"])
+
     def test_packaged_xplane_inventory_runs_without_repository(self):
         with tempfile.TemporaryDirectory(prefix="matric-xplane-package-") as temp:
             root = Path(temp)

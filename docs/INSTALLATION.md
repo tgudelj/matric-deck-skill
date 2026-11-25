@@ -96,6 +96,8 @@ Use `python3` or `py -3.11` if that is how Python 3.11+ is available on your mac
 
 Next, ask the assistant to use `matric-decks` to create a small deck and return the `.deck` package. Approve ordinary file/terminal operations as appropriate for your environment. Review the actions and import the result through MATRIC's normal workflow. Discovery of saved OBS configuration is independent of MATRIC, while execution of native OBS actions still needs MATRIC's OBS connection.
 
+The skill also includes `python scripts/workflow_tool.py setup`. This checks the skill files and shows what still needs setting up. Application-specific options can inspect selected OBS data, game profiles and DCS definitions. Trying the controls in MATRIC and the target app is a separate step; see [the workflow report guide](../skills/matric-decks/references/workflow-reports.md).
+
 ## Update or remove
 
 For folder installations, preserve any local customizations, then replace the complete old `matric-decks` folder with the new release's folder. Do not merge a new release into an old installation; obsolete files could remain. Reload skills or start a new session as needed. Remove that folder to uninstall a manual installation. Installing or removing a skill does not change decks already generated or imported.
